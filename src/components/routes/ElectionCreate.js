@@ -4,10 +4,9 @@ import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
 import ElectionForm from '../shared/ElectionForm'
-import Layout from '../shared/Layout'
 
 const ElectionCreate = props => {
-  const [election, setElection] = useState({ title: '', director: '', year: '' })
+  const [election, setElection] = useState({ name: '', voting_method: '', year: '' })
   const [createdElectionId, setCreatedElectionId] = useState(null)
 
   const handleChange = event => {
@@ -33,14 +32,14 @@ const ElectionCreate = props => {
   }
 
   return (
-    <Layout>
+    <React.Fragment>
       <ElectionForm
         election={election}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         cancelPath="/"
       />
-    </Layout>
+    </React.Fragment>
   )
 }
 

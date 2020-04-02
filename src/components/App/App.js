@@ -8,6 +8,10 @@ import SignUp from '../SignUp/SignUp'
 import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
+import Election from '../routes/Election'
+import Elections from '../routes/Elections'
+import ElectionCreate from '../routes/ElectionCreate'
+import ElectionEdit from '../routes/ElectionEdit'
 
 class App extends Component {
   constructor () {
@@ -53,6 +57,18 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/Elections' render={() => (
+            <Elections msgAlert={this.msgAlert} user={user}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/ElectionCreate' render={() => (
+            <ElectionCreate msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/ElectionEdit' render={() => (
+            <ElectionEdit msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/Election' render={() => (
+            <Election msgAlert={this.msgAlert} user={user} />
           )} />
         </main>
       </Fragment>
