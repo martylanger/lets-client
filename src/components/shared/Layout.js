@@ -1,12 +1,15 @@
 import React from 'react'
 
-import Nav from './Nav'
+// import Nav from './Nav'
 import Footer from './Footer'
+import Header from './Header'
+import Auth from '../Auth/Auth'
 
 const Layout = props => (
   <div>
-    <h1>Let&#39s</h1>
-    <Nav />
+    <Header user={props.user} />
+    <Auth />
+    <h1>Let&#39;s</h1>
 
     {props.children}
 

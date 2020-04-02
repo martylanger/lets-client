@@ -4,6 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import ElectionForm from '../shared/ElectionForm'
 import Layout from '../shared/Layout'
+
 const ElectionEdit = props => {
   const [election, setElection] = useState({ title: '', director: '', year: '' })
   const [updatedElection, setUpdatedElection] = useState(false)

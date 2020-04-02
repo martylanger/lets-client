@@ -3,28 +3,28 @@ import { Link } from 'react-router-dom'
 
 const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
-    <label>Title</label>
+    <label>Name</label>
     <input
-      placeholder="A Wonderful Film"
+      placeholder="My Election"
       value={election.name}
-      name="title"
+      name="name"
       onChange={handleChange}
     />
 
-    <label>Director</label>
+    <label>Voting method</label>
     <input
-      placeholder="John Doe"
+      placeholder="American"
       value={election.voting_method}
-      name="director"
+      name="voting_method"
       onChange={handleChange}
     />
 
-    <label>Date Released</label>
+    <label>Close time</label>
     <input
-      type="date"
+      type="datetime"
       placeholder="YYYY-MM-DD"
       value={election.close_time}
-      name="year"
+      name="close_time"
       onChange={handleChange}
     />
 

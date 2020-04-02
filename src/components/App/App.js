@@ -1,63 +1,30 @@
-import React, { Component, Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import React from 'react'
+import { Route, withRouter } from 'react-router-dom'
 
-import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
-import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
-import Header from '../Header/Header'
-import SignUp from '../SignUp/SignUp'
-import SignIn from '../SignIn/SignIn'
-import SignOut from '../SignOut/SignOut'
-import ChangePassword from '../ChangePassword/ChangePassword'
+import Elections from '../routes/Elections'
+import Election from '../routes/Election'
+import ElectionEdit from '../routes/ElectionEdit'
+import ElectionCreate from '../routes/ElectionCreate'
+// import Home from '../routes/Home'
 
-class App extends Component {
-  constructor () {
-    super()
+// import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
+// import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
+// import SignUp from '../SignUp/SignUp'
+// import SignIn from '../SignIn/SignIn'
+// import SignOut from '../SignOut/SignOut'
+// import ChangePassword from '../ChangePassword/ChangePassword'
+import Auth from '../Auth/Auth'
 
-    this.state = {
-      user: null,
-      msgAlerts: []
-    }
-  }
+const App = props => (
+  <React.Fragment>
+    <Auth />
+    <h3>{props.location.state ? props.location.state.msg : null}</h3>
+    <Route exact path='/elections' component={Elections} />
+    <Route exact path='/create-election' component={ElectionCreate} />
+    <Route exact path='/elections/:id' component={Election} />
+    <Route exact path='/elections/:id/edit' component={ElectionEdit} />
 
-  setUser = user => this.setState({ user })
+  </React.Fragment>
+)
 
-  clearUser = () => this.setState({ user: null })
-
-  msgAlert = ({ heading, message, variant }) => {
-    this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant }] })
-  }
-
-  render () {
-    const { msgAlerts, user } = this.state
-
-    return (
-      <Fragment>
-        <Header user={user} />
-        {msgAlerts.map((msgAlert, index) => (
-          <AutoDismissAlert
-            key={index}
-            heading={msgAlert.heading}
-            variant={msgAlert.variant}
-            message={msgAlert.message}
-          />
-        ))}
-        <main className="container">
-          <Route path='/sign-up' render={() => (
-            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
-          )} />
-          <Route path='/sign-in' render={() => (
-            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
-          )} />
-          <AuthenticatedRoute user={user} path='/sign-out' render={() => (
-            <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
-          )} />
-          <AuthenticatedRoute user={user} path='/change-password' render={() => (
-            <ChangePassword msgAlert={this.msgAlert} user={user} />
-          )} />
-        </main>
-      </Fragment>
-    )
-  }
-}
-
-export default App
+export default withRouter(App)
