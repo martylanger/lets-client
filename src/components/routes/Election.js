@@ -60,27 +60,30 @@ const Election = props => {
       })
   }
 
+  let movieJSX
+
   if (!election) {
-    return <p>Loading...</p>
-  }
-
-  if (deleted) {
-    return <Redirect to={
-      { pathname: '/', state: { msg: 'Election succesfully deleted!' } }
+    movieJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
+  } else if (deleted) {
+    movieJSX = <Redirect to={
+      { pathname: '/Elections', state: { msg: 'Election succesfully deleted!' } }
     } />
+  } else {
+    movieJSX = (
+      <div>
+        <h4>{election.name}</h4>
+        <p>Voting method: {election.voting_method}</p>
+        <p className='choices'></p>
+        <button onClick={destroy}>Delete Election</button>
+        <Link to={`/elections/${props.match.params.id}/edit`}>
+          <button>Edit</button>
+        </Link>
+        <Link to="/elections">Back to all elections</Link>
+      </div>
+    )
   }
-
   return (
-    <React.Fragment>
-      <h4>{election.name}</h4>
-      <p>Voting method: {election.voting_method}</p>
-      <p className='choices'></p>
-      <button onClick={destroy}>Delete Election</button>
-      <Link to={`/elections/${props.match.params.id}/edit`}>
-        <button>Edit</button>
-      </Link>
-      <Link to="/elections">Back to all elections</Link>
-    </React.Fragment>
+    movieJSX
   )
 }
 
