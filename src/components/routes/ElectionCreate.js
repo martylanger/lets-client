@@ -24,7 +24,13 @@ const ElectionCreate = props => {
       data: { election }
     })
       .then(res => setCreatedElectionId(res.data.election.id))
-      .catch(console.error)
+      .catch(err => {
+        props.msgAlert({
+          heading: 'Failed to create your election',
+          message: err.message,
+          variant: 'danger'
+        })
+      })
   }
 
   if (createdElectionId) {

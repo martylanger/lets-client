@@ -14,8 +14,15 @@ const Elections = props => {
       }
     })
       .then(res => setElections(res.data.elections))
-      .catch(console.error)
+      .catch(err => {
+        props.msgAlert({
+          heading: 'Your elections failed to load',
+          message: err.message,
+          variant: 'danger'
+        })
+      })
   }, [])
+
   const electionsLinks = elections.map(election => (
     <li key={election.id}>
       <Link to={`/elections/${election.id}`}>{election.name}</Link>

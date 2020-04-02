@@ -28,7 +28,13 @@ const ElectionEdit = props => {
       data: { election: election }
     })
       .then(() => setUpdatedElection(true))
-      .catch(console.error)
+      .catch(err => {
+        props.msgAlert({
+          heading: 'Failed to update your election',
+          message: err.message,
+          variant: 'danger'
+        })
+      })
   }
   if (updatedElection) {
     return <Redirect to={`/elections/${props.match.params.id}`} />
