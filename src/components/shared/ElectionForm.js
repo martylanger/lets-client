@@ -19,12 +19,11 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
       onChange={handleChange}
     />
 
-    <label>Close time</label>
+    <label>Description</label>
     <input
-      type="datetime"
-      placeholder="YYYY-MM-DD"
-      value={election.close_time}
-      name="close_time"
+      placeholder="What should we do?"
+      value={election.description}
+      name="description"
       onChange={handleChange}
     />
 

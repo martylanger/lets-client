@@ -63,17 +63,25 @@ const Election = props => {
       })
   }
 
-  let movieJSX
+  let electionJSX
 
   if (!election) {
-    movieJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
+    electionJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
   } else if (deleted) {
-    movieJSX = <Redirect to={
+    electionJSX = <Redirect to={
       { pathname: '/elections', state: { msg: 'Election succesfully deleted!' } }
     } />
   } else {
     const ownerOpts = props.user.email !== election.user.email ? null : (
       <div>
+        {
+        // <button onClick={openNoms}>Open Nominations</button>
+        // <button onClick={openVote}>Start the vote!</button>
+        }
+        <Link to={'/choice-create'}>
+          <button>Add an option!</button>
+        </Link>
+
         <button onClick={destroy}>Delete Election</button>
         <Link to={`/elections/${props.match.params.id}/edit`}>
           <button>Edit</button>
@@ -82,7 +90,7 @@ const Election = props => {
     )
     const electionChoices = election.choices.map(choice => (
       <li key={choice.id}>
-        <p>{choice.title}</p>
+        {choice.title}
       </li>
     ))
     const electionBallots = election.ballots.map(ballot => (
@@ -90,9 +98,10 @@ const Election = props => {
         <p>{ballot.title}</p>
       </li>
     ))
-    movieJSX = (
+    electionJSX = (
       <div>
         <p>Owner: {election.user.email}</p>
+        <p>ID: {election.id}</p>
         <h4>Election: {election.name}</h4>
         <p>Voting method: {election.voting_method}</p>
         <p>Choices: {electionChoices}</p>
@@ -105,7 +114,7 @@ const Election = props => {
     )
   }
   return (
-    movieJSX
+    electionJSX
   )
 }
 

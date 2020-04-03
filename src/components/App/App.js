@@ -12,6 +12,7 @@ import Election from '../routes/Election'
 import Elections from '../routes/Elections'
 import ElectionCreate from '../routes/ElectionCreate'
 import ElectionEdit from '../routes/ElectionEdit'
+import ChoiceCreate from '../routes/ChoiceCreate'
 
 class App extends Component {
   constructor () {
@@ -63,6 +64,9 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/election-create' render={() => (
             <ElectionCreate msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/choice-create' render={() => (
+            <ChoiceCreate msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/edit' render={({ match }) => (
             <ElectionEdit match={match} msgAlert={this.msgAlert} user={user} />
