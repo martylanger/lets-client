@@ -3,7 +3,6 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import ElectionForm from '../shared/ElectionForm'
-import Layout from '../shared/Layout'
 
 const ElectionEdit = props => {
   const [election, setElection] = useState({ title: '', director: '', year: '' })
@@ -25,6 +24,9 @@ const ElectionEdit = props => {
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
       method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      },
       data: { election: election }
     })
       .then(() => setUpdatedElection(true))
@@ -40,14 +42,14 @@ const ElectionEdit = props => {
     return <Redirect to={`/elections/${props.match.params.id}`} />
   }
   return (
-    <Layout>
+    <React.Fragment>
       <ElectionForm
         election={election}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         cancelPath={`/elections/${props.match.params.id}`}
       />
-    </Layout>
+    </React.Fragment>
   )
 }
 export default ElectionEdit

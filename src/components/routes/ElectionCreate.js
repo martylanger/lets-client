@@ -6,7 +6,7 @@ import apiUrl from '../../apiConfig'
 import ElectionForm from '../shared/ElectionForm'
 
 const ElectionCreate = props => {
-  const [election, setElection] = useState({ name: '', voting_method: '', year: '' })
+  const [election, setElection] = useState({ name: '', voting_method: '', description: '' })
   const [createdElectionId, setCreatedElectionId] = useState(null)
 
   const handleChange = event => {
@@ -21,6 +21,9 @@ const ElectionCreate = props => {
     axios({
       url: `${apiUrl}/elections`,
       method: 'POST',
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      },
       data: { election }
     })
       .then(res => setCreatedElectionId(res.data.election.id))

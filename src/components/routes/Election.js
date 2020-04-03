@@ -13,7 +13,7 @@ const Election = props => {
   useEffect(() => {
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
-      method: 'get',
+      method: 'GET',
       headers: {
         'Authorization': `Bearer ${props.user.token}`
       }
@@ -48,7 +48,10 @@ const Election = props => {
   const destroy = () => {
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
-      method: 'DELETE'
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      }
     })
       .then(() => setDeleted(true))
       .catch(err => {
@@ -66,19 +69,38 @@ const Election = props => {
     movieJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
   } else if (deleted) {
     movieJSX = <Redirect to={
-      { pathname: '/Elections', state: { msg: 'Election succesfully deleted!' } }
+      { pathname: '/elections', state: { msg: 'Election succesfully deleted!' } }
     } />
   } else {
-    movieJSX = (
+    const ownerOpts = props.user.email !== election.user.email ? null : (
       <div>
-        <h4>{election.name}</h4>
-        <p>Voting method: {election.voting_method}</p>
-        <p className='choices'></p>
         <button onClick={destroy}>Delete Election</button>
         <Link to={`/elections/${props.match.params.id}/edit`}>
           <button>Edit</button>
         </Link>
-        <Link to="/elections">Back to all elections</Link>
+      </div>
+    )
+    const electionChoices = election.choices.map(choice => (
+      <li key={choice.id}>
+        <p>{choice.title}</p>
+      </li>
+    ))
+    const electionBallots = election.ballots.map(ballot => (
+      <li key={ballot.id}>
+        <p>{ballot.title}</p>
+      </li>
+    ))
+    movieJSX = (
+      <div>
+        <p>Owner: {election.user.email}</p>
+        <h4>Election: {election.name}</h4>
+        <p>Voting method: {election.voting_method}</p>
+        <p>Choices: {electionChoices}</p>
+        <p>Ballots: {electionBallots}</p>
+        {ownerOpts}
+        <Link to="/elections">
+          <button>Back to all elections</button>
+        </Link>
       </div>
     )
   }
