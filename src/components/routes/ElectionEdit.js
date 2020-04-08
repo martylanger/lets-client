@@ -10,7 +10,13 @@ const ElectionEdit = props => {
   useEffect(() => {
     axios(`${apiUrl}/elections/${props.match.params.id}`)
       .then(res => setElection(res.data.election))
-      .catch(console.error)
+      .catch(err => {
+        props.msgAlert({
+          heading: 'Failed while trying to retrieve your election',
+          message: err.message,
+          variant: 'danger'
+        })
+      })
   }, [])
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }

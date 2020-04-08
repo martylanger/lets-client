@@ -1,129 +1,109 @@
-[![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
+# Let's: A platform for group decision-making
 
-# react-auth-template
+Let's allows the user to create elections, each with a name, a voting
+method, a description, and many options.
 
-A front-end framework template for starting projects with a recent version of
-either the [Rails API Template](https://git.generalassemb.ly/ga-wdi-boston/rails-api-template)
-or the [Express API Template](https://git.generalassemb.ly/ga-wdi-boston/express-api-template).
+I conceived of Let's intending it both to introduce people to the concept of
+alternative voting methods and to be a useful tool for people to use for group
+decision-making.
 
-## Installation
+## Important Links
 
-1. [Download](../../archive/master.zip) this template.
-1. Unzip and rename the template directory (`unzip ~/Downloads/react-auth-template-master.zip`).
-1. Move into the new project and `git init`.
-1. Empty [`README.md`](README.md) and fill with your own content.
-1. Replace `react-auth-template` in `package.json` with your
-   projects name.
-1. Replace the `"homepage"` field in `package.json` with your (public) Github
-   account name and repository name.
-1. Install dependencies with `npm install`.
-1. `git add` and `git commit` your changes.
-1. Run the development server with `npm start`.
+- [Let's API Repo](https://github.com/martylanger/lets-api)
+- [Deployed API](https://letsapi.herokuapp.com)
+- [Deployed Client](https://martylanger.github.io/lets-client/)
 
-## Deployment
+## Planning Story
 
-Before deploying, you first need to make sure the `homepage` key in your
-`package.json` is pointing to the correct value. It should be the url of your
-deployed application.
+##### Planning phase
 
-To deploy you should first make sure you are on the `master` branch with a
-clean working directory, then you can run `npm run deploy` and wait to see if
-it runs successfully.
+##### Timeline for getting stuff done
 
-## About
+##### Troubleshooting
 
-This template is derived from GA Boston's [react-template](https://git.generalassemb.ly/ga-wdi-boston/react-template).
-Most of the development dependencies, such as linters, SCSS compiler, Webpack
-config, NPM scripts, etc in this repo come from there.
+## Technologies Used
 
-It includes all the components and routes needed to sign up, sign in, change
-passwords, and sign out of an API built with either template linked above, with
-no need for modification.
+- React
+- Axios
+- Javascript
 
-**NOTE**: You should customize the included components to suit you app! They're
-provided as a guide and a bare minimum of functionality and style. Consider
-changing the provided SCSS styles, modifying the auth code, improving the flash
-messages, etc.
+## Unsolved Problems
 
-## Structure
 
-The top-level `App` component stores the currently authenticated
-user in state, as well as data related to the flash messages. `App` renders the
-`Header` component, and a list of routes, each of which render a component from
-`src/components`. The `src/api` directory has a component file, `auth.js`, which
-contains all the needed `axios` calls pertaining to authentication.
+## Wireframe
 
-You can follow this pattern in your app as well. For instance, if you are making
-an app that keeps track of books, you might want a `src/api/books.js`, which
-contains its own `axios` call pertaining to your books resource CRUD actions.
-Using a separate directory within `components` for each individual component you
-add makes it easy to locate and update components and has the added benefit of
-making it easy to create custom styles that apply to that specific component.
-To apply component specific styles, add a file to the component's directory such
-as `ComponentName.scss` and then import it directly into the component with
-`import './ComponentName.scss'`.  This will keep your styles modularized and
-make it easier to make changes at the component level.
+![Imgur](https://i.imgur.com/shnhCUl.jpg?2)
 
-## Features
+## User Stories
 
-### `<AuthenticatedRoute />`
+#### v1
+-   As an unregistered user, I would like to sign up with email and password.
+-   As a registered user, I would like to sign in with email and password.
+-   As a signed in user, I would like to change password.
+-   As a signed in user, I would like to sign out.
 
-This template contains a handy component for creating routes that require a
-user to be authenticated before visiting. This component lives in
-`src/auth/components/AuthenticatedRoute.js` and is already required in `App`.
-It's a thin wrapper around React Router's `<Route />` component. The only
-difference is that it expects a prop called `user`, and if that prop is falsy,
-it will render a `<Redirect />` that takes the user to `/`. **To use
-it, you must pass it the user as a prop!**
+-   As a signed in user, I would like to create an election with a title, a description, a voting method, and a list of up to 110 choices.
+-   As a signed in user, I would like to update my election's title, voting method, or choices.
+-   As a signed in user, I would like to delete my election.
+-   As a signed in user, I would like to see all my elections or all users' elections.
 
-It supports both the `component=` and `render=` attributes, but like `<Route />`
-it will not forward props to the component if you use `component=`.
+#### v2.0 - Voting
+-   As a user, I would like to vote in an election.
 
-### `<AutoAlertDismiss />` Component
+###### v2.1
+-   As a user, I would like to get a link to vote in my election to share with voters.
 
-This template also already contains a component that displays user messages.
-Messages are configurable via redux actions.  This component can be found in
-`src/components/AutoAlertDismiss/AutoAlertDismiss.js`. **There is no need to add
-this component to your app. It is already required in `App`.**  A single
-component instance is used to manage all alerts application-wide.
+#### v3.0 - Nominations
+-   As a user, I would like the options to set all the choices myself, to allow nominations, or to set some myself and allow nominations.
 
-The alert can be used by passing the `alertMsg` method to a rendered route.  The
-`alertMsg` method expects an object with a `heading`, `message`, and a `variant` property.
+###### v3.1
+-   As a user, I would like the option to separate the nomination period from the voting period or to have nominations and votes occur concurrently
 
-Use this component in conjunction with the `messages.js` file in the same
-directory to create and manage all of your application messages in one place.
+#### v4.0 - Full basic functionality
+-   As a user, I would like to use an alternative voting method (TBD).
+-   As a signed-in user, I would like my election to accept single votes, abstains, approve/disapprove, rankings, or ratings, depending on my chosen voting method.
+-   As a user, I would like to open and close (and reopen) my election.
+###### v4.1
+-   As a user, I would like to invite others to vote in my election.
+###### v4.2
+-   As a user, I would like to restrict voters to 1 ballot per voter, by invite or by IP address. Verification.
+###### v4.3
+-   As a user, I would like to update my ballot.
+###### v4.4
+-   As a user, I would like to make an election secret, open-ballot, or anonymized open-ballot.
+-   As a signed-in user, I would like to choose whether before an election is closed the preliminary results are visible or not.
+-   As a user, I would like to be able to make an election's results visible only to participants, only to invitees, only to myself, or public.
+###### v4.5
+-   As a user, I would like to open my election to an indefinite number of choices.
 
-The `variant` property must be a Bootstrap alert variant, as this component is merely a
-wrapper around the [react-bootstrap Alert
-component](https://react-bootstrap.github.io/components/alerts/).  The types it
-will accept are: 'primary', 'secondary', 'success', 'danger', 'warning', 'info',
-'light', and 'dark'.
+#### v5
+-   As a user, I would like several options of alternative voting methods.
 
- To change the duration of the message, replace `5000` with a value of your
- choice (in milliseconds) in this component's `componentDidMount` method.
+#### v6 - Voter account
+-   As a signed-in user, I would like to see all the elections I have voted in.
 
-### `src/apiConfig.js`
+#### v7 - Information
+-   As a user, I would like some information with which to choose my voting method.
 
-Just like in
-[browser-template](https://git.generalassemb.ly/ga-wdi-boston/browser-template),
-this file will determine whether you're in a production or development
-environment and choose an API URL accordingly. Don't forget to replace the
-`production` URL with your deployed API's URL.
+#### v8 - Closing elections
+-   As a user, I would like to set a timer or a date and time for my election to close.
+-   As a signed-in user, I want the option to see who has voted and who hasn't in my election.
 
-## Tasks
+#### v9 - User options/contacts
+-   As a signed-in user, I would like to save default options or profiles for new elections.
+-   As a signed-in user, I would like to save contacts to whom I can quickly send out elections.
+-   As a signed-in user, I would like to save groups to whom I can quickly send out elections.
 
-Developers should run these often!
+#### v10 - Choices
+-   As a user, I would like to comment on an election.
+-   As a user, I would like to include links to choices' websites.
+-   As a user, I would like to see previews of choices.
 
-- `npm run nag`: runs code quality analysis tools on your code and complains.
-- `npm run make-standard`: reformats all your code in the JavaScript Standard
-  Style.
-- `npm run start`: generates bundles, watches, and livereloads.
-- `npm run build`: place bundled styles and scripts where `index.html` can find
-    them
-- `npm run deploy`: builds and deploys master branch
+#### v>10
+-   As an unregistered user, I would like to create an election.
 
-## [License](LICENSE)
+-   As a user, I would like the results to update in real time.
 
-1. All content is licensed under a CC­BY­NC­SA 4.0 license.
-1. All software code is licensed under GNU GPLv3. For commercial use or
-    alternative licensing, please contact legal@ga.co.
+-   As a signed-in user, I would like to choose the style of my ballot.
+
+-   As a user, I would like to see how the results of my election would have differed had I used a different voting method.
