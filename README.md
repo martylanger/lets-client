@@ -1,38 +1,63 @@
 # Let's: A platform for group decision-making
 
-Let's allows the user to create elections, each with a name, a voting
-method, a description, and many options.
+Let's is a web app for group decision-making using alternative voting methods, such as approval/disapproval and instant-runoff voting.
 
-I conceived of Let's intending it both to introduce people to the concept of
-alternative voting methods and to be a useful tool for people to use for group
-decision-making.
+Registered users of Let's can currently create elections with a name, description, and voting method, and add choices (nominations/candidates/options) to elections, with titles, descriptions, and links to pertinent websites. They can also view a list of the elections made by all registered users, view the details of each election, and update or delete elections they've created.
+
+In order to add choices to an election, users currently must enter the ID number of that election.
+
+Users of Let's will be able to create, open, and close an election and choose from a plethora of options:
+- Which voting method
+- How and when the candidates are determined
+- How to share elections with voters and verify ballots
+- Whether ballots are secret, open, or visible but anonymized
+- To whom the results are visible
+- When to open and close the voting
+
+Users will also be able to save contacts, groups of contacts, and sets of election preferences for quick implementation.
 
 ## Important Links
 
+- [Let's Client Repo](https://github.com/martylanger/lets-client)
+- [Deployed Client](https://martylanger.github.io/lets-client/)
 - [Let's API Repo](https://github.com/martylanger/lets-api)
 - [Deployed API](https://letsapi.herokuapp.com)
-- [Deployed Client](https://martylanger.github.io/lets-client/)
 
 ## Planning Story
 
-##### Planning phase
+In a previous project, I'd built an app for users to create and view election facades, but without the capability to actually have nominations or voting. That project had only a single one-to-many relationship in the back-end. When I began work on this project, I initially thought that I would be able to build on the earlier project and race towards a fully functional voting app, despite starting from scratch with React and a more complex database structure.
 
-##### Timeline for getting stuff done
+Of course, I needed to learn to walk before I could run, and my first versions of the Let's app had less functionality than the earlier project despite working with the more robust tools. This time, however, before starting to code I had already mapped out a plan for adding all my desired features. My initial schedule was four days of work, with the first day devoted to the back-end and the remaining three left for the front-end. On day one, I set up the GA-provided Rails API template, designed my database, and took my first crack at deploying to Heroku. There were issues.
+
+By the end of the four days, the back-end had consumed more than half of my time, as the classes with which I first made my controllers required user ownership, and that conflicted with my design, in which only the election creator was required to be a registered user.
+
+On the front-end, I began with a GA-provided React template with authentication built in. Notably, I spent way too much time trying to hooksify important parts of the template - eventually I was encouraged to abandon this task and aim straight for election CRUD. When that was achieved, I started down my list of features, starting with the capability for adding choices to elections.
 
 ##### Troubleshooting
+I closely followed the steps laid out in the React lessons of the GA course, but I also did a lot of googling and watched a handful of React tutorials on Youtube. Console.logs were a smaller part of my troubleshooting process than usual, with stack exchange pulling more weight than usual - not having other programmers around me during the development process, many would-be quick questions turned into protracted searches. I tried to lean on the issue queue in lieu of an active milieu, too.
 
 ## Technologies Used
 
 - React
 - Axios
 - Javascript
+- HTML
+- CSS
 
 ## Unsolved Problems
 
+- I must rejigger my interface for viewing an election so that all the links work as expected and the information is current with any updates or deletions made.
+- Most of my features, including many of the basic features, still need to be implemented.
+  - Most importantly, I need to implement the voting capability and write the logics for determining winners of elections.
+- I'd like to restyle the app entirely.
+
+## Screenshot
+
+![Let's Screenshot](https://i.imgur.com/x6gkpzh.png "Let's Screenshot")
 
 ## Wireframe
 
-![Imgur](https://i.imgur.com/shnhCUl.jpg?2)
+![Let's Wireframe](https://i.imgur.com/shnhCUl.jpg?2 "Let's Wireframe")
 
 ## User Stories
 
@@ -42,8 +67,8 @@ decision-making.
 -   As a signed in user, I would like to change password.
 -   As a signed in user, I would like to sign out.
 
--   As a signed in user, I would like to create an election with a title, a description, a voting method, and a list of up to 110 choices.
--   As a signed in user, I would like to update my election's title, voting method, or choices.
+-   As a signed in user, I would like to create an election with a title, a description, and a voting method.
+-   As a signed in user, I would like to update my election's title, description, or voting method.
 -   As a signed in user, I would like to delete my election.
 -   As a signed in user, I would like to see all my elections or all users' elections.
 
