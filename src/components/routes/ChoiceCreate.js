@@ -29,7 +29,7 @@ const ChoiceCreate = props => {
       .then(res => setCreatedChoiceId(res.data.choice.id))
       .catch(err => {
         props.msgAlert({
-          heading: 'Failed to create your election',
+          heading: 'Failed to create your choice',
           message: err.message,
           variant: 'danger'
         })

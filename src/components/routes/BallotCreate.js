@@ -3,47 +3,48 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 import apiUrl from '../../apiConfig'
-import ElectionForm from '../shared/ElectionForm'
+import BallotForm from '../shared/BallotForm'
 
-const ElectionCreate = props => {
-  const [election, setElection] = useState({ name: '', voting_method: '', description: '' })
-  const [createdElectionId, setCreatedElectionId] = useState(null)
+const BallotCreate = props => {
+  const [ballot, setBallot] = useState({ election_id: '', votes: [] })
+  const [createdBallotId, setCreatedBallotId] = useState(null)
 
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
-    const editedElection = Object.assign({ ...election }, updatedField)
-    setElection(editedElection)
+    const editedBallot = Object.assign({ ...ballot }, updatedField)
+    setBallot(editedBallot)
   }
 
   const handleSubmit = event => {
     event.preventDefault()
 
     axios({
-      url: `${apiUrl}/elections`,
+      url: `${apiUrl}/ballots`,
       method: 'POST',
       headers: {
         Authorization: `Bearer ${props.user.token}`
       },
-      data: { election }
+      data: { ballot }
     })
-      .then(res => setCreatedElectionId(res.data.election.id))
+      .then(res => setCreatedBallotId(res.data.ballot.id))
       .catch(err => {
         props.msgAlert({
-          heading: 'Failed to create your election',
+          heading: 'Failed to create your ballot',
           message: err.message,
           variant: 'danger'
         })
       })
   }
 
-  if (createdElectionId) {
-    return <Redirect to={`/elections/${createdElectionId}`} />
+  if (createdBallotId) {
+    return <Redirect to={`/elections/${ballot.election_id}`} />
   }
 
   return (
     <React.Fragment>
-      <ElectionForm
-        election={election}
+      <BallotForm
+        election={props.election}
+        ballot={ballot}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         cancelPath="/"
@@ -52,4 +53,4 @@ const ElectionCreate = props => {
   )
 }
 
-export default ElectionCreate
+export default BallotCreate
