@@ -5,7 +5,7 @@ import apiUrl from '../../apiConfig'
 import ElectionForm from '../shared/ElectionForm'
 
 const ElectionEdit = props => {
-  const [election, setElection] = useState({ title: '', director: '', year: '' })
+  const [election, setElection] = useState({ name: '', voting_method: '', description: '', choices: [] })
   const [updatedElection, setUpdatedElection] = useState(false)
   useEffect(() => {
     axios(`${apiUrl}/elections/${props.match.params.id}`)

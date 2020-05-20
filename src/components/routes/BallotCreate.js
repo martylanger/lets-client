@@ -8,6 +8,9 @@ import BallotForm from '../shared/BallotForm'
 const BallotCreate = props => {
   const [ballot, setBallot] = useState({ election_id: '', votes: [] })
   const [createdBallotId, setCreatedBallotId] = useState(null)
+  const [election, setElection] = useState({ name: '', voting_method: '', description: '', choices: [] })
+
+  setElection(props.election)
 
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
@@ -43,7 +46,8 @@ const BallotCreate = props => {
   return (
     <React.Fragment>
       <BallotForm
-        election={props.election}
+        election={election}
+        choices={election.choices}
         ballot={ballot}
         handleChange={handleChange}
         handleSubmit={handleSubmit}

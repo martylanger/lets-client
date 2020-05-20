@@ -6,7 +6,9 @@ const authenticatedOptions = (
   <Fragment>
     <Nav.Link href="#elections">My Elections</Nav.Link>
     <Nav.Link href="#election-create">New Election</Nav.Link>
-    <Nav.Link href="#choice-create">Nominate</Nav.Link>
+    {
+      // <Nav.Link href="#choice-create">Nominate</Nav.Link>
+    }
     <Nav.Link href="#ballot-create">Vote</Nav.Link>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>

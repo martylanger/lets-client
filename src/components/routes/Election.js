@@ -32,7 +32,7 @@ const Election = props => {
     // This will only run when the compnent will unmount
     // because the dependency array is empty
     return () => {
-      console.log('The election is gon disappeare')
+      // console.log('The election is gonna disappear')
     }
   }, [])
 
@@ -41,7 +41,7 @@ const Election = props => {
     // 1. the component is about to unmount
     // 2. before the 2nd and following renders
     return () => {
-      console.log('Calling cleanup')
+      // console.log('Calling cleanup')
     }
   })
 
@@ -78,11 +78,22 @@ const Election = props => {
         // <button onClick={openNoms}>Open Nominations</button>
         // <button onClick={openVote}>Start the vote!</button>
         }
-        <Link to={'/choice-create'}>
+        {
+        // <Link to={'/choice-create'}>
+        //   <button>Add an option!</button>
+        // </Link>
+        }
+
+        <Link to={`/elections/${props.match.params.id}/choice-create`}>
           <button>Add an option!</button>
         </Link>
 
+        <Link to={`/elections/${props.match.params.id}/ballot-create`}>
+          <button>Vote!</button>
+        </Link>
+
         <button onClick={destroy}>Delete Election</button>
+
         <Link to={`/elections/${props.match.params.id}/edit`}>
           <button>Edit</button>
         </Link>
