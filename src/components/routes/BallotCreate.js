@@ -17,7 +17,6 @@ const BallotCreate = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-
     axios({
       url: `${apiUrl}/ballots`,
       method: 'POST',

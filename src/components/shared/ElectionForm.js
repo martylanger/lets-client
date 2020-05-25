@@ -28,6 +28,7 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
     />
 
     <button type="submit">Submit</button>
+
     <Link to={cancelPath}>
       <button>Cancel</button>
     </Link>

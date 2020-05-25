@@ -66,6 +66,7 @@ const Election = props => {
   let electionJSX
 
   if (!election) {
+    // If it's loading, give a loading gif
     electionJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
   } else if (deleted) {
     electionJSX = <Redirect to={
@@ -88,6 +89,7 @@ const Election = props => {
         </Link>
       </div>
     )
+
     const electionChoices = election.choices.map(choice => (
       <li key={choice.id}>
         {choice.title}
@@ -98,6 +100,7 @@ const Election = props => {
         <p>{ballot.title}</p>
       </li>
     ))
+
     electionJSX = (
       <div>
         <p>Owner: {election.user.email}</p>
