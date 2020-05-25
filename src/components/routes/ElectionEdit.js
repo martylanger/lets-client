@@ -5,20 +5,30 @@ import apiUrl from '../../apiConfig'
 import ElectionForm from '../shared/ElectionForm'
 
 const ElectionEdit = props => {
-  const [election, setElection] = useState({ title: '', director: '', year: '' })
+  // Retrieve election and set state
+  const [election, setElection] = useState({})
   const [updatedElection, setUpdatedElection] = useState(false)
   useEffect(() => {
     axios(`${apiUrl}/elections/${props.match.params.id}`)
       .then(res => setElection(res.data.election))
-      .catch(console.error)
+      .catch(err => {
+        props.msgAlert({
+          heading: 'Failed while trying to retrieve your election',
+          message: err.message,
+          variant: 'danger'
+        })
+      })
   }, [])
+
+  // Set state upon field update
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
+    // Destructuring the election, making a copy of the object to update it with the modified field
     const editedElection = Object.assign({ ...election }, updatedField)
-    // React doesn't like mutating objects / storing its data without using this.setState
-    // destructuring the election, making a copy of the object to update it with the modified field
     setElection(editedElection)
   }
+
+  // Send update to the API on submit
   const handleSubmit = event => {
     event.preventDefault()
     axios({
@@ -38,18 +48,21 @@ const ElectionEdit = props => {
         })
       })
   }
+
   if (updatedElection) {
     return <Redirect to={`/elections/${props.match.params.id}`} />
+  } else {
+    return (
+      <React.Fragment>
+        <ElectionForm
+          election={election}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          cancelPath={`/elections/${props.match.params.id}`}
+        />
+      </React.Fragment>
+    )
   }
-  return (
-    <React.Fragment>
-      <ElectionForm
-        election={election}
-        handleChange={handleChange}
-        handleSubmit={handleSubmit}
-        cancelPath={`/elections/${props.match.params.id}`}
-      />
-    </React.Fragment>
-  )
 }
+
 export default ElectionEdit

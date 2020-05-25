@@ -28,6 +28,7 @@ const Elections = props => {
       <Link to={`/elections/${election.id}`}>{election.name}</Link>
     </li>
   ))
+
   return (
     <React.Fragment>
       <h4>Your Elections</h4>
