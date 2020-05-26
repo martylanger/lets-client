@@ -32,9 +32,9 @@ const ElectionEdit = props => {
   }
 
   // To handle delete choice, I need to:
-   // attain the choice id
-   // destroy the choice
-   // reload the election
+  // attain the choice id
+  // destroy the choice
+  // reload the election
   //
   // const handleDelete = event => {
   //   const array = election.choices
