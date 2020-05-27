@@ -10,14 +10,6 @@ const ChoiceForm = ({ choice, election, handleSubmit, handleChange, cancelPath }
       onChange={handleChange}
     />
 
-    <label>election id</label>
-    <input
-      placeholder={choice.election_id}
-      value={choice.election_id}
-      name="election_id"
-      onChange={handleChange}
-    />
-
     <label>Description</label>
     <input
       value={choice.description}
