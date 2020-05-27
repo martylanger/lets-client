@@ -84,6 +84,10 @@ const Election = props => {
           <button>Add an option!</button><p></p>
         </Link>
 
+        <Link to={`/elections/${props.match.params.id}/ballot-create`}>
+          <button>Vote!</button><p></p>
+        </Link>
+
         <Link to={`/elections/${props.match.params.id}/edit`}>
           <button>Edit</button><p></p>
         </Link>

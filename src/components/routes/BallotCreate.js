@@ -6,7 +6,7 @@ import apiUrl from '../../apiConfig'
 import BallotForm from '../shared/BallotForm'
 
 const BallotCreate = props => {
-  const [ballot, setBallot] = useState({ election_id: '', votes: [] })
+  const [ballot, setBallot] = useState({ election_id: props.match.params.id, votes: [] })
   const [createdBallotId, setCreatedBallotId] = useState(null)
 
   const handleChange = event => {

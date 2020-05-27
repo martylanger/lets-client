@@ -70,8 +70,8 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/elections/:id/choice-create' render={({ match }) => (
             <ChoiceCreate match={match} msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/ballot-create' render={() => (
-            <BallotCreate msgAlert={this.msgAlert} user={user} />
+          <AuthenticatedRoute user={user} path='/elections/:id/ballot-create' render={({ match }) => (
+            <BallotCreate match={match} msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/edit' render={({ match }) => (
             <ElectionEdit match={match} msgAlert={this.msgAlert} user={user} />
