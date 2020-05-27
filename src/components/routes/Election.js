@@ -73,20 +73,22 @@ const Election = props => {
       { pathname: '/elections', state: { msg: 'Election succesfully deleted!' } }
     } />
   } else {
+    // Options only available to the election owner
     const ownerOpts = props.user.email !== election.user.email ? null : (
       <div>
         {
         // <button onClick={openNoms}>Open Nominations</button>
         // <button onClick={openVote}>Start the vote!</button>
         }
-        <Link to={'/choice-create'}>
-          <button>Add an option!</button>
+        <Link to={`/elections/${props.match.params.id}/choice-create`}>
+          <button>Add an option!</button><p></p>
         </Link>
 
-        <button onClick={destroy}>Delete Election</button>
         <Link to={`/elections/${props.match.params.id}/edit`}>
-          <button>Edit</button>
+          <button>Edit</button><p></p>
         </Link>
+
+        <button onClick={destroy}>Delete Election</button><p></p>
       </div>
     )
 
@@ -97,7 +99,7 @@ const Election = props => {
     ))
     const electionBallots = election.ballots.map(ballot => (
       <li key={ballot.id}>
-        <p>{ballot.title}</p>
+        {ballot.title}
       </li>
     ))
 

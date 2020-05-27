@@ -6,7 +6,7 @@ import apiUrl from '../../apiConfig'
 import ChoiceForm from '../shared/ChoiceForm'
 
 const ChoiceCreate = props => {
-  const [choice, setChoice] = useState({ election_id: '', title: '', description: '', link: '' })
+  const [choice, setChoice] = useState({ election_id: props.match.params.id, title: '', description: '', link: '' })
   const [createdChoiceId, setCreatedChoiceId] = useState(null)
 
   const handleChange = event => {
