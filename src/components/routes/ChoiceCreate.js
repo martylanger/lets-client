@@ -43,7 +43,6 @@ const ChoiceCreate = props => {
   return (
     <React.Fragment>
       <ChoiceForm
-        election={props.election}
         choice={choice}
         handleChange={handleChange}
         handleSubmit={handleSubmit}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ChoiceForm = ({ choice, election, handleSubmit, handleChange, cancelPath }) => (
+const ChoiceForm = ({ choice, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
     <label>Option</label>
     <input

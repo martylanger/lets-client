@@ -103,9 +103,31 @@ const Election = props => {
     ))
     const electionBallots = election.ballots.map(ballot => (
       <li key={ballot.id}>
-        {ballot.title}
+        {ballot.selections}
       </li>
     ))
+
+    // Determine the result
+    // Create a ballots array
+    const ballotsArray = []
+    const choicesArray = []
+    const votes = []
+    let optionNum = 0
+
+    election.ballots.forEach(ballot => {
+      // Convert ballots from strings to arrays and push them to the ballots array
+      ballotsArray.push(ballot.selections.split(" "))
+      // Also make an array of all the choices
+      choicesArray.push(optionNum++)
+    })
+
+    // Look at the first element in each array and tally the results
+    ballotsArray.forEach(ballot => {
+      votes[ballot[0]]++
+    })
+
+    // Which choice has the fewest votes?
+    votes.reduce
 
     electionJSX = (
       <div>
@@ -115,6 +137,7 @@ const Election = props => {
         <p>Voting method: {election.voting_method}</p>
         <p>Choices: {electionChoices}</p>
         <p>Ballots: {electionBallots}</p>
+        <p>Results: {results}
         {ownerOpts}
         <Link to="/elections">
           <button>Back to all elections</button>
