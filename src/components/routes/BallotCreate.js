@@ -63,11 +63,13 @@ const BallotCreate = props => {
     // If it's loading, give a loading gif
     ballotJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
   } else {
-    const theOptions = election.choices.map((choice, i) =>
+    // Display and number the options
+    const theOptions = election.choices.map((choice, i) => (
       <li key={choice.id}>
         Option #{i + 1}: {choice.title}
       </li>
-    )
+    ))
+
     ballotJSX = (
       <React.Fragment>
         <BallotForm
