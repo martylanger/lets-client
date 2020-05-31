@@ -84,10 +84,6 @@ const Election = props => {
           <button>Add an option!</button><p></p>
         </Link>
 
-        <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-          <button>Vote!</button><p></p>
-        </Link>
-
         <Link to={`/elections/${props.match.params.id}/edit`}>
           <button>Edit</button><p></p>
         </Link>
@@ -113,10 +109,11 @@ const Election = props => {
     const choicesArray = []
     const votes = []
     let optionNum = 0
+    let results
 
     election.ballots.forEach(ballot => {
       // Convert ballots from strings to arrays and push them to the ballots array
-      ballotsArray.push(ballot.selections.split(" "))
+      ballotsArray.push(ballot.selections.split(' '))
       // Also make an array of all the choices
       choicesArray.push(optionNum++)
     })
@@ -126,8 +123,15 @@ const Election = props => {
       votes[ballot[0]]++
     })
 
+    // Does any choice have a majority?
+    if (votes.findIndex(candidate => candidate > votes.length / 2) !== -1) {
+
+    }
+
     // Which choice has the fewest votes?
-    votes.reduce
+    votes.reduce(function (min, current, index) {
+
+    })
 
     electionJSX = (
       <div>
@@ -137,7 +141,10 @@ const Election = props => {
         <p>Voting method: {election.voting_method}</p>
         <p>Choices: {electionChoices}</p>
         <p>Ballots: {electionBallots}</p>
-        <p>Results: {results}
+        <p>Results: {results}</p>
+        <Link to={`/elections/${props.match.params.id}/ballot-create`}>
+          <button>Vote!</button><p></p>
+        </Link>
         {ownerOpts}
         <Link to="/elections">
           <button>Back to all elections</button>
