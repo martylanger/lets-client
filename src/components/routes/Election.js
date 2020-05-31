@@ -32,7 +32,6 @@ const Election = props => {
     // This will only run when the compnent will unmount
     // because the dependency array is empty
     return () => {
-      console.log('The election is gon disappeare')
     }
   }, [])
 
@@ -41,7 +40,6 @@ const Election = props => {
     // 1. the component is about to unmount
     // 2. before the 2nd and following renders
     return () => {
-      console.log('Calling cleanup')
     }
   })
 
@@ -61,6 +59,72 @@ const Election = props => {
           variant: 'danger'
         })
       })
+  }
+
+  const majorityReached = function (tallyArr, ballotsArr) {
+    const winner = tallyArr.findIndex(candidate => candidate > ballotsArr.length / 2)
+    if (winner === -1) {
+      return false
+    } else {
+      return winner
+    }
+  }
+
+  // Tally the top choices of all the ballots
+  // In the tally array, the index # === the option #,
+  // and the value at the index is the number of votes for the option
+
+  const tally = function (ballotsArr) {
+    const results = []
+    // Note: ballot[0] is the top choice for that ballot
+    ballotsArr.forEach(ballot => {
+      if (results[ballot[0]]) {
+        // If it's the first vote for an option, assign value 1
+        results[ballot[0]] = 1
+      } else {
+        results[ballot[0]]++
+      }
+    })
+    // Discard any votes for nonexistent option #0
+    results[0] = null
+    return results
+  }
+
+  // Determine the result
+  const determineWinner = function (ballots) {
+    // Create a new array of the ballots' selections with the strings converted to arrays
+    const ballotsArray = election.ballots.map(ballot => ballot.selections.split(' '))
+
+    // election.ballots.forEach(ballot => {
+    // Convert ballots from strings to arrays and push them to the ballots array
+    // ballotsArray.push(ballot.selections.split(' '))
+    // Also make an array of all the choices
+    // choicesArray.push(optionNum++)
+
+    // Tally the top choices
+    tally(ballotsArray)
+
+    // Does any choice have a majority? If so, return it
+    if (majorityReached(tally, ballotsArray)) {
+      return majorityReached(tally, ballotsArray)
+    }
+
+    const eliminate = function (ballotsArr) {
+      ballotsArr.forEach(ballot => {
+
+      })
+    }
+
+    // Determine the option with the fewest votes
+    // Do any uneliminated choices have 0 votes?
+    if (tally.indexOf(undefined)) {
+      eliminate(tally.indexOf(undefined))
+    }
+
+    // Which choice has the fewest votes?
+    tally.reduce(function (min, current, index) {
+
+    })
   }
 
   let electionJSX
@@ -103,36 +167,6 @@ const Election = props => {
       </li>
     ))
 
-    // Determine the result
-    // Create a ballots array
-    const ballotsArray = []
-    const choicesArray = []
-    const votes = []
-    let optionNum = 0
-    let results
-
-    election.ballots.forEach(ballot => {
-      // Convert ballots from strings to arrays and push them to the ballots array
-      ballotsArray.push(ballot.selections.split(' '))
-      // Also make an array of all the choices
-      choicesArray.push(optionNum++)
-    })
-
-    // Look at the first element in each array and tally the results
-    ballotsArray.forEach(ballot => {
-      votes[ballot[0]]++
-    })
-
-    // Does any choice have a majority?
-    if (votes.findIndex(candidate => candidate > votes.length / 2) !== -1) {
-
-    }
-
-    // Which choice has the fewest votes?
-    votes.reduce(function (min, current, index) {
-
-    })
-
     electionJSX = (
       <div>
         <p>Owner: {election.user.email}</p>
@@ -141,7 +175,7 @@ const Election = props => {
         <p>Voting method: {election.voting_method}</p>
         <p>Choices: {electionChoices}</p>
         <p>Ballots: {electionBallots}</p>
-        <p>Results: {results}</p>
+        <p>Results: {determineWinner(election.ballots)}</p>
         <Link to={`/elections/${props.match.params.id}/ballot-create`}>
           <button>Vote!</button><p></p>
         </Link>
