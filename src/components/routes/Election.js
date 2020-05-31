@@ -61,20 +61,11 @@ const Election = props => {
       })
   }
 
-  const majorityReached = function (tallyArr, ballotsArr) {
-    const winner = tallyArr.findIndex(candidate => candidate > ballotsArr.length / 2)
-    if (winner === -1) {
-      return false
-    } else {
-      return winner
-    }
-  }
-
   // Tally the top choices of all the ballots
-  // In the tally array, the index # === the option #,
-  // and the value at the index is the number of votes for the option
-
-  const tally = function (ballotsArr) {
+  // In the tally array, the index # === the option #, and the value at the index is the number of votes for the option
+  // Note: if an option receives no first-place votes and is a later option on the list than all other first-place vote-getters,
+  //   then it will not be included in the tally array but should be eliminated as soon as it appears
+  const doTally = function (ballotsArr) {
     const results = []
     // Note: ballot[0] is the top choice for that ballot
     ballotsArr.forEach(ballot => {
@@ -90,42 +81,74 @@ const Election = props => {
     return results
   }
 
+  const majorityReached = function (tallyArr, ballotsArr) {
+    const winner = tallyArr.findIndex(candidate => candidate > ballotsArr.length / 2)
+    if (winner === -1) {
+      return false
+    } else {
+      return winner
+    }
+  }
+
+  // Remove an option from all ballots, regardless of rank
+  const eliminate = function (ballotsArr, option) {
+    ballotsArr.forEach(ballot => {
+      ballot.splice(ballot.indexOf(option), 1)
+    })
+  }
+
   // Determine the result
   const determineWinner = function (ballots) {
     // Create a new array of the ballots' selections with the strings converted to arrays
     const ballotsArray = election.ballots.map(ballot => ballot.selections.split(' '))
-
-    // election.ballots.forEach(ballot => {
-    // Convert ballots from strings to arrays and push them to the ballots array
-    // ballotsArray.push(ballot.selections.split(' '))
-    // Also make an array of all the choices
-    // choicesArray.push(optionNum++)
-
+    // Also create an array to track the eliminated options
+    const eliminatedOptions = []
+    const toBeEliminated = []
     // Tally the top choices
-    tally(ballotsArray)
+    const tally = doTally(ballotsArray)
 
-    // Does any choice have a majority? If so, return it
-    if (majorityReached(tally, ballotsArray)) {
-      return majorityReached(tally, ballotsArray)
+    // Does any option have a majority?
+    while (!majorityReached(tally, ballotsArray)) {
+      // If not, determine the option with the fewest votes
+      // If any uneliminated options have 0 votes, eliminate them
+      for (let i = 1; i < tally.length; i++) {
+        if(!tally[i] && !eliminatedOptions.includes(i)) {
+          toBeEliminated.push(i)
+          eliminate(ballotsArray, i)
+          eliminatedOptions.push(i)
+          }
+        }
+      // Otherwise, find the option with the fewest votes
+      if (!toBeEliminated) {
+
+      }
+
+
     }
+    return majorityReached(tally, ballotsArray)
 
-    const eliminate = function (ballotsArr) {
-      ballotsArr.forEach(ballot => {
+
+    const fewestVotes(tallyArr) {
+      tallyArr.reduce(function (low, current, index) {
+        if (current) {
+          if (current === low) {
+            toBeEliminated.push(index)
+          } else if (current < low) {
+            toBeEliminated = [index]
+            low = current
+          }
+        }
+        return low
+      }, 1000000000000000)
 
       })
     }
-
-    // Determine the option with the fewest votes
-    // Do any uneliminated choices have 0 votes?
-    if (tally.indexOf(undefined)) {
-      eliminate(tally.indexOf(undefined))
-    }
-
-    // Which choice has the fewest votes?
-    tally.reduce(function (min, current, index) {
-
-    })
   }
+
+// Tally the top votes (ballotsArray)
+// Check for a majority winner (tally, ballotsArray)
+// Determine the uneliminated option(s) with the fewest votes (tally, eliminatedOptions)
+// Remove that/those option(s) from all ballots (ballotsArray)
 
   let electionJSX
 
