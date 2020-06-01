@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
-const Elections = props => {
+const MyElections = props => {
   const [elections, setElections] = useState([])
   useEffect(() => {
     axios({
@@ -21,9 +21,11 @@ const Elections = props => {
           variant: 'danger'
         })
       })
-  }, [])
-
-  const electionsLinks = elections.map(election => (
+  }, [elections])
+  // Find all elections belonging to the user
+  const myElections = elections.filter(election => election.user.email === props.user.email)
+  // Create link for each election
+  const electionsLinks = myElections.map(election => (
     <li key={election.id}>
       <Link to={`/elections/${election.id}`}>{election.name}</Link>
     </li>
@@ -39,4 +41,4 @@ const Elections = props => {
   )
 }
 
-export default Elections
+export default MyElections

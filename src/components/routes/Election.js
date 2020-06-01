@@ -26,7 +26,7 @@ const Election = props => {
           variant: 'danger'
         })
       })
-  }, [])
+  }, [election])
 
   useEffect(() => {
     // This will only run when the compnent will unmount

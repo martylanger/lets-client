@@ -62,18 +62,18 @@ I closely followed the steps laid out in the React lessons of the GA course, but
 ## User Stories
 
 #### v1
--   As an unregistered user, I would like to sign up with email and password.
--   As a registered user, I would like to sign in with email and password.
--   As a signed in user, I would like to change password.
--   As a signed in user, I would like to sign out.
+DONE -   As an unregistered user, I would like to sign up with email and password.
+DONE -   As a registered user, I would like to sign in with email and password.
+DONE -   As a signed in user, I would like to change password.
+DONE -   As a signed in user, I would like to sign out.
 
--   As a signed in user, I would like to create an election with a title, a description, and a voting method.
--   As a signed in user, I would like to update my election's title, description, or voting method.
--   As a signed in user, I would like to delete my election.
--   As a signed in user, I would like to see all my elections or all users' elections.
+DONE -   As a signed in user, I would like to create an election with a title, a description, and a voting method.
+DONE -   As a signed in user, I would like to update my election's title, description, or voting method.
+DONE -   As a signed in user, I would like to delete my election.
+PARTIALLY DONE -   As a signed in user, I would like to see all my elections or all users' elections.
 
 #### v2.0 - Voting
--   As a user, I would like to vote in an election.
+DONE -   As a user, I would like to vote in an election.
 
 ###### v2.1
 -   As a user, I would like to get a link to vote in my election to share with voters.
@@ -85,7 +85,7 @@ I closely followed the steps laid out in the React lessons of the GA course, but
 -   As a user, I would like the option to separate the nomination period from the voting period or to have nominations and votes occur concurrently
 
 #### v4.0 - Full basic functionality
--   As a user, I would like to use an alternative voting method (TBD).
+DONE -   As a user, I would like to use an alternative voting method (IRV).
 -   As a signed-in user, I would like my election to accept single votes, abstains, approve/disapprove, rankings, or ratings, depending on my chosen voting method.
 -   As a user, I would like to open and close (and reopen) my election.
 ###### v4.1
@@ -99,7 +99,7 @@ I closely followed the steps laid out in the React lessons of the GA course, but
 -   As a signed-in user, I would like to choose whether before an election is closed the preliminary results are visible or not.
 -   As a user, I would like to be able to make an election's results visible only to participants, only to invitees, only to myself, or public.
 ###### v4.5
--   As a user, I would like to open my election to an indefinite number of choices.
+DONE -   As a user, I would like to open my election to an indefinite number of choices.
 
 #### v5
 -   As a user, I would like several options of alternative voting methods.
@@ -127,7 +127,7 @@ I closely followed the steps laid out in the React lessons of the GA course, but
 #### v>10
 -   As an unregistered user, I would like to create an election.
 
--   As a user, I would like the results to update in real time.
+DONE -   As a user, I would like the results to update in real time.
 
 -   As a signed-in user, I would like to choose the style of my ballot.
 

@@ -24,9 +24,9 @@ const ElectionEdit = props => {
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
     // Destructuring the election, making a copy of the object to update it with the modified field
-    console.log([event.target.name])
-    console.log(event.target.value)
-    console.log(updatedField)
+    // console.log([event.target.name])
+    // console.log(event.target.value)
+    // console.log(updatedField)
     const editedElection = Object.assign({ ...election }, updatedField)
     setElection(editedElection)
   }
