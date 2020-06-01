@@ -61,26 +61,30 @@ const Election = props => {
       })
   }
 
-  // Tally the top choices of all the ballots
+  // DETERMINE THE WINNER USING INSTANT RUNOFF
+
+  // Create arrays to track the eliminated options
+  let toEliminate = []
+  const eliminatedOptions = []
+  let victors = []
+  // Prepare the results array and tally the top choices of all the ballots
   // In the tally array, the index # === the option #, and the value at the index is the number of votes for the option
-  // Note: if an option receives no first-place votes and is a later option on the list than all other first-place vote-getters,
-  //   then it will not be included in the tally array but should be eliminated as soon as it appears
   const doTally = function (ballotsArr) {
     const results = []
-    // Note: ballot[0] is the top choice for that ballot
     ballotsArr.forEach(ballot => {
-      if (results[ballot[0]]) {
-        // If it's the first vote for an option, assign value 1
-        results[ballot[0]] = 1
-      } else {
-        results[ballot[0]]++
-      }
+      // Initiate the count at 0 for every option that received any votes at any rank
+      ballot.forEach(selection => {
+        results[selection] = 0
+      })
+      // Tally the top choice of each ballot (ballot[0])
+      results[ballot[0]]++
     })
     // Discard any votes for nonexistent option #0
-    results[0] = null
+    results[0] = 0
     return results
   }
 
+  // Check to see if any option has reached a majority
   const majorityReached = function (tallyArr, ballotsArr) {
     const winner = tallyArr.findIndex(candidate => candidate > ballotsArr.length / 2)
     if (winner === -1) {
@@ -90,65 +94,86 @@ const Election = props => {
     }
   }
 
-  // Remove an option from all ballots, regardless of rank
+  // Push the remaining option(s) with the fewest votes to toEliminate
+  const fewestVotes = function (tallyArr) {
+    tallyArr.reduce(function (low, current, index) {
+      if (current > 0) {
+        if (current === low) {
+          toEliminate.push(index)
+        } else if (current < low) {
+          toEliminate = [index]
+          low = current
+        }
+      }
+      return low
+    }, 1000000000000000)
+  }
+
+  // Push the option(s) with the most votes to victors
+  const mostVotes = function (tallyArr) {
+    tallyArr.reduce(function (high, current, index) {
+      if (current === high) {
+        victors.push(index)
+      }
+      if (current > high) {
+        victors = [index]
+        high = current
+      }
+      return high
+    }, 0)
+  }
+
+  // Remove an option from all ballots
   const eliminate = function (ballotsArr, option) {
     ballotsArr.forEach(ballot => {
       ballot.splice(ballot.indexOf(option), 1)
     })
   }
 
-  // Determine the result
-  const determineWinner = function (ballots) {
+  // Determine the result:
+  //    Tally the top votes (ballotsArray)
+  //    Check for a majority winner (tally, ballotsArray)
+  //    Determine the uneliminated option(s) with the fewest votes (tally, eliminatedOptions)
+  //    Remove that/those option(s) from all ballots (ballotsArray)
+
+  const determineWinners = function (ballots) {
     // Create a new array of the ballots' selections with the strings converted to arrays
     const ballotsArray = election.ballots.map(ballot => ballot.selections.split(' '))
-    // Also create an array to track the eliminated options
-    const eliminatedOptions = []
-    const toBeEliminated = []
+
     // Tally the top choices
-    const tally = doTally(ballotsArray)
+    let tally = doTally(ballotsArray)
+    let remainingOptions = 3
 
     // Does any option have a majority?
-    while (!majorityReached(tally, ballotsArray)) {
+    while (!majorityReached(tally, ballotsArray) && remainingOptions > 2) {
       // If not, determine the option with the fewest votes
-      // If any uneliminated options have 0 votes, eliminate them
+      //  If any uneliminated options have 0 votes, eliminate them
       for (let i = 1; i < tally.length; i++) {
-        if(!tally[i] && !eliminatedOptions.includes(i)) {
-          toBeEliminated.push(i)
+        if (!tally[i] && !eliminatedOptions.includes(i)) {
+          toEliminate.push(i)
           eliminate(ballotsArray, i)
           eliminatedOptions.push(i)
-          }
         }
-      // Otherwise, find the option with the fewest votes
-      if (!toBeEliminated) {
-
       }
-
-
+      // Otherwise, find the option(s) with the fewest votes and eliminate them
+      if (toEliminate.length === 0) {
+        fewestVotes(tally)
+        toEliminate.forEach(option => {
+          eliminate(ballotsArray, option)
+          eliminatedOptions.push(option)
+        })
+        toEliminate = []
+      }
+      // Retally the votes
+      tally = doTally(ballotsArray)
+      // Count the remaining options
+      remainingOptions = tally.filter(option => option > 0)
     }
-    return majorityReached(tally, ballotsArray)
 
-
-    const fewestVotes(tallyArr) {
-      tallyArr.reduce(function (low, current, index) {
-        if (current) {
-          if (current === low) {
-            toBeEliminated.push(index)
-          } else if (current < low) {
-            toBeEliminated = [index]
-            low = current
-          }
-        }
-        return low
-      }, 1000000000000000)
-
-      })
-    }
+    // See which option(s) has the most votes and push to victors array
+    mostVotes(tally)
+    return victors
   }
-
-// Tally the top votes (ballotsArray)
-// Check for a majority winner (tally, ballotsArray)
-// Determine the uneliminated option(s) with the fewest votes (tally, eliminatedOptions)
-// Remove that/those option(s) from all ballots (ballotsArray)
 
   let electionJSX
 
@@ -166,6 +191,7 @@ const Election = props => {
         {
         // <button onClick={openNoms}>Open Nominations</button>
         // <button onClick={openVote}>Start the vote!</button>
+        // <button onClick={closeVote}>End the vote!</button>
         }
         <Link to={`/elections/${props.match.params.id}/choice-create`}>
           <button>Add an option!</button><p></p>
@@ -198,7 +224,7 @@ const Election = props => {
         <p>Voting method: {election.voting_method}</p>
         <p>Choices: {electionChoices}</p>
         <p>Ballots: {electionBallots}</p>
-        <p>Results: {determineWinner(election.ballots)}</p>
+        <p>Results: {determineWinners(election.ballots)}</p>
         <Link to={`/elections/${props.match.params.id}/ballot-create`}>
           <button>Vote!</button><p></p>
         </Link>
