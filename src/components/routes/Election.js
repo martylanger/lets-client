@@ -63,7 +63,7 @@ const Election = props => {
 
   // DETERMINE THE WINNER USING INSTANT RUNOFF
 
-  // Create arrays to track the eliminated options
+  // Create arrays to track the eliminated options and victors
   let toEliminate = []
   const eliminatedOptions = []
   let victors = []
@@ -74,7 +74,9 @@ const Election = props => {
     ballotsArr.forEach(ballot => {
       // Initiate the count at 0 for every option that received any votes at any rank
       ballot.forEach(selection => {
-        if (!(results[selection] > 0)) results[selection] = 0
+        if (!(results[selection] > 0)) {
+          results[selection] = 0
+        }
       })
       // console.log('ballotsArr' + JSON.stringify(ballotsArr))
       // console.log('ballot' + JSON.stringify(ballot))
@@ -84,7 +86,7 @@ const Election = props => {
     })
     // Discard any votes for nonexistent option #0
     results[0] = 0
-    console.log('results' + JSON.stringify(results))
+    // console.log('results' + JSON.stringify(results))
     return results
   }
 
@@ -212,8 +214,6 @@ const Election = props => {
       </div>
     )
 
-    const winners = determineWinners(election.ballots)
-
     const electionChoices = election.choices.map(choice => (
       <li key={choice.id}>
         {choice.title}
@@ -233,7 +233,7 @@ const Election = props => {
         <p>Voting method: {election.voting_method}</p>
         <p>Choices: {electionChoices}</p>
         <p>Ballots: {electionBallots}</p>
-        <p>Results: {winners}</p>
+        <p>Results: {determineWinners(election.ballots)}</p>
         <Link to={`/elections/${props.match.params.id}/ballot-create`}>
           <button>Vote!</button><p></p>
         </Link>
