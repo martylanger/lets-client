@@ -3,8 +3,9 @@ import React from 'react'
 const Choices = props => {
   const electionChoices = props.election.choices.map((choice, i) => (
     <li key={choice.id}>
-      Option #{i + 1}: {choice.title} <button onClick={props.handleDestroyChoice} name={choice.id} >Delete</button>
-
+      {props.deletable && <button onClick={props.handleDestroyChoice} name={choice.id}>Delete</button>
+      }
+      Option #{i + 1}: {choice.title}
     </li>
   ))
 
