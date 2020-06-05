@@ -9,6 +9,8 @@ const ElectionEdit = props => {
   // Retrieve election and set state
   const [election, setElection] = useState({ name: '', voting_method: '', description: '', choices: [], ballots: [] })
   const [updatedElection, setUpdatedElection] = useState(false)
+  const [deletedChoice, setDeletedChoice] = useState(false)
+
   useEffect(() => {
     axios(`${apiUrl}/elections/${props.match.params.id}`)
       .then(res => setElection(res.data.election))
@@ -19,7 +21,7 @@ const ElectionEdit = props => {
           variant: 'danger'
         })
       })
-  }, [])
+  }, [deletedChoice])
 
   useEffect(() => {
     // The cleanup function is called when
@@ -52,7 +54,7 @@ const ElectionEdit = props => {
         Authorization: `Bearer ${props.user.token}`
       }
     })
-      .then(() => setUpdatedElection(true))
+      .then(() => setDeletedChoice(true))
       .catch(err => {
         props.msgAlert({
           heading: 'Your choice failed to delete',
