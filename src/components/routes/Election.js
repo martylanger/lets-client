@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import Choices from '../shared/Choices'
 
 const Election = props => {
   const [election, setElection] = useState(null)
@@ -60,6 +61,12 @@ const Election = props => {
         })
       })
   }
+  // Display and number the options
+  // const theOptions = election.choices.map((choice, i) => (
+  //   <li key={choice.id}>
+  //     Option #{i + 1}: {choice.title}
+  //   </li>
+  // ))
 
   // DETERMINE THE WINNER USING INSTANT RUNOFF
 
@@ -145,12 +152,9 @@ const Election = props => {
   const determineWinners = function (ballots) {
     // Create a new array of the ballots' selections with the strings converted to arrays
     const ballotsArray = election.ballots.map(ballot => ballot.selections.split(' '))
-    // console.log(JSON.stringify(ballotsArray))
-    // ballotsArray.forEach(ballot => console.log(JSON.stringify(ballot)))
 
     // Tally the top choices
     let tally = doTally(ballotsArray)
-    // console.log(JSON.stringify(tally))
     let remainingOptions = 3
 
     // Does any option have a majority?
@@ -214,11 +218,6 @@ const Election = props => {
       </div>
     )
 
-    const electionChoices = election.choices.map(choice => (
-      <li key={choice.id}>
-        {choice.title}
-      </li>
-    ))
     const electionBallots = election.ballots.map(ballot => (
       <li key={ballot.id}>
         {ballot.selections}
@@ -231,7 +230,7 @@ const Election = props => {
         <p>ID: {election.id}</p>
         <h4>Election: {election.name}</h4>
         <p>Voting method: {election.voting_method}</p>
-        <p>Choices: {electionChoices}</p>
+        <Choices election={election} />
         <p>Ballots: {electionBallots}</p>
         <p>Results: {determineWinners(election.ballots)}</p>
         <Link to={`/elections/${props.match.params.id}/ballot-create`}>
