@@ -203,7 +203,6 @@ const Election = props => {
     electionJSX = (
       <div>
         <p>Owner: {election.user.email}</p>
-        <p>ID: {election.id}</p>
         <h4>Election: {election.name}</h4>
         <p>Voting method: {election.voting_method}</p>
         <Choices election={election} />
