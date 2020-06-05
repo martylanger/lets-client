@@ -15,7 +15,8 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
     <select
       name="voting_method"
       value={election.voting_method}
-      onChange={handleChange}>
+      onChange={handleChange}
+    >
       <option value="">--Please choose an option--</option>
       <option value="instant-runoff">Instant runoff</option>
       <option value="borda-count">Borda count</option>
