@@ -89,7 +89,7 @@ const ElectionEdit = props => {
   }
 
   if (updatedElection) {
-    return <Redirect to={`/elections/${props.match.params.id}`} />
+    return <Redirect to={`/my-elections/${props.match.params.id}`} />
   } else {
     return (
       <React.Fragment>
@@ -97,7 +97,7 @@ const ElectionEdit = props => {
           election={election}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
-          cancelPath={`/elections/${props.match.params.id}`}
+          cancelPath={`/my-elections/${props.match.params.id}`}
         />
         <Choices
           election={election}
