@@ -4,6 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
 import Ballots from '../shared/Ballots'
+import OwnerOptions from '../shared/OwnerOptions'
 
 const Election = props => {
   const [election, setElection] = useState(null)
@@ -28,7 +29,7 @@ const Election = props => {
           variant: 'danger'
         })
       })
-  }, [election])
+  }, [1000])
 
   useEffect(() => {
     // This will only run when the compnent will unmount
@@ -45,7 +46,7 @@ const Election = props => {
     }
   })
 
-  const destroy = () => {
+  const onDestroy = () => {
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
       method: 'DELETE',
@@ -196,29 +197,9 @@ const Election = props => {
     electionJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
   } else if (deleted) {
     electionJSX = <Redirect to={
-      { pathname: '/elections', state: { msg: 'Election succesfully deleted!' } }
+      { pathname: '/my-elections', state: { msg: 'Election succesfully deleted!' } }
     } />
   } else {
-    // Options only available to the election owner
-    const ownerOpts = props.user.email !== election.user.email ? null : (
-      <div>
-        {
-        // <button onClick={openNoms}>Open Nominations</button>
-        // <button onClick={openVote}>Start the vote!</button>
-        // <button onClick={closeVote}>End the vote!</button>
-        }
-        <Link to={`/elections/${props.match.params.id}/choice-create`}>
-          <button>Add an option!</button><p></p>
-        </Link>
-
-        <Link to={`/elections/${props.match.params.id}/edit`}>
-          <button>Edit</button><p></p>
-        </Link>
-
-        <button onClick={destroy}>Delete Election</button><p></p>
-      </div>
-    )
-
     electionJSX = (
       <div>
         <p>Owner: {election.user.email}</p>
@@ -231,7 +212,11 @@ const Election = props => {
         <Link to={`/elections/${props.match.params.id}/ballot-create`}>
           <button>Vote!</button><p></p>
         </Link>
-        {ownerOpts}
+        <OwnerOptions
+          grandProps={props}
+          election={election}
+          onDestroy={onDestroy}
+        />
         <Link to="/elections">
           <button>Back to all elections</button>
         </Link>
