@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Choices = props => {
+const OwnerOptions = props => {
   // Options only available to the election owner
   const ownerOptions = props.grandProps.user.email !== props.election.user.email ? null : (
     <div>
@@ -27,4 +27,4 @@ const Choices = props => {
   )
 }
 
-export default Choices
+export default OwnerOptions

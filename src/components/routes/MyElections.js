@@ -13,7 +13,11 @@ const MyElections = props => {
         'Authorization': `Bearer ${props.user.token}`
       }
     })
-      .then(res => setElections(res.data.elections))
+      .then(res => {
+        if (elections) {
+          setElections(res.data.elections)
+        }
+      })
       .catch(err => {
         props.msgAlert({
           heading: 'Your elections failed to load',
@@ -21,7 +25,7 @@ const MyElections = props => {
           variant: 'danger'
         })
       })
-  }, [elections])
+  }, [1000])
   // Find all elections belonging to the user
   const myElections = elections.filter(election => election.user.email === props.user.email)
   // Create link for each election
