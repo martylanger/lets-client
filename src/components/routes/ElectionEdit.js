@@ -29,7 +29,7 @@ const ElectionEdit = props => {
     }
   })
 
-  // Set state upon field update
+  // Set state upon updated field
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
     // Destructuring the election, making a copy of the object to update it with the modified field

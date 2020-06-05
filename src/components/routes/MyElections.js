@@ -19,11 +19,13 @@ const MyElections = props => {
         }
       })
       .catch(err => {
-        props.msgAlert({
-          heading: 'Your elections failed to load',
-          message: err.message,
-          variant: 'danger'
-        })
+        if (elections) {
+          props.msgAlert({
+            heading: 'Your elections failed to load',
+            message: err.message,
+            variant: 'danger'
+          })
+        }
       })
   }, [1000])
   // Find all elections belonging to the user
