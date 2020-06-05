@@ -3,6 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
+import Ballots from '../shared/Ballots'
 
 const Election = props => {
   const [election, setElection] = useState(null)
@@ -231,7 +232,7 @@ const Election = props => {
         <h4>Election: {election.name}</h4>
         <p>Voting method: {election.voting_method}</p>
         <Choices election={election} />
-        <p>Ballots: {electionBallots}</p>
+        <Ballots election={election} />
         <p>Results: {determineWinners(election.ballots)}</p>
         <Link to={`/elections/${props.match.params.id}/ballot-create`}>
           <button>Vote!</button><p></p>
