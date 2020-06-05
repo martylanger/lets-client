@@ -217,7 +217,7 @@ const Election = props => {
           election={election}
           onDestroy={onDestroy}
         />
-        <Link to="/elections">
+        <Link to="/my-elections">
           <button>Back to all elections</button>
         </Link>
       </div>
