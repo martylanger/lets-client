@@ -219,12 +219,6 @@ const Election = props => {
       </div>
     )
 
-    const electionBallots = election.ballots.map(ballot => (
-      <li key={ballot.id}>
-        {ballot.selections}
-      </li>
-    ))
-
     electionJSX = (
       <div>
         <p>Owner: {election.user.email}</p>
