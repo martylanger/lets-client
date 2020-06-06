@@ -6,7 +6,7 @@ import apiUrl from '../../apiConfig'
 import ChoiceForm from '../shared/ChoiceForm'
 
 const ChoiceCreate = props => {
-  const [choice, setChoice] = useState({ election_id: '', title: '', description: '', link: '' })
+  const [choice, setChoice] = useState({ election_id: props.match.params.id, title: '', description: '', link: '' })
   const [createdChoiceId, setCreatedChoiceId] = useState(null)
 
   const handleChange = event => {
@@ -29,7 +29,7 @@ const ChoiceCreate = props => {
       .then(res => setCreatedChoiceId(res.data.choice.id))
       .catch(err => {
         props.msgAlert({
-          heading: 'Failed to create your election',
+          heading: 'Failed to create your choice',
           message: err.message,
           variant: 'danger'
         })
@@ -43,7 +43,6 @@ const ChoiceCreate = props => {
   return (
     <React.Fragment>
       <ChoiceForm
-        election={props.election}
         choice={choice}
         handleChange={handleChange}
         handleSubmit={handleSubmit}

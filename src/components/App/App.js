@@ -9,10 +9,12 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import Election from '../routes/Election'
-import Elections from '../routes/Elections'
+import MyElections from '../routes/MyElections'
+import AllElections from '../routes/AllElections'
 import ElectionCreate from '../routes/ElectionCreate'
 import ElectionEdit from '../routes/ElectionEdit'
 import ChoiceCreate from '../routes/ChoiceCreate'
+import BallotCreate from '../routes/BallotCreate'
 
 class App extends Component {
   constructor () {
@@ -59,14 +61,21 @@ class App extends Component {
           <AuthenticatedRoute user={user} path='/change-password' render={() => (
             <ChangePassword msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/elections' render={() => (
-            <Elections msgAlert={this.msgAlert} user={user}/>
+
+          <Route path='/all-elections' render={() => (
+            <AllElections msgAlert={this.msgAlert}/>
+          )} />
+          <AuthenticatedRoute user={user} path='/my-elections' render={() => (
+            <MyElections msgAlert={this.msgAlert} user={user}/>
           )} />
           <AuthenticatedRoute user={user} path='/election-create' render={() => (
             <ElectionCreate msgAlert={this.msgAlert} user={user} />
           )} />
-          <AuthenticatedRoute user={user} path='/choice-create' render={() => (
-            <ChoiceCreate msgAlert={this.msgAlert} user={user} />
+          <AuthenticatedRoute user={user} path='/elections/:id/choice-create' render={({ match }) => (
+            <ChoiceCreate match={match} msgAlert={this.msgAlert} user={user} />
+          )} />
+          <AuthenticatedRoute user={user} path='/elections/:id/ballot-create' render={({ match }) => (
+            <BallotCreate match={match} msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/edit' render={({ match }) => (
             <ElectionEdit match={match} msgAlert={this.msgAlert} user={user} />

@@ -12,12 +12,17 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
     />
 
     <label>Voting method</label>
-    <input
-      placeholder="American"
-      value={election.voting_method}
+    <select
       name="voting_method"
+      value={election.voting_method}
       onChange={handleChange}
-    />
+    >
+      <option value="">--Please choose an option--</option>
+      <option value="instant-runoff">Instant runoff</option>
+      <option value="borda-count">Borda count</option>
+      <option value="plurality">Plurality</option>
+      <option value="approval">Approval</option>
+    </select>
 
     <label>Description</label>
     <input
@@ -28,6 +33,7 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
     />
 
     <button type="submit">Submit</button>
+
     <Link to={cancelPath}>
       <button>Cancel</button>
     </Link>

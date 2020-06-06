@@ -4,9 +4,9 @@ import Navbar from 'react-bootstrap/Navbar'
 
 const authenticatedOptions = (
   <Fragment>
-    <Nav.Link href="#elections">My Elections</Nav.Link>
+    <Nav.Link href="#all-elections">All Elections</Nav.Link>
+    <Nav.Link href="#my-elections">My Elections</Nav.Link>
     <Nav.Link href="#election-create">New Election</Nav.Link>
-    <Nav.Link href="#choice-create">New Choice</Nav.Link>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
   </Fragment>
@@ -14,6 +14,7 @@ const authenticatedOptions = (
 
 const unauthenticatedOptions = (
   <Fragment>
+    <Nav.Link href="#all-elections">See All Elections</Nav.Link>
     <Nav.Link href="#sign-up">Sign Up</Nav.Link>
     <Nav.Link href="#sign-in">Sign In</Nav.Link>
   </Fragment>

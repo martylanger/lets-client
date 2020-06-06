@@ -3,15 +3,12 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 
-const Elections = props => {
+const AllElections = props => {
   const [elections, setElections] = useState([])
   useEffect(() => {
     axios({
       url: `${apiUrl}/elections`,
-      method: 'get',
-      headers: {
-        'Authorization': `Bearer ${props.user.token}`
-      }
+      method: 'get'
     })
       .then(res => setElections(res.data.elections))
       .catch(err => {
@@ -28,6 +25,7 @@ const Elections = props => {
       <Link to={`/elections/${election.id}`}>{election.name}</Link>
     </li>
   ))
+
   return (
     <React.Fragment>
       <h4>Your Elections</h4>
@@ -38,4 +36,4 @@ const Elections = props => {
   )
 }
 
-export default Elections
+export default AllElections
