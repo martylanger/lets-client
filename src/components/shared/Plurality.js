@@ -1,12 +1,12 @@
 import React from 'react'
+import ballotsToArray from '../../modules/ballotsToArray'
+import doTally from '../../modules/doTally'
+import mostVotes from '../../modules/mostVotes'
 
 const Plurality = props => {
-  // Tally
-  // mostVotes
-
   return (
     <React.Fragment>
-      plurality
+      <p>Results: {mostVotes(doTally(ballotsToArray(props.election.ballots)))}</p>
     </React.Fragment>
   )
 }

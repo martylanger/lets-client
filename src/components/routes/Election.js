@@ -5,6 +5,7 @@ import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
 import Ballots from '../shared/Ballots'
 import InstantRunoff from '../shared/InstantRunoff'
+// import Plurality from '../shared/Plurality'
 import OwnerOptions from '../shared/OwnerOptions'
 
 const Election = props => {
@@ -64,6 +65,22 @@ const Election = props => {
         })
       })
   }
+
+  // const votingMethodsArray = [
+  //   ['instant-runoff', InstantRunoff],
+  //   ['plurality', Plurality]
+  // ]
+  // const votingMethods = new Map(votingMethodsArray)
+  // const results = votingMethods.get(election.voting_method)
+  // let results
+  //
+  // switch (election.voting_method) {
+  //   case 'instant-runoff':
+  //     results = (
+  //       <InstantRunoff election={election}
+  //     )
+  //     break
+  // }
 
   let electionJSX
 

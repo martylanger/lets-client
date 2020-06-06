@@ -1,36 +1,17 @@
 import React from 'react'
+import ballotsToArray from '../../modules/ballotsToArray'
 import doTally from '../../modules/doTally'
 import mostVotes from '../../modules/mostVotes'
 
 const InstantRunoff = props => {
   // DETERMINE THE WINNER USING INSTANT RUNOFF
 
-  // Create arrays to track the eliminated options and victors
+  // Create arrays to track the eliminated options
   let toEliminate = []
   const eliminatedOptions = []
-  // let victors = []
+
   // Prepare the results array and tally the top choices of all the ballots
   // In the tally array, the index # === the option #, and the value at the index is the number of votes for the option
-  // const doTally = function (ballotsArr) {
-  //   const results = []
-  //   ballotsArr.forEach(ballot => {
-  //     // Initiate the count at 0 for every option that received any votes at any rank
-  //     ballot.forEach(selection => {
-  //       if (!(results[selection] > 0)) {
-  //         results[selection] = 0
-  //       }
-  //     })
-  //     // console.log('ballotsArr' + JSON.stringify(ballotsArr))
-  //     // console.log('ballot' + JSON.stringify(ballot))
-  //     // console.log('ballot[0]' + JSON.stringify(ballot[0]))
-  //     // Tally the top choice of each ballot (ballot[0])
-  //     results[ballot[0]]++
-  //   })
-  //   // Discard any votes for nonexistent option #0
-  //   results[0] = 0
-  //   // console.log('results' + JSON.stringify(results))
-  //   return results
-  // }
 
   // Check to see if any option has reached a majority
   const majorityReached = function (tallyArr, ballotsArr) {
@@ -59,17 +40,6 @@ const InstantRunoff = props => {
 
   // Push the option(s) with the most votes to victors
   // const mostVotes = function (tallyArr) {
-  //   tallyArr.reduce(function (high, current, index) {
-  //     if (current === high) {
-  //       victors.push(index)
-  //     }
-  //     if (current > high) {
-  //       victors = [index]
-  //       high = current
-  //     }
-  //     return high
-  //   }, 0)
-  // }
 
   // Remove an option from all ballots
   const eliminate = function (ballotsArr, option) {
@@ -86,7 +56,7 @@ const InstantRunoff = props => {
 
   const instantRunoff = function (ballots) {
     // Create a new array of the ballots' selections with the strings converted to arrays
-    const ballotsArray = ballots.map(ballot => ballot.selections.split(' '))
+    const ballotsArray = ballotsToArray(ballots)
 
     // Tally the top choices
     let tally = doTally(ballotsArray)
