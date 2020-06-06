@@ -21,9 +21,6 @@ const ElectionEdit = props => {
           variant: 'danger'
         })
       })
-<<<<<<< HEAD
-  }, [])
-=======
   }, [deletedChoice])
 
   useEffect(() => {
@@ -35,7 +32,6 @@ const ElectionEdit = props => {
   })
 
   // Set state upon updated field
->>>>>>> dev
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
     // Destructuring the election, making a copy of the object to update it with the modified field

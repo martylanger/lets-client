@@ -33,24 +33,6 @@ const Election = props => {
       })
   }, [1000])
 
-<<<<<<< HEAD
-  // useEffect(() => {
-  //   // This will only run when the compnent will unmount
-  //   // because the dependency array is empty
-  //   return () => {
-  //     console.log('The election is gon disappeare')
-  //   }
-  // }, [])
-
-  // useEffect(() => {
-  //   // The cleanup function is called when
-  //   // 1. the component is about to unmount
-  //   // 2. before the 2nd and following renders
-  //   return () => {
-  //     console.log('Calling cleanup')
-  //   }
-  // })
-=======
   useEffect(() => {
     // This will only run when the compnent will unmount
     // because the dependency array is empty
@@ -65,7 +47,6 @@ const Election = props => {
     return () => {
     }
   })
->>>>>>> dev
 
   const onDestroy = () => {
     axios({
