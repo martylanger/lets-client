@@ -104,7 +104,8 @@ const Election = props => {
           <button>Vote!</button><p></p>
         </Link>
         <OwnerOptions
-          grandProps={props}
+          user={props.user}
+          match={props.match}
           election={election}
           onDestroy={onDestroy}
         />
