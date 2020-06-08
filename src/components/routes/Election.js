@@ -110,6 +110,9 @@ const Election = props => {
           onDestroy={onDestroy}
         />
         <Link to="/my-elections">
+          <button>Back to my elections</button>
+        </Link>
+        <Link to="/all-elections">
           <button>Back to all elections</button>
         </Link>
       </div>

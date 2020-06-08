@@ -7,6 +7,7 @@ const InstantRunoff = props => {
   // DETERMINE THE WINNER USING INSTANT RUNOFF
 
   // Create arrays to track the eliminated options
+  console.log('running InstantRunoff')
   let toEliminate = []
   const eliminatedOptions = []
 
