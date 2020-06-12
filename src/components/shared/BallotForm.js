@@ -47,6 +47,7 @@ const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, b
   // List the choices for user reference
   return (
     <React.Fragment>
+      <p>How instant-runoff voting works: First, we tally everyone's first choice. If no option has a majority, then those who voted for the options with the least 1st-place votes have their vote changed to their second-ranked choice. The votes are then retallied, and the process is repeated until there is a clear winner.
       <p>Touch or click the options in the order of your preference, then hit submit.</p>
       <p>If you make a mistake, please hit Cancel and start over.</p>
       {buttonsArray}
