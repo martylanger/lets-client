@@ -47,9 +47,8 @@ const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, b
   // List the choices for user reference
   return (
     <React.Fragment>
-      <ul>
-        {theOptions}
-      </ul>
+      <p>Touch or click the options in the order of your preference, then hit submit.</p>
+      <p>If you make a mistake, please hit Cancel and start over.</p>
       {buttonsArray}
       <button onClick={handleSubmit}>Submit</button>
       <Link to={cancelPath}>
@@ -59,7 +58,9 @@ const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, b
       {selectionsArray}
     </React.Fragment>
   )
-
+  // <ul>
+  //   {theOptions}
+  // </ul>
   // Form has several selects, each with the full menu of choices
   // <form onSubmit={handleSubmit}>
   //   <label></label>
