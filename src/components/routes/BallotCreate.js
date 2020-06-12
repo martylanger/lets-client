@@ -86,6 +86,12 @@ const BallotCreate = props => {
       } else {
         setSelectionsArray([choice.title])
       }
+      const updatedChoicesArray = choicesArray.map(x => x)
+      updatedChoicesArray.splice(choicesArray.indexOf(choice), 1)
+      setChoicesArray(updatedChoicesArray)
+      const updatedButtonsArray = buttonsArray.map(x => x)
+      updatedButtonsArray.splice(choicesArray.indexOf(choice), 1)
+      setButtonsArray(updatedButtonsArray)
       // selectionsArray.push(event.target.choice)
       // console.log(event.target)
       choicesArray.splice(choicesArray.indexOf(choice), 1)

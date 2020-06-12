@@ -7,7 +7,6 @@ const InstantRunoff = props => {
   // DETERMINE THE WINNER USING INSTANT RUNOFF
 
   // Create arrays to track the eliminated options
-  console.log('running InstantRunoff')
   let toEliminate = []
   const eliminatedOptions = []
 
@@ -45,7 +44,9 @@ const InstantRunoff = props => {
   // Remove an option from all ballots
   const eliminate = function (ballotsArr, option) {
     ballotsArr.forEach(ballot => {
-      ballot.splice(ballot.indexOf(option.toString()), 1)
+      if (ballot.includes(option.toString())) {
+        ballot.splice(ballot.indexOf(option.toString()), 1)
+      }
     })
   }
 
@@ -61,10 +62,19 @@ const InstantRunoff = props => {
 
     // Tally the top choices
     let tally = doTally(ballotsArray)
-    let remainingOptions = 3
+    let remainingOptions = [0, 0, 0]
+    console.log(majorityReached(tally, ballotsArray))
 
     // Does any option have a majority?
-    while (!majorityReached(tally, ballotsArray) && remainingOptions > 2) {
+    while (!majorityReached(tally, ballotsArray) && remainingOptions.length > 2) {
+      console.log('ballotsArray: ')
+      console.log(JSON.stringify(ballotsArray))
+      console.log('tally: ')
+      console.log(JSON.stringify(tally))
+      console.log('majorityReached: ')
+      console.log(majorityReached(tally, ballotsArray))
+      console.log('eliminatedOptions: ')
+      console.log(JSON.stringify(eliminatedOptions))
       // If not, determine the option with the fewest votes
       //  If any uneliminated options have 0 votes, eliminate them
       for (let i = 1; i < tally.length; i++) {
@@ -87,6 +97,12 @@ const InstantRunoff = props => {
       tally = doTally(ballotsArray)
       // Count the remaining options
       remainingOptions = tally.filter(option => option > 0)
+      console.log('end of loop status')
+      console.log('tally: ')
+      console.log(JSON.stringify(tally))
+      console.log('remainingOptions.length: ' + remainingOptions.length)
+      console.log('majorityReached: ' + majorityReached(tally, ballotsArray))
+      console.log('end of loop')
     }
 
     // See which option(s) has the most votes and return in victors array
