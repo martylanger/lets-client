@@ -1,31 +1,103 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleChange, cancelPath }) => {
+const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, buttonsArray, selectionsArray, cancelPath }) => {
+  // const [selectionsArray, setSelectionsArray] = useState([])
+  // const [buttonsArray, setButtonsArray] = useState([])
+  // const [choicesArray, setChoicesArray] = useState([])
+
+  // const optionNames = i => 'option-' + i
+  // const optionValues = i => 'voting-method-' + i
+
+  // For the ballot form I need to:
+  // Have an array of all the choices in state
+  // Have an array of all the selection menus
+  // Selection menus should deactivate already selected options with attribute disabled
+
+  // choice divs
+  // setSelectionsArray([])
+  // setChoicesArray(election.choices.map(choice => choice.title))
+  // setButtonsArray([])
+
+  // const selectionsArray = []
+  // const choicesArray = election.choices.map(choice => choice)
+  // console.log(JSON.stringify(choicesArray))
+  // const buttonsArray = []
+  // const onClick = choice => {
+  //   console.log('onClicked')
+  //   selectionsArray.push(choice.title)
+  //   choicesArray.splice(choicesArray.indexOf(choice), 1)
+  //   buttonsArray.splice(choicesArray.indexOf(choice), 1)
+  //   console.log(ballot.selections)
+  // }
+
+  // buttonsArray = election.choices.map((choice, i) => (
+  //   <button
+  //     className="choiceBox"
+  //     onClick={handleClick}
+  //     key={choice.id}
+  //     name='selections'
+  //     choice={choice}
+  //     value={i + 1}
+  //   >
+  //     {choice.title}
+  //   </button>
+  // ))
+  // console.log(JSON.stringify(buttonsArray))
+  // List the choices for user reference
   return (
     <React.Fragment>
       <ul>
         {theOptions}
       </ul>
-
-      <p> please refer to the options by number and write your selections as a sequence of numbers separated by spaces</p>
-      <form onSubmit={handleSubmit}>
-        <label>Your ballot</label>
-        <input
-          value={ballot.selections}
-          name="selections"
-          onChange={handleChange}
-        />
-
-        <button type="submit">Submit</button>
-
-        <Link to={cancelPath}>
-          <button>Cancel</button>
-        </Link>
-      </form>
-
+      {buttonsArray}
+      <button onClick={handleSubmit}>Submit</button>
+      <Link to={cancelPath}>
+        <button>Cancel</button>
+      </Link>
+      <p></p>
+      {selectionsArray}
     </React.Fragment>
   )
+
+  // Form has several selects, each with the full menu of choices
+  // <form onSubmit={handleSubmit}>
+  //   <label></label>
+  //   <select
+  //     name={selection}
+  //     value={optionValues(i)}
+  //     onChange={handleChange}
+  //   >
+  //     {options}
+  //   </select>
+  // </form>
+  //
+
+  // ))
+  // return (
+  //   <React.Fragment>
+  //     <ul>
+  //       {theOptions}
+  //     </ul>
+  //
+  //     <p> please refer to the options by number and write your selections as a sequence of numbers separated by spaces</p>
+  //     <form onSubmit={handleSubmit}>
+  //       <label>Your ballot</label>
+  //       <input
+  //         value={ballot.selections}
+  //         name="selections"
+  //         onChange={handleChange}
+  //       />
+  //
+  //       <button type="submit">Submit</button>
+  //
+  //       <Link to={cancelPath}>
+  //         <button>Cancel</button>
+  //       </Link>
+  //     </form>
+  //
+  //   </React.Fragment>
+  // )
 }
 
 export default BallotForm

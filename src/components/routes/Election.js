@@ -31,7 +31,7 @@ const Election = props => {
           variant: 'danger'
         })
       })
-  }, [1000])
+  }, [])
 
   useEffect(() => {
     // This will only run when the compnent will unmount
@@ -101,7 +101,8 @@ const Election = props => {
         <Ballots election={election} />
         <InstantRunoff election={election} />
         <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-          <button>Vote!</button><p></p>
+          <button>Vote!</button>
+          <p></p>
         </Link>
         <OwnerOptions
           user={props.user}
