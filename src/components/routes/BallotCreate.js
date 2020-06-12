@@ -60,7 +60,7 @@ const BallotCreate = props => {
       let updatedSelections
       console.log('ballot.selections? ' + (ballot.selections ? 'true' : 'false'))
       if (ballot.selections) {
-        updatedSelections = ballot.selections + ' ' + (index).toString()
+        updatedSelections = ballot.selections + ' ' + index
         // updatedSelections = ballot.selections + ' ' + event.target.index
         console.log('updatedselections1: ' + updatedSelections)
       } else {
@@ -81,7 +81,11 @@ const BallotCreate = props => {
       setBallot(editedBallot)
       console.log('ballot after setBallot: below')
       console.log(JSON.stringify(ballot))
-      selectionsArray.push(choice.title)
+      if (selectionsArray.length > 0) {
+        setSelectionsArray([...selectionsArray, ', ', choice.title])
+      } else {
+        setSelectionsArray([choice.title])
+      }
       // selectionsArray.push(event.target.choice)
       // console.log(event.target)
       choicesArray.splice(choicesArray.indexOf(choice), 1)
