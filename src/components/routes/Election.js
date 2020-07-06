@@ -12,9 +12,6 @@ const Election = props => {
   const [election, setElection] = useState(null)
   const [deleted, setDeleted] = useState(false)
 
-  // Call this callback once after the first render, this only occurs once
-  // because our dependency array is empty, so our dependencies never change
-  // similar to componentDidMount
   useEffect(() => {
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
@@ -94,8 +91,9 @@ const Election = props => {
   } else {
     electionJSX = (
       <div>
-        <p>Owner: {election.user.email}</p>
         <h4>Election: {election.name}</h4>
+        <h5>{election.description}</h5>
+        <p>Owner: {election.user.email}</p>
         <p>Voting method: {election.voting_method}</p>
         <Choices election={election} />
         <Ballots election={election} />
