@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 const ChoiceForm = ({ choice, handleSubmit, handleChange, cancelPath }) => (
   <form onSubmit={handleSubmit}>
@@ -24,9 +25,9 @@ const ChoiceForm = ({ choice, handleSubmit, handleChange, cancelPath }) => (
       onChange={handleChange}
     />
 
-    <button type="submit">Submit</button>
+    <Button variant="primary" type="submit">Submit</Button>
     <Link to={cancelPath}>
-      <button>Cancel</button>
+      <Button variant="secondary">Cancel</Button>
     </Link>
   </form>
 )
