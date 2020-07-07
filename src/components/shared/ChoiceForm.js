@@ -25,7 +25,7 @@ const ChoiceForm = ({ choice, handleSubmit, handleChange, cancelPath }) => (
       onChange={handleChange}
     />
 
-    <Button variant="primary" type="submit">Submit</Button>
+    <Button variant="primary" type="submit">Submit</Button>{' '}
     <Link to={cancelPath}>
       <Button variant="secondary">Cancel</Button>
     </Link>

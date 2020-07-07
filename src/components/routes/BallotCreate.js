@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
-
 import apiUrl from '../../apiConfig'
 import BallotForm from '../shared/BallotForm'
+import Button from 'react-bootstrap/Button'
 
 const BallotCreate = props => {
   const [ballot, setBallot] = useState({ election_id: props.match.params.id, selections: '' })
@@ -32,7 +32,8 @@ const BallotCreate = props => {
           setSelectionsArray([])
           setButtonsArray(
             res.data.election.choices.map((choice, i) => (
-              <div
+              <Button
+                variant="outline-dark"
                 className="choiceBox"
                 onClick={() => handleClick(choice, i)}
                 key={choice.id}
@@ -42,7 +43,7 @@ const BallotCreate = props => {
                 value={ballot.selections}
               >
                 {choice.title}
-              </div>
+              </Button>
             )))
           console.log(JSON.stringify(buttonsArray[0]))
         })

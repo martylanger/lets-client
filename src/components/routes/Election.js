@@ -9,6 +9,8 @@ import InstantRunoff from '../shared/InstantRunoff'
 // import Plurality from '../shared/Plurality'
 import OwnerOptions from '../shared/OwnerOptions'
 
+import { Container, Row, Col } from 'react-bootstrap'
+
 const Election = props => {
   const [election, setElection] = useState(null)
   const [deleted, setDeleted] = useState(false)
@@ -91,31 +93,39 @@ const Election = props => {
     } />
   } else {
     electionJSX = (
-      <div>
-        <h4>Election: {election.name}</h4>
-        <h5>{election.description}</h5>
-        <p>Owner: {election.user.email}</p>
-        <p>Voting method: {election.voting_method}</p>
-        <Choices election={election} />
-        <Ballots election={election} />
-        <InstantRunoff election={election} />
-        <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-          <Button variant="primary">Vote!</Button>
-        </Link>
-        <p></p>
-        <OwnerOptions
-          user={props.user}
-          match={props.match}
-          election={election}
-          onDestroy={onDestroy}
-        />
-        <Link to="/my-elections">
-          <Button variant="primary">Back to my elections</Button>
-        </Link><p></p>
-        <Link to="/all-elections">
-          <Button variant="primary">Back to all elections</Button>
-        </Link>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <p></p>
+            <h4>Election: {election.name}</h4>
+            <h5>{election.description}</h5>
+            <p>Owner: {election.user.email}</p>
+            <p>Voting method: {election.voting_method}</p>
+            <Choices election={election} />
+            <Ballots election={election} />
+            <InstantRunoff election={election} />
+          </Col>
+          <Col>
+            <p></p>
+            <Link to={`/elections/${props.match.params.id}/ballot-create`}>
+              <Button variant="primary">Vote!</Button>
+            </Link>
+            <p></p>
+            <OwnerOptions
+              user={props.user}
+              match={props.match}
+              election={election}
+              onDestroy={onDestroy}
+            />
+            <Link to="/my-elections">
+              <Button variant="primary">Back to my elections</Button>
+            </Link>
+            <Link to="/all-elections">
+              <Button variant="primary">Back to all elections</Button>
+            </Link>
+          </Col>
+        </Row>
+      </Container>
     )
   }
   return (
