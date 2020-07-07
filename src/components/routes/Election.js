@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
@@ -99,9 +100,9 @@ const Election = props => {
         <Ballots election={election} />
         <InstantRunoff election={election} />
         <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-          <button>Vote!</button>
-          <p></p>
+          <Button variant="primary">Vote!</Button>
         </Link>
+        <p></p>
         <OwnerOptions
           user={props.user}
           match={props.match}
@@ -109,10 +110,10 @@ const Election = props => {
           onDestroy={onDestroy}
         />
         <Link to="/my-elections">
-          <button>Back to my elections</button>
-        </Link>
+          <Button variant="primary">Back to my elections</Button>
+        </Link><p></p>
         <Link to="/all-elections">
-          <button>Back to all elections</button>
+          <Button variant="primary">Back to all elections</Button>
         </Link>
       </div>
     )

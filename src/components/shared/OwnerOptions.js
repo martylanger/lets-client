@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 const OwnerOptions = props => {
   // Options only available to the election owner
@@ -11,14 +12,14 @@ const OwnerOptions = props => {
       // <button onClick={closeVote}>End the vote!</button>
       }
       <Link to={`/elections/${props.match.params.id}/choice-create`}>
-        <button>Add an option!</button><p></p>
+        <Button variant="primary">Add an option!</Button><p></p>
       </Link>
 
       <Link to={`/elections/${props.match.params.id}/edit`}>
-        <button>Edit</button><p></p>
+        <Button variant="primary">Edit</Button><p></p>
       </Link>
 
-      <button onClick={props.onDestroy}>Delete Election</button><p></p>
+      <Button variant="primary" onClick={props.onDestroy}>Delete Election</Button><p></p>
     </div>
   )
 

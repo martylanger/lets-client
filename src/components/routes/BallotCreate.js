@@ -17,6 +17,7 @@ const BallotCreate = props => {
   const [index, setIndex] = useState(null)
 
   useEffect(() => {
+    console.log('BallotCreate useEffect')
     if (!election) {
       axios({
         url: `${apiUrl}/elections/${props.match.params.id}`,
