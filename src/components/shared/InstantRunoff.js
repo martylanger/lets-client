@@ -109,9 +109,12 @@ const InstantRunoff = props => {
     return mostVotes(tally)
   }
 
+  const results = instantRunoff(props.election.ballots)
+  const winner = results.length > 1 ? 'Winners' : 'Winner'
+
   return (
     <React.Fragment>
-      <p>Results: {instantRunoff(props.election.ballots)}</p>
+      <p>{winner}: {results}</p>
     </React.Fragment>
   )
 }
