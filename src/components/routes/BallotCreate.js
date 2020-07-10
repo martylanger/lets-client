@@ -18,7 +18,7 @@ const BallotCreate = props => {
 
   useEffect(() => {
     console.log('BallotCreate useEffect')
-    // If election hasn't been set yet, get it and get the process started
+    // If election hasn't been set yet, get it and prepare the ballot
     if (!election) {
       axios({
         url: `${apiUrl}/elections/${props.match.params.id}`,
@@ -46,7 +46,7 @@ const BallotCreate = props => {
                 {choice.title}
               </Button>
             )))
-          console.log(JSON.stringify(buttonsArray[0]))
+          // console.log(JSON.stringify(buttonsArray[0]))
         })
         .catch(err => {
           props.msgAlert({
@@ -199,6 +199,7 @@ const BallotCreate = props => {
       </React.Fragment>
     )
   }
+  // selectionsArray appears to have commas in the array, which is a problem.
 
   // const theBallot = props.election.choices.map(function (choice, i) {
   //
