@@ -28,7 +28,7 @@ const AllElections = props => {
 
   return (
     <React.Fragment>
-      <h4>Your Elections</h4>
+      <h4>All Elections</h4>
       <ul>
         {electionsLinks}
       </ul>
