@@ -4,9 +4,11 @@ import doTally from '../../modules/doTally'
 import mostVotes from '../../modules/mostVotes'
 
 const Plurality = props => {
+  const results = mostVotes(doTally(ballotsToArray(props.election.ballots)))
+  const winner = results.length > 1 ? 'Winners' : 'Winner'
   return (
     <React.Fragment>
-      <p>Results: {mostVotes(doTally(ballotsToArray(props.election.ballots)))}</p>
+      <p>{winner}: {results}</p>
     </React.Fragment>
   )
 }

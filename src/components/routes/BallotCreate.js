@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
-
 import apiUrl from '../../apiConfig'
 import BallotForm from '../shared/BallotForm'
+import Button from 'react-bootstrap/Button'
 
 const BallotCreate = props => {
   const [ballot, setBallot] = useState({ election_id: props.match.params.id, selections: '' })
@@ -17,6 +17,8 @@ const BallotCreate = props => {
   const [index, setIndex] = useState(null)
 
   useEffect(() => {
+    console.log('BallotCreate useEffect')
+    // If election hasn't been set yet, get it and prepare the ballot
     if (!election) {
       axios({
         url: `${apiUrl}/elections/${props.match.params.id}`,
@@ -31,7 +33,8 @@ const BallotCreate = props => {
           setSelectionsArray([])
           setButtonsArray(
             res.data.election.choices.map((choice, i) => (
-              <div
+              <Button
+                variant="outline-dark"
                 className="choiceBox"
                 onClick={() => handleClick(choice, i)}
                 key={choice.id}
@@ -41,9 +44,9 @@ const BallotCreate = props => {
                 value={ballot.selections}
               >
                 {choice.title}
-              </div>
+              </Button>
             )))
-          console.log(JSON.stringify(buttonsArray[0]))
+          // console.log(JSON.stringify(buttonsArray[0]))
         })
         .catch(err => {
           props.msgAlert({
@@ -53,59 +56,40 @@ const BallotCreate = props => {
           })
         })
     } else if (clicked) {
-      console.log('useEffect-clicked')
-      console.log('clicked: ' + clicked)
-      console.log('choice: ', choice)
-      console.log('index: ' + index)
+      // Run when a button is clicked
+      // Update ballot.selections
       let updatedSelections
-      console.log('ballot.selections? ' + (ballot.selections ? 'true' : 'false'))
       if (ballot.selections) {
         updatedSelections = ballot.selections + ' ' + index
         // updatedSelections = ballot.selections + ' ' + event.target.index
-        console.log('updatedselections1: ' + updatedSelections)
       } else {
         updatedSelections = (index).toString()
         // updatedSelections = event.target.index
         // console.log('event.target.index: below')
         // console.log(event.target.index)
-        console.log('updatedselections2: ' + updatedSelections)
       }
       const updatedField = { 'selections': updatedSelections }
-      console.log('updatedField: below')
-      console.log(updatedField)
       const editedBallot = Object.assign({ ...ballot }, updatedField)
-      console.log('editedBallot: below')
-      console.log(editedBallot)
-      console.log('ballot before setBallot: below')
-      console.log(JSON.stringify(ballot))
       setBallot(editedBallot)
-      console.log('ballot after setBallot: below')
-      console.log(JSON.stringify(ballot))
+
+      // Update the selections display
       if (selectionsArray.length > 0) {
         setSelectionsArray([...selectionsArray, ', ', choice.title])
       } else {
         setSelectionsArray([choice.title])
       }
+
+      // Update the remaining choices
       const updatedChoicesArray = choicesArray.map(x => x)
       updatedChoicesArray.splice(choicesArray.indexOf(choice), 1)
       setChoicesArray(updatedChoicesArray)
+
+      // Update the remaining choices buttons
       const updatedButtonsArray = buttonsArray.map(x => x)
       updatedButtonsArray.splice(choicesArray.indexOf(choice), 1)
       setButtonsArray(updatedButtonsArray)
-      // selectionsArray.push(event.target.choice)
-      // console.log(event.target)
-      choicesArray.splice(choicesArray.indexOf(choice), 1)
-      // choicesArray.splice(choicesArray.indexOf(event.target.choice), 1)
-      buttonsArray.splice(choicesArray.indexOf(choice), 1)
-      // buttonsArray.splice(choicesArray.indexOf(event.target.choice), 1)
-      console.log('ballot.selections: ' + ballot.selections)
-      console.log('editedBallot.selections: ' + editedBallot.selections)
-      console.log('selectionsArray: ' + JSON.stringify(selectionsArray))
-      console.log('choicesArray: ' + JSON.stringify(choicesArray))
-      console.log(ballot)
-      console.log(clicked)
+
       setClicked(false)
-      console.log(clicked)
     } else if (createdBallotId) {
       setCreatedBallotId(false)
     } else {
@@ -115,10 +99,9 @@ const BallotCreate = props => {
 
   const handleClick = (choice, i) => {
     console.log('handleClicked')
-    console.log(clicked)
-    setClicked(true)
     setChoice(choice)
     setIndex(i + 1)
+    setClicked(true)
   }
 
   // const handleClick = (choice, i) => {
@@ -216,6 +199,7 @@ const BallotCreate = props => {
       </React.Fragment>
     )
   }
+  // selectionsArray appears to have commas in the array, which is a problem.
 
   // const theBallot = props.election.choices.map(function (choice, i) {
   //

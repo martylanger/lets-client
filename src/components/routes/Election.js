@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
@@ -8,13 +9,12 @@ import InstantRunoff from '../shared/InstantRunoff'
 // import Plurality from '../shared/Plurality'
 import OwnerOptions from '../shared/OwnerOptions'
 
+import { Container, Row, Col } from 'react-bootstrap'
+
 const Election = props => {
   const [election, setElection] = useState(null)
   const [deleted, setDeleted] = useState(false)
 
-  // Call this callback once after the first render, this only occurs once
-  // because our dependency array is empty, so our dependencies never change
-  // similar to componentDidMount
   useEffect(() => {
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
@@ -93,30 +93,39 @@ const Election = props => {
     } />
   } else {
     electionJSX = (
-      <div>
-        <p>Owner: {election.user.email}</p>
-        <h4>Election: {election.name}</h4>
-        <p>Voting method: {election.voting_method}</p>
-        <Choices election={election} />
-        <Ballots election={election} />
-        <InstantRunoff election={election} />
-        <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-          <button>Vote!</button>
-          <p></p>
-        </Link>
-        <OwnerOptions
-          user={props.user}
-          match={props.match}
-          election={election}
-          onDestroy={onDestroy}
-        />
-        <Link to="/my-elections">
-          <button>Back to my elections</button>
-        </Link>
-        <Link to="/all-elections">
-          <button>Back to all elections</button>
-        </Link>
-      </div>
+      <Container>
+        <Row>
+          <Col>
+            <p></p>
+            <h4>Election: {election.name}</h4>
+            <h5>{election.description}</h5>
+            <p>Owner: {election.user.email}</p>
+            <p>Voting method: {election.voting_method}</p>
+            <Choices election={election} />
+            <Ballots election={election} />
+            <InstantRunoff election={election} />
+          </Col>
+          <Col>
+            <p></p>
+            <Link to={`/elections/${props.match.params.id}/ballot-create`}>
+              <Button variant="primary">Vote!</Button>
+            </Link>
+            <p></p>
+            <OwnerOptions
+              user={props.user}
+              match={props.match}
+              election={election}
+              onDestroy={onDestroy}
+            />
+            <Link to="/my-elections">
+              <Button variant="primary">Back to my elections</Button>
+            </Link>
+            <Link to="/all-elections">
+              <Button variant="primary">Back to all elections</Button>
+            </Link>
+          </Col>
+        </Row>
+      </Container>
     )
   }
   return (

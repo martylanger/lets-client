@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Button from 'react-bootstrap/Button'
 
 const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, buttonsArray, selectionsArray, cancelPath }) => {
   // const [selectionsArray, setSelectionsArray] = useState([])
@@ -51,78 +52,17 @@ const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, b
       <p>Touch or click the options in the order of your preference, then hit submit.</p>
       <p>If you make a mistake, please hit Cancel and start over.</p>
       {buttonsArray}
-      <button onClick={handleSubmit}>Submit</button>
+      <Button variant="primary" onClick={handleSubmit}>Submit</Button>{' '}
       <Link to={cancelPath}>
-        <button>Cancel</button>
-      </Link>
-      <p></p>
+        <Button variant="secondary">Cancel</Button>
+      </Link><p></p>
       {selectionsArray}
     </React.Fragment>
   )
-  // <ul>
-  //   {theOptions}
-  // </ul>
-  // Form has several selects, each with the full menu of choices
-  // <form onSubmit={handleSubmit}>
-  //   <label></label>
-  //   <select
-  //     name={selection}
-  //     value={optionValues(i)}
-  //     onChange={handleChange}
-  //   >
-  //     {options}
-  //   </select>
-  // </form>
-  //
-
-  // ))
-  // return (
-  //   <React.Fragment>
-  //     <ul>
-  //       {theOptions}
-  //     </ul>
-  //
-  //     <p> please refer to the options by number and write your selections as a sequence of numbers separated by spaces</p>
-  //     <form onSubmit={handleSubmit}>
-  //       <label>Your ballot</label>
-  //       <input
-  //         value={ballot.selections}
-  //         name="selections"
-  //         onChange={handleChange}
-  //       />
-  //
-  //       <button type="submit">Submit</button>
-  //
-  //       <Link to={cancelPath}>
-  //         <button>Cancel</button>
-  //       </Link>
-  //     </form>
-  //
-  //   </React.Fragment>
-  // )
 }
 
 export default BallotForm
 
-// <form onSubmit={handleSubmit}>
-//   <label>
-//     Pick your favorite option:
-//     <select value={ballot.selections} onChange={handleChange}>
-//       {election.choices.map(choice => (
-//         <option key={choice.id} value={`${choice.title}`}>{choice.title}</option>
-//       ))}
-//     </select>
-//   </label>
-//   <input type="submit" value="Submit" />
-// </form>
-
-// <BallotOption
-//   key={choice.id}
-//   election={election}
-//   ballot={ballot}
-//   choice={choice}
-//   handleChange={handleChange}
-//   handleSubmit={handleSubmit}
-//   cancelPath="/"
-// />
-// </ul>
+// {selectionsArray.map(selection =>
+//   <p key={selection.toString()}>{selection}</p>
+// )}
