@@ -14,6 +14,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 const Election = props => {
   const [election, setElection] = useState(null)
   const [deleted, setDeleted] = useState(false)
+  // const [voted, setVoted] = useState(false)
 
   useEffect(() => {
     axios({
@@ -85,13 +86,15 @@ const Election = props => {
   let electionJSX
 
   if (!election) {
-    // If it's loading, give a loading gif
+    // If the election is loading, give a loading gif
     electionJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
   } else if (deleted) {
+    // If the election has just been deleted, redirect to /my-elections
     electionJSX = <Redirect to={
       { pathname: '/my-elections', state: { msg: 'Election succesfully deleted!' } }
     } />
   } else {
+    // Otherwise, display the election
     electionJSX = (
       <Container>
         <Row>

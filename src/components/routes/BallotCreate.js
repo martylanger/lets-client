@@ -29,6 +29,7 @@ const BallotCreate = props => {
       })
         .then(res => {
           setElection(res.data.election)
+          // Make a copy of the choices, to be mutated during selections
           setChoicesArray(res.data.election.choices.map(choice => choice))
           setSelectionsArray([])
           setButtonsArray(
