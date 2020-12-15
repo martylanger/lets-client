@@ -63,10 +63,10 @@ class App extends Component {
           )} />
 
           <Route path='/all-elections' render={() => (
-            <AllElections msgAlert={this.msgAlert}/>
+            <AllElections msgAlert={this.msgAlert} />
           )} />
           <AuthenticatedRoute user={user} path='/my-elections' render={() => (
-            <MyElections msgAlert={this.msgAlert} user={user}/>
+            <MyElections msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/election-create' render={() => (
             <ElectionCreate msgAlert={this.msgAlert} user={user} />
