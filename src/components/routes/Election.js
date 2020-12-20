@@ -14,8 +14,13 @@ import { Container, Row, Col } from 'react-bootstrap'
 const Election = props => {
   const [election, setElection] = useState(null)
   const [deleted, setDeleted] = useState(false)
+  const [updated, setUpdated] = useState(false)
+  // const [stale, setStale] = useState(false)
+  const [count, setCount] = useState(0)
 
   useEffect(() => {
+    setCount(count + 1)
+    console.log(count)
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
       method: 'GET',
@@ -31,7 +36,8 @@ const Election = props => {
           variant: 'danger'
         })
       })
-  }, [])
+    setUpdated(false)
+  }, [updated])
 
   useEffect(() => {
     // This will only run when the compnent will unmount
@@ -64,6 +70,10 @@ const Election = props => {
           variant: 'danger'
         })
       })
+  }
+
+  const onSubmit = () => {
+    setUpdated(true)
   }
 
   // const votingMethodsArray = [
@@ -107,7 +117,9 @@ const Election = props => {
           </Col>
           <Col>
             <p></p>
-            <Link to={`/elections/${props.match.params.id}/ballot-create`}>
+            <Link to={
+              { pathname: `/elections/${props.match.params.id}/ballot-create`, state: { onSubmit: onSubmit } }
+            }>
               <Button variant="primary">Vote!</Button>
             </Link>
             <p></p>
@@ -116,6 +128,7 @@ const Election = props => {
               match={props.match}
               election={election}
               onDestroy={onDestroy}
+              onSubmit={onSubmit}
             />
             <Link to="/my-elections">
               <Button variant="primary">Back to my elections</Button>

@@ -173,6 +173,9 @@ const BallotCreate = props => {
 
   if (createdBallotId) {
     return <Redirect to={`/elections/${ballot.election_id}`} />
+    // return <Redirect to={
+    //   { pathname: `/elections/${ballot.election_id}`, state: { createdBallot: true } }
+    // } />
   } else if (!election) {
     // If it's loading, give a loading gif
     ballotJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
