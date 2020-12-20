@@ -107,9 +107,12 @@ const Election = props => {
           </Col>
           <Col>
             <p></p>
-            <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-              <Button variant="primary">Vote!</Button>
-            </Link>
+            <Button variant="primary" onClick={() => showBallot()}>Vote!</Button>
+            <BallotCreate
+              user={props.user}
+              match={props.match}
+              election={props.election}
+            >
             <p></p>
             <OwnerOptions
               user={props.user}
