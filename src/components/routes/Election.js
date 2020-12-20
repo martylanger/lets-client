@@ -6,6 +6,7 @@ import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
 import Ballots from '../shared/Ballots'
 import InstantRunoff from '../shared/InstantRunoff'
+import BallotCreate from 'BallotCreate'
 // import Plurality from '../shared/Plurality'
 import OwnerOptions from '../shared/OwnerOptions'
 
@@ -47,6 +48,9 @@ const Election = props => {
     return () => {
     }
   })
+  const toggleBallot = () => {
+    // toggle the ballot
+  }
 
   const onDestroy = () => {
     axios({
@@ -107,12 +111,12 @@ const Election = props => {
           </Col>
           <Col>
             <p></p>
-            <Button variant="primary" onClick={() => showBallot()}>Vote!</Button>
+            <Button variant="primary" onClick={() => toggleBallot()}>Vote!</Button>
             <BallotCreate
               user={props.user}
               match={props.match}
               election={props.election}
-            >
+            />
             <p></p>
             <OwnerOptions
               user={props.user}
