@@ -6,7 +6,7 @@ import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
 import Ballots from '../shared/Ballots'
 import InstantRunoff from '../shared/InstantRunoff'
-import BallotCreate from 'BallotCreate'
+import BallotCreate from '../shared/BallotCreate'
 // import Plurality from '../shared/Plurality'
 import OwnerOptions from '../shared/OwnerOptions'
 
@@ -48,8 +48,21 @@ const Election = props => {
     return () => {
     }
   })
+
+  let ballotJSX
   const toggleBallot = () => {
-    // toggle the ballot
+    if (ballotJSX) {
+      console.log('Emptying ballotJSX')
+      ballotJSX = null
+    } else {
+      console.log('Adding ballotJSX')
+      ballotJSX =
+        <BallotCreate
+          user={props.user}
+          match={props.match}
+          election={props.election}
+        />
+    }
   }
 
   const onDestroy = () => {
@@ -108,15 +121,11 @@ const Election = props => {
             <Choices election={election} />
             <Ballots election={election} />
             <InstantRunoff election={election} />
+            {ballotJSX}
           </Col>
           <Col>
             <p></p>
             <Button variant="primary" onClick={() => toggleBallot()}>Vote!</Button>
-            <BallotCreate
-              user={props.user}
-              match={props.match}
-              election={props.election}
-            />
             <p></p>
             <OwnerOptions
               user={props.user}

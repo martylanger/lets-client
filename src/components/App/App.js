@@ -14,7 +14,6 @@ import AllElections from '../routes/AllElections'
 import ElectionCreate from '../routes/ElectionCreate'
 import ElectionEdit from '../routes/ElectionEdit'
 import ChoiceCreate from '../routes/ChoiceCreate'
-import BallotCreate from '../routes/BallotCreate'
 
 class App extends Component {
   constructor () {
@@ -73,9 +72,6 @@ class App extends Component {
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/choice-create' render={({ match }) => (
             <ChoiceCreate match={match} msgAlert={this.msgAlert} user={user} />
-          )} />
-          <AuthenticatedRoute user={user} path='/elections/:id/ballot-create' render={({ match }) => (
-            <BallotCreate match={match} msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/edit' render={({ match }) => (
             <ElectionEdit match={match} msgAlert={this.msgAlert} user={user} />
