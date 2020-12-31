@@ -75,13 +75,13 @@ class App extends Component {
             <ElectionCreate msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/choice-create' render={({ match }) => (
-            <ChoiceCreate match={match} msgAlert={this.msgAlert} user={user} />
+            <ChoiceCreate match={match} msgAlert={this.msgAlert} user={user} setUpdated={this.setUpdated} updated={this.state.updated} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/ballot-create' render={({ match }) => (
             <BallotCreate match={match} msgAlert={this.msgAlert} user={user} setUpdated={this.setUpdated} updated={this.state.updated} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/edit' render={({ match }) => (
-            <ElectionEdit match={match} msgAlert={this.msgAlert} user={user} />
+            <ElectionEdit match={match} msgAlert={this.msgAlert} user={user} setUpdated={this.setUpdated} updated={this.state.updated} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id' render={({ match }) => (
             <Election match={match} msgAlert={this.msgAlert} user={user} setUpdated={this.setUpdated} updated={this.state.updated} />
