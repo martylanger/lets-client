@@ -31,10 +31,10 @@ const Election = props => {
           variant: 'danger'
         })
       })
-    console.log(props.updated)
-    props.setUpdated(false)
-    console.log(props.updated)
-  }, [props.updated])
+    console.log(props.electionUpdated)
+    props.setElectionUpdated(false)
+    console.log(props.electionUpdated)
+  }, [props.electionUpdated])
 
   useEffect(() => {
     // This will only run when the compnent will unmount

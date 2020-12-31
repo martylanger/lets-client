@@ -23,11 +23,11 @@ class App extends Component {
     this.state = {
       user: null,
       msgAlerts: [],
-      updated: false
+      electionUpdated: false
     }
   }
 
-  setUpdated = updated => this.setState({ updated })
+  setElectionUpdated = electionUpdated => this.setState({ electionUpdated })
 
   setUser = user => this.setState({ user })
 
@@ -75,16 +75,36 @@ class App extends Component {
             <ElectionCreate msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/choice-create' render={({ match }) => (
-            <ChoiceCreate match={match} msgAlert={this.msgAlert} user={user} setUpdated={this.setUpdated} updated={this.state.updated} />
+            <ChoiceCreate
+              match={match}
+              msgAlert={this.msgAlert}
+              user={user}
+              setElectionUpdated={this.setElectionUpdated}
+              electionUpdated={this.state.electionUpdated} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/ballot-create' render={({ match }) => (
-            <BallotCreate match={match} msgAlert={this.msgAlert} user={user} setUpdated={this.setUpdated} updated={this.state.updated} />
+            <BallotCreate
+              match={match}
+              msgAlert={this.msgAlert}
+              user={user}
+              setElectionUpdated={this.setElectionUpdated}
+              electionUpdated={this.state.electionUpdated} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/edit' render={({ match }) => (
-            <ElectionEdit match={match} msgAlert={this.msgAlert} user={user} setUpdated={this.setUpdated} updated={this.state.updated} />
+            <ElectionEdit
+              match={match}
+              msgAlert={this.msgAlert}
+              user={user}
+              setElectionUpdated={this.setElectionUpdated}
+              electionUpdated={this.state.electionUpdated} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id' render={({ match }) => (
-            <Election match={match} msgAlert={this.msgAlert} user={user} setUpdated={this.setUpdated} updated={this.state.updated} />
+            <Election
+              match={match}
+              msgAlert={this.msgAlert}
+              user={user}
+              setElectionUpdated={this.setElectionUpdated}
+              electionUpdated={this.state.electionUpdated} />
           )} />
         </main>
       </Fragment>

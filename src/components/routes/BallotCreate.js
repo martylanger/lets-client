@@ -179,9 +179,9 @@ const BallotCreate = props => {
   let ballotJSX
 
   if (createdBallotId) {
-    console.log(props.updated)
-    props.setUpdated(true)
-    console.log(props.updated)
+    console.log(props.electionUpdated)
+    props.setElectionUpdated(true)
+    console.log(props.electionUpdated)
     return <Redirect to={`/elections/${ballot.election_id}`} />
   } else if (!election) {
     // If it's loading, give a loading gif
