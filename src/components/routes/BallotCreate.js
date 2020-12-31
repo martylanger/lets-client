@@ -16,45 +16,52 @@ const BallotCreate = props => {
   const [choice, setChoice] = useState(null)
   const [index, setIndex] = useState(null)
 
-  useEffect(() => {
-    console.log('BallotCreate useEffect')
-    // If election hasn't been set yet, get it and prepare the ballot
-    if (!election) {
-      axios({
-        url: `${apiUrl}/elections/${props.match.params.id}`,
-        method: 'GET',
-        headers: {
-          'Authorization': `Bearer ${props.user.token}`
-        }
+  const prepareBallot = (res) => {
+    setElection(res.data.election)
+    setChoicesArray(res.data.election.choices.map(choice => choice))
+    setSelectionsArray([])
+    setButtonsArray(
+      res.data.election.choices.map((choice, i) => (
+        <Button
+          variant="outline-dark"
+          className="choiceBox"
+          onClick={() => handleClick(choice, i)}
+          key={choice.id}
+          name='selections'
+          choice={choice}
+          index={i + 1}
+          value={ballot.selections}
+        >
+          {choice.title}
+        </Button>
+      )))
+    // console.log(JSON.stringify(buttonsArray[0]))
+  }
+
+  const getElection = () => {
+    axios({
+      url: `${apiUrl}/elections/${props.match.params.id}`,
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${props.user.token}`
+      }
+    })
+      .then(res => prepareBallot(res))
+      .catch(err => {
+        props.msgAlert({
+          heading: 'Your election failed to load',
+          message: err.message,
+          variant: 'danger'
+        })
       })
-        .then(res => {
-          setElection(res.data.election)
-          setChoicesArray(res.data.election.choices.map(choice => choice))
-          setSelectionsArray([])
-          setButtonsArray(
-            res.data.election.choices.map((choice, i) => (
-              <Button
-                variant="outline-dark"
-                className="choiceBox"
-                onClick={() => handleClick(choice, i)}
-                key={choice.id}
-                name='selections'
-                choice={choice}
-                index={i + 1}
-                value={ballot.selections}
-              >
-                {choice.title}
-              </Button>
-            )))
-          // console.log(JSON.stringify(buttonsArray[0]))
-        })
-        .catch(err => {
-          props.msgAlert({
-            heading: 'Your election failed to load',
-            message: err.message,
-            variant: 'danger'
-          })
-        })
+  }
+
+  useEffect(() => {
+    // If election hasn't been set yet because user is using
+    // a direct link to the ballot,
+    // get the election and prepare the ballot
+    if (!election) {
+      getElection()
     } else if (clicked) {
       // Run when a button is clicked
       // Update ballot.selections
@@ -172,6 +179,9 @@ const BallotCreate = props => {
   let ballotJSX
 
   if (createdBallotId) {
+    console.log(props.updated)
+    props.setUpdated(true)
+    console.log(props.updated)
     return <Redirect to={`/elections/${ballot.election_id}`} />
   } else if (!election) {
     // If it's loading, give a loading gif

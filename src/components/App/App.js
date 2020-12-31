@@ -22,9 +22,12 @@ class App extends Component {
 
     this.state = {
       user: null,
-      msgAlerts: []
+      msgAlerts: [],
+      updated: false
     }
   }
+
+  setUpdated = updated => this.setState({ updated })
 
   setUser = user => this.setState({ user })
 
@@ -75,13 +78,13 @@ class App extends Component {
             <ChoiceCreate match={match} msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/ballot-create' render={({ match }) => (
-            <BallotCreate match={match} msgAlert={this.msgAlert} user={user} />
+            <BallotCreate match={match} msgAlert={this.msgAlert} user={user} setUpdated={this.setUpdated} updated={this.state.updated} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id/edit' render={({ match }) => (
             <ElectionEdit match={match} msgAlert={this.msgAlert} user={user} />
           )} />
           <AuthenticatedRoute user={user} path='/elections/:id' render={({ match }) => (
-            <Election match={match} msgAlert={this.msgAlert} user={user} />
+            <Election match={match} msgAlert={this.msgAlert} user={user} setUpdated={this.setUpdated} updated={this.state.updated} />
           )} />
         </main>
       </Fragment>
