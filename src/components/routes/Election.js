@@ -31,9 +31,7 @@ const Election = props => {
           variant: 'danger'
         })
       })
-    console.log(props.electionUpdated)
     props.setElectionUpdated(false)
-    console.log(props.electionUpdated)
   }, [props.electionUpdated])
 
   useEffect(() => {
