@@ -11,7 +11,8 @@ const InstantRunoff = props => {
   const eliminatedOptions = []
 
   // Prepare the results array and tally the top choices of all the ballots
-  // In the tally array, the index # === the option #, and the value at the index is the number of votes for the option
+  // In the tally array, the index # === the option #, and the value at
+  //  the index is the number of votes for the option
 
   // Check to see if any option has reached a majority
   const majorityReached = function (tallyArr, ballotsArr) {
@@ -84,7 +85,7 @@ const InstantRunoff = props => {
           eliminatedOptions.push(i)
         }
       }
-      // Otherwise, find the option(s) with the fewest votes and eliminate them
+      //  Otherwise, find the option(s) with the fewest votes and eliminate them
       if (toEliminate.length === 0) {
         fewestVotes(tally)
         toEliminate.forEach(option => {
@@ -109,7 +110,7 @@ const InstantRunoff = props => {
     return mostVotes(tally)
   }
 
-  const results = instantRunoff(props.election.ballots)
+  const results = instantRunoff(props.election.ballots).map(victor => props.election.choices[victor - 1].title)
   const winner = results.length > 1 ? 'Winners' : 'Winner'
 
   return (
