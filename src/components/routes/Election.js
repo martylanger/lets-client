@@ -6,7 +6,7 @@ import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
 import Ballots from '../shared/Ballots'
 import InstantRunoff from '../shared/InstantRunoff'
-// import Plurality from '../shared/Plurality'
+import Plurality from '../shared/Plurality'
 import OwnerOptions from '../shared/OwnerOptions'
 
 import { Container, Row, Col } from 'react-bootstrap'
@@ -73,15 +73,6 @@ const Election = props => {
   // ]
   // const votingMethods = new Map(votingMethodsArray)
   // const results = votingMethods.get(election.voting_method)
-  // let results
-  //
-  // switch (election.voting_method) {
-  //   case 'instant-runoff':
-  //     results = (
-  //       <InstantRunoff election={election}
-  //     )
-  //     break
-  // }
 
   let electionJSX
 
@@ -93,6 +84,20 @@ const Election = props => {
       { pathname: '/my-elections', state: { msg: 'Election succesfully deleted!' } }
     } />
   } else {
+    // Implement the correct voting method for determining the election
+    let results
+    switch (election.voting_method) {
+    case 'instant-runoff':
+      results = (
+        <InstantRunoff election={election} />
+      )
+      break
+    case 'plurality':
+      results = (
+        <Plurality election={election} />
+      )
+    }
+
     electionJSX = (
       <Container>
         <Row>
@@ -125,7 +130,7 @@ const Election = props => {
             </Link>
             <p></p>
             <p></p>
-            <InstantRunoff election={election} />
+            {results}
           </Col>
         </Row>
       </Container>
