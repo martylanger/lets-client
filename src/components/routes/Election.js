@@ -104,7 +104,6 @@ const Election = props => {
             <p>Voting method: {election.voting_method}</p>
             <Choices election={election} />
             <Ballots election={election} />
-            <InstantRunoff election={election} />
           </Col>
           <Col>
             <p></p>
@@ -124,6 +123,9 @@ const Election = props => {
             <Link to="/all-elections">
               <Button variant="primary">Back to all elections</Button>
             </Link>
+            <p></p>
+            <p></p>
+            <InstantRunoff election={election} />
           </Col>
         </Row>
       </Container>
