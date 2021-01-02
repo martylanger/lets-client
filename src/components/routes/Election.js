@@ -84,8 +84,8 @@ const Election = props => {
       { pathname: '/my-elections', state: { msg: 'Election succesfully deleted!' } }
     } />
   } else {
+    // Implement the correct voting method for determining the election
     let results
-
     switch (election.voting_method) {
     case 'instant-runoff':
       results = (
