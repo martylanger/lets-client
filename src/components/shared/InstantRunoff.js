@@ -17,7 +17,7 @@ const InstantRunoff = props => {
   // Check to see if any option has reached a majority
   const majorityReached = function (tallyArr, ballotsArr) {
     const activeBallotsArr = ballotsArr.filter(ballot => ballot.length > 0)
-    const winner = tallyArr.findIndex(candidate => candidate > activeBallotsArr.length / 2)
+    const winner = tallyArr.findIndex(option => option > activeBallotsArr.length / 2)
     if (winner === -1) {
       return false
     } else {
@@ -26,9 +26,7 @@ const InstantRunoff = props => {
   }
 
   // Push the remaining option(s) with the fewest votes to toEliminate
-  // and check that not all candidates are eliminated
-
-  // MUST FIX TO NOT ELIMINATE ALL WHEN ALL TIED FOR THE WIN
+  // and check that not all options are eliminated
 
   const fewestVotes = function (tallyArr) {
     tallyArr.reduce(function (low, current, index) {
@@ -43,10 +41,10 @@ const InstantRunoff = props => {
       }
       return low
     }, 1000000000000000) // Set absurdly high number as initial value of current
-    // If all candidates were pushed to toEliminate, return false to indicate
-    //  that there is no candidate with the fewest votes
-    console.log('toEliminate.length: ' + toEliminate.length)
-    console.log('tallyArr.length: ' + tallyArr.length)
+    // If all options were pushed to toEliminate, return false to indicate
+    //  that there is no option with the fewest votes
+    // console.log('toEliminate.length: ' + toEliminate.length)
+    // console.log('tallyArr.length: ' + tallyArr.length)
     return toEliminate.length + 1 !== tallyArr.length
   }
 
@@ -73,18 +71,18 @@ const InstantRunoff = props => {
     // Tally the top choices
     let tally = doTally(ballotsArray)
     let remainingOptions = [0, 0, 0]
-    // console.log(majorityReached(tally, ballotsArray))
 
     // Does any option have a majority?
     while (!majorityReached(tally, ballotsArray) && remainingOptions.length > 2) {
-      console.log('ballotsArray: ')
-      console.log(JSON.stringify(ballotsArray))
-      console.log('tally: ')
-      console.log(JSON.stringify(tally))
-      console.log('majorityReached: ')
-      console.log(majorityReached(tally, ballotsArray))
-      console.log('eliminatedOptions: ')
-      console.log(JSON.stringify(eliminatedOptions))
+      // console.log('ballotsArray: ')
+      // console.log(JSON.stringify(ballotsArray))
+      // console.log('tally: ')
+      // console.log(JSON.stringify(tally))
+      // console.log('majorityReached: ')
+      // console.log(majorityReached(tally, ballotsArray))
+      // console.log('eliminatedOptions: ')
+      // console.log(JSON.stringify(eliminatedOptions))
+
       // If not, determine the option with the fewest votes
       //  If any uneliminated options have 0 votes, eliminate them
       let votelessCandidate = false
@@ -110,15 +108,15 @@ const InstantRunoff = props => {
       tally = doTally(ballotsArray)
       // Count the remaining options
       remainingOptions = tally.filter(option => option > 0)
-      console.log('end of loop status')
-      console.log('ballotsArray: ')
-      console.log(ballotsArray)
-      console.log('tally: ')
-      console.log(JSON.stringify(tally))
-      console.log('remainingOptions: ' + remainingOptions)
-      console.log('remainingOptions.length: ' + remainingOptions.length)
-      console.log('majorityReached: ' + majorityReached(tally, ballotsArray))
-      console.log('end of loop')
+      // console.log('end of loop status')
+      // console.log('ballotsArray: ')
+      // console.log(ballotsArray)
+      // console.log('tally: ')
+      // console.log(JSON.stringify(tally))
+      // console.log('remainingOptions: ' + remainingOptions)
+      // console.log('remainingOptions.length: ' + remainingOptions.length)
+      // console.log('majorityReached: ' + majorityReached(tally, ballotsArray))
+      // console.log('end of loop')
     }
 
     // See which option(s) has the most votes and return in victors array
