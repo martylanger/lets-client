@@ -7,21 +7,21 @@ Registered users of Let's can currently create elections with a name, descriptio
 In order to add choices to an election, users currently must enter the ID number of that election.
 
 Users of Let's will be able to create, open, and close an election and choose from a plethora of options:
-- Which voting method
-- How and when the candidates are determined
-- How to share elections with voters and verify ballots
-- Whether ballots are secret, open, or visible but anonymized
-- To whom the results are visible
-- When to open and close the voting
+-   Which voting method
+-   How and when the candidates are determined
+-   How to share elections with voters and verify ballots
+-   Whether ballots are secret, open, or visible but anonymized
+-   To whom the results are visible
+-   When to open and close the voting
 
 Users will also be able to save contacts, groups of contacts, and sets of election preferences for quick implementation.
 
 ## Important Links
 
-- [Let's Client Repo](https://github.com/martylanger/lets-client)
-- [Deployed Client](https://martylanger.github.io/lets-client/)
-- [Let's API Repo](https://github.com/martylanger/lets-api)
-- [Deployed API](https://letsapi.herokuapp.com)
+-   [Let's Client Repo](https://github.com/martylanger/lets-client)
+-   [Deployed Client](https://martylanger.github.io/lets-client/)
+-   [Let's API Repo](https://github.com/martylanger/lets-api)
+-   [Deployed API](https://letsapi.herokuapp.com)
 
 ## Planning Story
 
@@ -38,18 +38,18 @@ I closely followed the steps laid out in the React lessons of the GA course, but
 
 ## Technologies Used
 
-- React
-- Axios
-- Javascript
-- HTML
-- CSS
+-   React
+-   Axios
+-   Javascript
+-   HTML
+-   CSS
 
 ## Unsolved Problems
 
-- (SOLVED) I must rejigger my interface for viewing an election so that all the links work as expected and the information is current with any updates or deletions made.
-- Most of my features, including many of the basic features, still need to be implemented.
-  - (SOLVED) Most importantly, I need to implement the voting capability and write the logics for determining winners of elections.
-- I'd like to restyle the app entirely.
+-   (SOLVED) I must rejigger my interface for viewing an election so that all the links work as expected and the information is current with any updates or deletions made.
+-   Most of my features, including many of the basic features, still need to be implemented.
+-   (SOLVED) Most importantly, I need to implement the voting capability and write the logics for determining winners of elections.
+-   I'd like to restyle the app entirely.
 
 ## Screenshot
 
