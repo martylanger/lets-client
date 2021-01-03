@@ -38,18 +38,18 @@ I closely followed the steps laid out in the React lessons of the GA course, but
 
 ## Technologies Used
 
-- React
-- Axios
-- Javascript
-- HTML
-- CSS
+-   React
+-   Axios
+-   Javascript
+-   HTML
+-   CSS
 
 ## Unsolved Problems
 
-- I must rejigger my interface for viewing an election so that all the links work as expected and the information is current with any updates or deletions made.
-- Most of my features, including many of the basic features, still need to be implemented.
-  - Most importantly, I need to implement the voting capability and write the logics for determining winners of elections.
-- I'd like to restyle the app entirely.
+-   SOLVED: I must rejigger my interface for viewing an election so that all the links work as expected and the information is current with any updates or deletions made.
+-   Most of my features, including many of the basic features, still need to be implemented.
+-   SOLVED: Most importantly, I need to implement the voting capability and write the logics for determining winners of elections.
+-   I'd like to restyle the app entirely.
 
 ## Screenshot
 

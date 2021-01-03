@@ -123,12 +123,26 @@ const InstantRunoff = props => {
     return mostVotes(tally)
   }
 
-  const results = instantRunoff(props.election.ballots).map(victor => props.election.choices[victor - 1].title)
-  const winner = results.length > 1 ? 'Winners' : 'Winner'
+  let resultsJSX = null
+
+  if (props.election.ballots.length > 0) {
+    const results = instantRunoff(props.election.ballots).map(victor => (
+      <li key={victor.id}>
+        {props.election.choices[victor - 1].title}
+      </li>
+    ))
+    const winner = results.length > 1 ? 'Winners' : 'Winner'
+    resultsJSX = (
+      <React.Fragment>
+        <p>{winner}:</p>
+        {results}
+      </React.Fragment>
+    )
+  }
 
   return (
     <React.Fragment>
-      <p>{winner}: {results}</p>
+      {resultsJSX}
     </React.Fragment>
   )
 }
