@@ -111,14 +111,13 @@ const InstantRunoff = props => {
     // See which option(s) has the most votes and return in victors array
     return mostVotes(tally)
   }
-  console.log(instantRunoff(props.election.ballots).map(victor => props.election.choices))
-  // const results = instantRunoff(props.election.ballots).map(victor => props.election.choices[victor - 1].title)
-  // const winner = results.length > 1 ? 'Winners' : 'Winner'
+  // console.log(instantRunoff(props.election.ballots).map(victor => props.election.choices))
+  const results = instantRunoff(props.election.ballots).map(victor => props.election.choices[victor - 1].title)
+  const winner = results.length > 1 ? 'Winners' : 'Winner'
 
   return (
     <React.Fragment>
-      {// <p>{winner}: {results}</p>
-      }
+      <p>{winner}: {results}</p>
     </React.Fragment>
   )
 }
