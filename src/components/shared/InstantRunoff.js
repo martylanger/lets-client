@@ -98,24 +98,27 @@ const InstantRunoff = props => {
       tally = doTally(ballotsArray)
       // Count the remaining options
       remainingOptions = tally.filter(option => option > 0)
-      // console.log('end of loop status')
-      // console.log('tally: ')
-      // console.log(JSON.stringify(tally))
-      // console.log('remainingOptions.length: ' + remainingOptions.length)
-      // console.log('majorityReached: ' + majorityReached(tally, ballotsArray))
-      // console.log('end of loop')
+      console.log('end of loop status')
+      console.log('ballotsArray: ')
+      console.log(ballotsArray)
+      console.log('tally: ')
+      console.log(JSON.stringify(tally))
+      console.log('remainingOptions.length: ' + remainingOptions.length)
+      console.log('majorityReached: ' + majorityReached(tally, ballotsArray))
+      console.log('end of loop')
     }
 
     // See which option(s) has the most votes and return in victors array
     return mostVotes(tally)
   }
-
-  const results = instantRunoff(props.election.ballots).map(victor => props.election.choices[victor - 1].title)
-  const winner = results.length > 1 ? 'Winners' : 'Winner'
+  console.log(instantRunoff(props.election.ballots).map(victor => props.election.choices))
+  // const results = instantRunoff(props.election.ballots).map(victor => props.election.choices[victor - 1].title)
+  // const winner = results.length > 1 ? 'Winners' : 'Winner'
 
   return (
     <React.Fragment>
-      <p>{winner}: {results}</p>
+      {// <p>{winner}: {results}</p>
+      }
     </React.Fragment>
   )
 }

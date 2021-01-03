@@ -179,11 +179,6 @@ const BallotCreate = props => {
   let ballotJSX
 
   if (createdBallotId) {
-    // If the ballot has been successfully submitted, tell Election to update
-    // Note: This line is causing console warning:
-    //  Cannot update during an existing state transition (such as within
-    // `render`). Render methods should be a pure function of props and state.
-    props.setElectionUpdated(true)
     return <Redirect to={`/elections/${ballot.election_id}`} />
   } else if (!election) {
     // If it's loading, give a loading gif
@@ -195,7 +190,6 @@ const BallotCreate = props => {
         Option #{i + 1}: {choice.title}
       </li>
     ))
-
     ballotJSX = (
       <React.Fragment>
         <BallotForm
@@ -239,7 +233,6 @@ const BallotCreate = props => {
   //   handleSubmit={handleSubmit}
   //   cancelPath="/"
   // />
-
   return (
     ballotJSX
   )
