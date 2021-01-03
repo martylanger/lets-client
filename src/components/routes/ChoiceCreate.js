@@ -37,7 +37,6 @@ const ChoiceCreate = props => {
   }
 
   if (createdChoiceId) {
-    props.setElectionUpdated(true)
     return <Redirect to={`/elections/${choice.election_id}`} />
   }
 

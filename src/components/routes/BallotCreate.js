@@ -183,7 +183,6 @@ const BallotCreate = props => {
     // Note: This line is causing console warning:
     //  Cannot update during an existing state transition (such as within
     // `render`). Render methods should be a pure function of props and state.
-    props.setElectionUpdated(true)
     return <Redirect to={`/elections/${ballot.election_id}`} />
   } else if (!election) {
     // If it's loading, give a loading gif

@@ -91,7 +91,6 @@ const ElectionEdit = props => {
   }
 
   if (updatedElection) {
-    props.setElectionUpdated(true)
     return <Redirect to={`/elections/${props.match.params.id}`} />
   } else {
     return (

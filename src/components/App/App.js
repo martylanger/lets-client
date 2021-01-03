@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
@@ -22,12 +22,9 @@ class App extends Component {
 
     this.state = {
       user: null,
-      msgAlerts: [],
-      electionUpdated: false
+      msgAlerts: []
     }
   }
-
-  setElectionUpdated = electionUpdated => this.setState({ electionUpdated })
 
   setUser = user => this.setState({ user })
 
@@ -52,60 +49,58 @@ class App extends Component {
           />
         ))}
         <main className="container">
-          <Route path='/sign-up' render={() => (
-            <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
-          )} />
-          <Route path='/sign-in' render={() => (
-            <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
-          )} />
-          <AuthenticatedRoute user={user} path='/sign-out' render={() => (
-            <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
-          )} />
-          <AuthenticatedRoute user={user} path='/change-password' render={() => (
-            <ChangePassword msgAlert={this.msgAlert} user={user} />
-          )} />
+          <Switch>
+            <Route path='/sign-up' render={() => (
+              <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
+            )} />
+            <Route path='/sign-in' render={() => (
+              <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+            )} />
+            <AuthenticatedRoute user={user} path='/sign-out' render={() => (
+              <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
+            )} />
+            <AuthenticatedRoute user={user} path='/change-password' render={() => (
+              <ChangePassword msgAlert={this.msgAlert} user={user} />
+            )} />
 
-          <Route path='/all-elections' render={() => (
-            <AllElections msgAlert={this.msgAlert} />
-          )} />
-          <AuthenticatedRoute user={user} path='/my-elections' render={() => (
-            <MyElections msgAlert={this.msgAlert} user={user} />
-          )} />
-          <AuthenticatedRoute user={user} path='/election-create' render={() => (
-            <ElectionCreate msgAlert={this.msgAlert} user={user} />
-          )} />
-          <AuthenticatedRoute user={user} path='/elections/:id/choice-create' render={({ match }) => (
-            <ChoiceCreate
-              match={match}
-              msgAlert={this.msgAlert}
-              user={user}
-              setElectionUpdated={this.setElectionUpdated}
-              electionUpdated={this.state.electionUpdated} />
-          )} />
-          <AuthenticatedRoute user={user} path='/elections/:id/ballot-create' render={({ match }) => (
-            <BallotCreate
-              match={match}
-              msgAlert={this.msgAlert}
-              user={user}
-              setElectionUpdated={this.setElectionUpdated}
-              electionUpdated={this.state.electionUpdated} />
-          )} />
-          <AuthenticatedRoute user={user} path='/elections/:id/edit' render={({ match }) => (
-            <ElectionEdit
-              match={match}
-              msgAlert={this.msgAlert}
-              user={user}
-              setElectionUpdated={this.setElectionUpdated}
-              electionUpdated={this.state.electionUpdated} />
-          )} />
-          <AuthenticatedRoute user={user} path='/elections/:id' render={({ match }) => (
-            <Election
-              match={match}
-              msgAlert={this.msgAlert}
-              user={user}
-              setElectionUpdated={this.setElectionUpdated}
-              electionUpdated={this.state.electionUpdated} />
-          )} />
+            <Route path='/all-elections' render={() => (
+              <AllElections msgAlert={this.msgAlert} />
+            )} />
+            <AuthenticatedRoute user={user} path='/my-elections' render={() => (
+              <MyElections msgAlert={this.msgAlert} user={user} />
+            )} />
+            <AuthenticatedRoute user={user} path='/election-create' render={() => (
+              <ElectionCreate msgAlert={this.msgAlert} user={user} />
+            )} />
+            <AuthenticatedRoute user={user} path='/elections/:id/choice-create' render={({ match }) => (
+              <ChoiceCreate
+                match={match}
+                msgAlert={this.msgAlert}
+                user={user}
+              />
+            )} />
+            <AuthenticatedRoute user={user} path='/elections/:id/ballot-create' render={({ match }) => (
+              <BallotCreate
+                match={match}
+                msgAlert={this.msgAlert}
+                user={user}
+              />
+            )} />
+            <AuthenticatedRoute user={user} path='/elections/:id/edit' render={({ match }) => (
+              <ElectionEdit
+                match={match}
+                msgAlert={this.msgAlert}
+                user={user}
+              />
+            )} />
+            <AuthenticatedRoute user={user} path='/elections/:id' render={({ match }) => (
+              <Election
+                match={match}
+                msgAlert={this.msgAlert}
+                user={user}
+              />
+            )} />
+          </Switch>
         </main>
       </Fragment>
     )

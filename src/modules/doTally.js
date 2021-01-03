@@ -1,4 +1,5 @@
-// In the tally array, the index # === the option #, and the value at the index is the number of votes for the option
+// In the tally array, the index # === the option #,
+//  and the value at the index is the number of votes for the option
 const doTally = function (ballotsArr) {
   const results = []
   ballotsArr.forEach(ballot => {
@@ -14,7 +15,7 @@ const doTally = function (ballotsArr) {
     // Tally the top choice of each ballot (ballot[0])
     results[ballot[0]]++
   })
-  // Discard any votes for nonexistent option #0
+  // Ensure nonexistent option #0 has 0 votes
   results[0] = 0
   // console.log('results' + JSON.stringify(results))
   return results
