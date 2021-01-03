@@ -141,9 +141,7 @@ const InstantRunoff = props => {
   }
 
   return (
-    <React.Fragment>
-      {resultsJSX}
-    </React.Fragment>
+    resultsJSX
   )
 }
 
