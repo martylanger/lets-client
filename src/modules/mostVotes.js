@@ -1,5 +1,7 @@
-// In the tally array, the index # === the option #, and the value at the index is the number of votes for the option
-// Push the option(s) with the most votes to victors
+// In the tally array, the index # === the option #,
+//  and the value at the index is the number of votes for the option
+
+// Return array of option(s) with the most votes
 const mostVotes = function (tallyArr) {
   const victors = []
   tallyArr.reduce(function (high, current, index) {
