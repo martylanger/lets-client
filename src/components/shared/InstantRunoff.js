@@ -124,9 +124,9 @@ const InstantRunoff = props => {
   let resultsJSX = null
 
   if (props.election.ballots.length > 0) {
-    const results = instantRunoff(props.election.ballots).map(choice => (
-      <li key={choice.id}>
-        {props.election.choices[choice - 1].title}
+    const results = instantRunoff(props.election.ballots).map(victor => (
+      <li key={victor.toString()}>
+        {props.election.choices[victor - 1].title}
       </li>
     ))
     const winner = results.length > 1 ? 'Winners' : 'Winner'
