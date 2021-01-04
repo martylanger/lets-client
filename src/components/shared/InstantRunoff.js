@@ -43,8 +43,6 @@ const InstantRunoff = props => {
     }, 1000000000000000) // Set absurdly high number as initial value of current
     // If all options were pushed to toEliminate, return false to indicate
     //  that there is no option with the fewest votes
-    // console.log('toEliminate.length: ' + toEliminate.length)
-    // console.log('tallyArr.length: ' + tallyArr.length)
     return toEliminate.length + 1 !== tallyArr.length
   }
 
@@ -126,9 +124,9 @@ const InstantRunoff = props => {
   let resultsJSX = null
 
   if (props.election.ballots.length > 0) {
-    const results = instantRunoff(props.election.ballots).map(victor => (
-      <li key={victor.id}>
-        {props.election.choices[victor - 1].title}
+    const results = instantRunoff(props.election.ballots).map(choice => (
+      <li key={choice.id}>
+        {props.election.choices[choice - 1].title}
       </li>
     ))
     const winner = results.length > 1 ? 'Winners' : 'Winner'

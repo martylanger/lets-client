@@ -8,9 +8,9 @@ const Plurality = props => {
 
   if (props.election.ballots.length > 0) {
     const tally = mostVotes(doTally(ballotsToArray(props.election.ballots)))
-    const results = tally.map(victor => (
-      <li key={victor.id}>
-        {props.election.choices[victor - 1].title}
+    const results = tally.map(choice => (
+      <li key={choice.id}>
+        {props.election.choices[choice - 1].title}
       </li>
     ))
     const winner = results.length > 1 ? 'Winners' : 'Winner'
