@@ -23,14 +23,6 @@ const ElectionEdit = props => {
       })
   }, [deletedChoice])
 
-  useEffect(() => {
-    // The cleanup function is called when
-    // 1. the component is about to unmount
-    // 2. before the 2nd and following renders
-    return () => {
-    }
-  })
-
   // Set state upon updated field
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
