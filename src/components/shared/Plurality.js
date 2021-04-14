@@ -11,7 +11,7 @@ const Plurality = props => {
     const ballotsArray = ballotsToArray(ballots)
 
     // Tally the top choices
-    const tally = doTally(ballotsArray)
+    const tally = doTally(ballotsArray, 0)
 
     // See which option(s) has the most votes and return in victors array
     return mostVotes(tally)

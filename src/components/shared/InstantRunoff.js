@@ -67,7 +67,7 @@ const InstantRunoff = props => {
     const ballotsArray = ballotsToArray(ballots)
 
     // Tally the top choices
-    let tally = doTally(ballotsArray)
+    let tally = doTally(ballotsArray, 0)
     let remainingOptions = [0, 0, 0]
 
     // Does any option have a majority?
@@ -103,7 +103,7 @@ const InstantRunoff = props => {
         }
       }
       // Retally the votes
-      tally = doTally(ballotsArray)
+      tally = doTally(ballotsArray, 0)
       // Count the remaining options
       remainingOptions = tally.filter(option => option > 0)
       // console.log('end of loop status')
