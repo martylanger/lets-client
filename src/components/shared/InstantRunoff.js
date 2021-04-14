@@ -4,7 +4,7 @@ import doTally from '../../modules/doTally'
 import mostVotes from '../../modules/mostVotes'
 
 const InstantRunoff = props => {
-  // DETERMINE THE WINNER USING INSTANT RUNOFF
+  // DETERMINE THE WINNER USING INSTANT RUNOFF VOTING
 
   // Create arrays to track the eliminated options
   const toEliminate = []
@@ -57,7 +57,7 @@ const InstantRunoff = props => {
   }
 
   // Determine the result:
-  //    Tally the top votes (ballotsArray)
+  //    Tally the top choices (ballotsArray)
   //    Check for a majority winner (tally, ballotsArray)
   //    Determine the uneliminated option(s) with the fewest votes (tally, eliminatedOptions)
   //    Remove that/those option(s) from all ballots (ballotsArray)
