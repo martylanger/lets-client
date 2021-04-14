@@ -7,6 +7,7 @@ import Choices from '../shared/Choices'
 import Ballots from '../shared/Ballots'
 import InstantRunoff from '../shared/InstantRunoff'
 import Plurality from '../shared/Plurality'
+import Borda from '../shared/Borda'
 import OwnerOptions from '../shared/OwnerOptions'
 
 import { Container, Row, Col } from 'react-bootstrap'
@@ -94,6 +95,11 @@ const Election = props => {
     case 'plurality':
       results = (
         <Plurality election={election} />
+      )
+      break
+    case 'borda-count':
+      results = (
+        <Borda election={election} />
       )
     }
 
