@@ -72,14 +72,14 @@ const InstantRunoff = props => {
 
     // Does any option have a majority?
     while (!majorityReached(tally, ballotsArray) && remainingOptions.length > 2) {
-      // console.log('ballotsArray: ')
-      // console.log(JSON.stringify(ballotsArray))
-      // console.log('tally: ')
-      // console.log(JSON.stringify(tally))
-      // console.log('majorityReached: ')
-      // console.log(majorityReached(tally, ballotsArray))
-      // console.log('eliminatedOptions: ')
-      // console.log(JSON.stringify(eliminatedOptions))
+      console.log('ballotsArray: ')
+      console.log(JSON.stringify(ballotsArray))
+      console.log('tally: ')
+      console.log(JSON.stringify(tally))
+      console.log('majorityReached: ')
+      console.log(majorityReached(tally, ballotsArray))
+      console.log('eliminatedOptions: ')
+      console.log(JSON.stringify(eliminatedOptions))
 
       // If not, determine the option with the fewest votes
       //  If any uneliminated options have 0 votes, eliminate them
@@ -90,15 +90,15 @@ const InstantRunoff = props => {
           votelessCandidate = true
         }
       }
-      //  Otherwise, find the option(s) with the fewest votes and eliminate them
+      //  Otherwise, find the option with the fewest votes and eliminate it
       if (!votelessCandidate) {
         if (!fewestVotes(tally)) {
           // If there's a tie among all options, fewestVotes() returns false
           return mostVotes(tally)
         } else {
-          toEliminate.forEach(option => {
-            eliminate(ballotsArray, option)
-          })
+          // In case there's a tie for fewestVotes, select one at random and eliminate it
+          const randomLoser = toEliminate[Math.floor(Math.random() * toEliminate.length)]
+          eliminate(ballotsArray, randomLoser)
           toEliminate.splice(0)
         }
       }
@@ -106,15 +106,15 @@ const InstantRunoff = props => {
       tally = doTally(ballotsArray)
       // Count the remaining options
       remainingOptions = tally.filter(option => option > 0)
-      // console.log('end of loop status')
-      // console.log('ballotsArray: ')
-      // console.log(ballotsArray)
-      // console.log('tally: ')
-      // console.log(JSON.stringify(tally))
-      // console.log('remainingOptions: ' + remainingOptions)
-      // console.log('remainingOptions.length: ' + remainingOptions.length)
-      // console.log('majorityReached: ' + majorityReached(tally, ballotsArray))
-      // console.log('end of loop')
+      console.log('end of loop status')
+      console.log('ballotsArray: ')
+      console.log(ballotsArray)
+      console.log('tally: ')
+      console.log(JSON.stringify(tally))
+      console.log('remainingOptions: ' + remainingOptions)
+      console.log('remainingOptions.length: ' + remainingOptions.length)
+      console.log('majorityReached: ' + majorityReached(tally, ballotsArray))
+      console.log('end of loop')
     }
 
     // See which option(s) has the most votes and return in victors array
