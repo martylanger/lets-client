@@ -26,7 +26,7 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
             <option value="instant-runoff">Instant runoff</option>
             <option value="borda-count">Borda count</option>
             <option value="plurality">Plurality</option>
-            <option value="approval">Approval</option>
+            <option value="approval" disabled>Approval</option>
           </select>
           <p></p>
           <label>Description </label>
