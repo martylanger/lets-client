@@ -1,0 +1,15 @@
+
+$a: #aebf7e;
+$b: #4c630a;
+$c: #f2ebb8;
+$d: #7c8af4;
+$e: #7e97bf;
+
+$theme-colors: (
+  'primary': $b,
+  'secondary': $a,
+  'light': $c,
+  'success': $d
+);
+
+@import '~bootstrap/scss/bootstrap';
