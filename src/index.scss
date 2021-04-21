@@ -1,7 +1,16 @@
 @import '~bootstrap/scss/bootstrap';
+@import 'custom';
+
+$a: #aebf7e;
+$b: #4c630a;
+$c: #f2ebb8;
+$d: #7c8af4;
+$e: #7e97bf;
 
 Button {
   margin-right: 2px;
 }
 
-@import 'custom';
+body {
+  background-color: $c;
+}
