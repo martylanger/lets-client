@@ -6,7 +6,7 @@ import { Form } from 'react-bootstrap'
 const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
   <div className="row">
     <div className="col-sm-10 col-md-8 mx-auto mt-5">
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="email">
           <Form.Label>Name</Form.Label>
           <Form.Control
@@ -23,7 +23,7 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
           <Form.Control
             required
             name="voting-method"
-            value={election.votingMethod}
+            value={election.voting_method}
             as="select"
             onChange={handleChange}
           >
