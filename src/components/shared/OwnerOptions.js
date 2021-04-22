@@ -19,7 +19,7 @@ const OwnerOptions = props => {
         <Button variant="primary">Edit</Button><p></p>
       </Link>
 
-      <Button variant="primary" onClick={props.onDestroy}>Delete Election</Button><p></p>
+      <Button variant="danger" onClick={props.onDestroy}>Delete Election</Button><p></p>
     </div>
   )
 
