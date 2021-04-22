@@ -1,4 +1,4 @@
-@import 'https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@1,800&display=swap'
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@1,800');
 @import '~bootstrap/scss/bootstrap';
 @import 'custom';
 
@@ -7,7 +7,14 @@ $b: #83b012;
 $c: #1274b0;
 $d: #054063;
 $e: #b00c00;
+// $logo: font-family: 'Merriweather Sans', sans-serif;
 
 Button {
   margin-right: 2px;
+}
+
+.navbar {
+  .brand {
+    font-family: 'Merriweather Sans', sans-serif;
+  }
 }
