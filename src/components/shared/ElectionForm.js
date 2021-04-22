@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
-import { Form } from 'react-bootstrap'
+import { Button, Form } from 'react-bootstrap'
 
 const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
   <div className="row">
