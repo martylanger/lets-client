@@ -37,7 +37,7 @@ const ChoiceCreate = props => {
   }
 
   if (createdChoiceId) {
-    return <Redirect to={`/elections/${choice.election_id}`} />
+    return <Redirect to={`/elections/${props.match.params.id}`} />
   }
 
   return (
@@ -46,7 +46,7 @@ const ChoiceCreate = props => {
         choice={choice}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        cancelPath="/"
+        cancelPath={`/elections/${props.match.params.id}`}
       />
     </React.Fragment>
   )
