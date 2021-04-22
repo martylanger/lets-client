@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Button from 'react-bootstrap/Button'
 import { Form } from 'react-bootstrap'
 
@@ -44,12 +44,11 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
             onChange={handleChange}
           />
         </Form.Group>
-        <Button
-          variant="primary"
-          type="submit"
-        >
-          Submit
-        </Button>
+        <Button variant="primary" type="submit">Submit</Button>
+        <Link to={cancelPath}>
+          <Button variant="secondary">Cancel</Button>
+        </Link>
+
       </Form>
     </div>
   </div>
