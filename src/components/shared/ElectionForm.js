@@ -31,6 +31,7 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
             <option value="borda-count">Borda count</option>
             <option value="plurality">Plurality</option>
             <option value="approval" disabled>Approval</option>
+            <option value="kemeny-young" disabled>Kemeny-Young</option>
           </Form.Control>
         </Form.Group>
         <Form.Group controlId="description">
