@@ -57,6 +57,7 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
 export default ElectionForm
 
 // PRE-BOOTSTRAP FORM
+//
 // <form onSubmit={handleSubmit}>
 //     <Container>
 //       <Row>
