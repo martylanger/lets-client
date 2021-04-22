@@ -7,7 +7,7 @@ import { HashRouter } from 'react-router-dom'
 
 const appJsx = (
   <HashRouter>
-    <App bg="light"/>
+    <App/>
   </HashRouter>
 )
 
