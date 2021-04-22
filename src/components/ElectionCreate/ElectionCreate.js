@@ -46,7 +46,7 @@ const ElectionCreate = props => {
         election={election}
         handleChange={handleChange}
         handleSubmit={handleSubmit}
-        cancelPath="/"
+        cancelPath="/my-elections"
       />
     </React.Fragment>
   )
