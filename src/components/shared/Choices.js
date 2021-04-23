@@ -1,22 +1,21 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
+import { Button, ListGroup } from 'react-bootstrap'
 
 const Choices = props => {
   const electionChoices = props.election.choices.map((choice, i) => (
-    <li key={choice.id}>
+    <ListGroup.Item key={choice.id}>
       {props.deletable && <Button variant="danger" onClick={props.handleDestroyChoice} name={choice.id}>Delete</Button>
       }
       Option #{i + 1}: {choice.title}
-    </li>
+    </ListGroup.Item>
   ))
-
-  // Alternatives for using an ordered list to render the option numbers:
-  // {choice.title}
-  // <ol>Choices: {electionChoices}</ol>
 
   return (
     <React.Fragment>
-      <p>Choices: {electionChoices}</p>
+      <ListGroup>
+        <ListGroup.Item>Choices: </ListGroup.Item>
+        {electionChoices}
+      </ListGroup>
     </React.Fragment>
   )
 }
