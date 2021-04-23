@@ -3,7 +3,7 @@ import { Button, ListGroup } from 'react-bootstrap'
 
 const Choices = props => {
   const electionChoices = props.election.choices.map((choice, i) => (
-    <ListGroup.Item key={choice.id}>
+    <ListGroup.Item action variant='secondary' key={choice.id}>
       {props.deletable && <Button variant="danger" onClick={props.handleDestroyChoice} name={choice.id}>Delete</Button>
       }
       Option #{i + 1}: {choice.title}
@@ -13,7 +13,7 @@ const Choices = props => {
   return (
     <React.Fragment>
       <ListGroup>
-        <ListGroup.Item>Choices: </ListGroup.Item>
+        <ListGroup.Item variant='light'>Choices: </ListGroup.Item>
         {electionChoices}
       </ListGroup>
     </React.Fragment>
