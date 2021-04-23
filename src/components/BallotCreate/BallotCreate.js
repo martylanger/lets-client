@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import BallotForm from '../shared/BallotForm'
-import Button from 'react-bootstrap/Button'
+import { ListGroup } from 'react-bootstrap'
 
 const BallotCreate = props => {
   const [ballot, setBallot] = useState({ election_id: props.match.params.id, selections: '' })
@@ -22,7 +22,8 @@ const BallotCreate = props => {
     setSelectionsArray([])
     setButtonsArray(
       res.data.election.choices.map((choice, i) => (
-        <Button
+        <ListGroup.Item
+          action
           variant="outline-dark"
           className="choiceBox"
           onClick={() => handleClick(choice, i)}
@@ -33,7 +34,7 @@ const BallotCreate = props => {
           value={ballot.selections}
         >
           {choice.title}
-        </Button>
+        </ListGroup.Item>
       )))
     // console.log(JSON.stringify(buttonsArray[0]))
   }
@@ -186,9 +187,9 @@ const BallotCreate = props => {
   } else {
     // Display and number the options
     const theOptions = election.choices.map((choice, i) => (
-      <li key={choice.id}>
+      <ListGroup.Item key={choice.id}>
         Option #{i + 1}: {choice.title}
-      </li>
+      </ListGroup.Item>
     ))
 
     ballotJSX = (
