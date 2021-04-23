@@ -118,7 +118,7 @@ const Election = props => {
           <Col>
             <p></p>
             <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-              <Button variant="primary">Vote!</Button>
+              <Button variant="dark">Vote!</Button>
             </Link>
             <p></p>
             <OwnerOptions

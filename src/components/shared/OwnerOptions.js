@@ -12,11 +12,11 @@ const OwnerOptions = props => {
       // <button onClick={closeVote}>End the vote!</button>
       }
       <Link to={`/elections/${props.match.params.id}/choice-create`}>
-        <Button variant="primary">Add an option!</Button><p></p>
+        <Button variant="secondary">Add an option!</Button><p></p>
       </Link>
 
       <Link to={`/elections/${props.match.params.id}/edit`}>
-        <Button variant="primary">Edit</Button><p></p>
+        <Button variant="secondary">Edit</Button><p></p>
       </Link>
 
       <Button variant="danger" onClick={props.onDestroy}>Delete Election</Button><p></p>
