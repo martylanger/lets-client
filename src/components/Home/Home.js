@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
+import { Button, Card } from 'react-bootstrap'
 
 const Home = props => {
   const [elections, setElections] = useState([])
