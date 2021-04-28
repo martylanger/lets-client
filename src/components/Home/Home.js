@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { Card, ListGroup } from 'react-bootstrap'
 
 const Home = props => {
   const [elections, setElections] = useState([])
+  const [electionId, setElectionId] = useState(null)
   useEffect(() => {
     axios({
       url: `${apiUrl}/elections`,
@@ -17,6 +18,7 @@ const Home = props => {
       .then(res => {
         if (elections) {
           setElections(res.data.elections)
+          console.log('.thened')
         }
       })
       .catch(err => {
@@ -29,30 +31,43 @@ const Home = props => {
         }
       })
   }, [1000])
+
+  const handleClick = (electionId) => {
+    console.log('handleclicked')
+    console.log(electionId)
+    setElectionId(electionId)
+  }
+
   // Find all elections belonging to the user
   const myElections = elections.filter(election => election.user.email === props.user.email)
   // Create link for each election
   const electionsLinks = myElections.map(election => (
-    <ListGroup.Item key={election.id} >
-      <Link to={`/elections/${election.id}`}>{election.name}</Link>
+    <ListGroup.Item action key={election.id} onClick={() => handleClick(election.id)} >
+      {election.name}
     </ListGroup.Item>
   ))
 
+  let homeJSX
+
+  if (electionId) {
+    console.log('iffed')
+    homeJSX = <Redirect to={`/elections/${electionId}`} />
+  } else {
+    console.log('elsed')
+    homeJSX = (
+      <React.Fragment>
+        <Card style={{ width: '18rem' }}>
+          <Card.Header>Your Elections</Card.Header>
+          <ListGroup>
+            {electionsLinks}
+          </ListGroup>
+        </Card>
+      </React.Fragment>
+    )
+  }
+
   return (
-    <React.Fragment>
-      <Card style={{ width: '18rem' }}>
-        <Card.Header>Featured</Card.Header>
-        <ListGroup variant="flush">
-          <ListGroup.Item>Cras justo odio</ListGroup.Item>
-          <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-          <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-        </ListGroup>
-      </Card>
-      <h4>Your Elections</h4>
-      <ul>
-        {electionsLinks}
-      </ul>
-    </React.Fragment>
+    homeJSX
   )
 }
 
