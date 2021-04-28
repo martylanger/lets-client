@@ -33,8 +33,6 @@ const Home = props => {
   }, [1000])
 
   const handleClick = (electionId) => {
-    console.log('handleclicked')
-    console.log(electionId)
     setElectionId(electionId)
   }
 
@@ -50,10 +48,8 @@ const Home = props => {
   let homeJSX
 
   if (electionId) {
-    console.log('iffed')
     homeJSX = <Redirect to={`/elections/${electionId}`} />
   } else {
-    console.log('elsed')
     homeJSX = (
       <React.Fragment>
         <Card style={{ width: '18rem' }}>
