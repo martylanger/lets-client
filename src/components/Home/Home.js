@@ -46,7 +46,10 @@ const Home = props => {
 
   let homeJSX
 
-  if (electionId) {
+  if (!elections) {
+    // If it's loading, give a loading gif
+    homeJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
+  } else if (electionId) {
     homeJSX = <Redirect to={`/elections/${electionId}`} />
   } else {
     homeJSX = (
