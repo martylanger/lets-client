@@ -18,7 +18,6 @@ const Home = props => {
       .then(res => {
         if (elections) {
           setElections(res.data.elections)
-          console.log('.thened')
         }
       })
       .catch(err => {
