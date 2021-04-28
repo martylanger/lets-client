@@ -11,7 +11,7 @@ const Ballots = props => {
   return (
     <React.Fragment>
       <ListGroup>
-        <ListGroup.Item variant='light'>Ballots: </ListGroup.Item>
+        <ListGroup.Item variant='light'>Ballots</ListGroup.Item>
         {electionBallots}
       </ListGroup>
     </React.Fragment>
