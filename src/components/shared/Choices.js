@@ -2,11 +2,19 @@ import React from 'react'
 import { Button, ListGroup } from 'react-bootstrap'
 
 const Choices = props => {
-  const electionChoices = props.election.choices.map((choice, i) => (
+  const electionChoices = props.election.choices.map((choice) => (
     <ListGroup.Item action variant='secondary' key={choice.id}>
-      {props.deletable && <Button variant="danger" onClick={props.handleDestroyChoice} name={choice.id}>Delete</Button>
+      {
+        props.deletable &&
+        <Button
+          variant="danger"
+          onClick={props.handleDestroyChoice}
+          name={choice.id}
+        >
+        Delete
+        </Button>
       }
-      Option #{i + 1}: {choice.title}
+      {choice.title}
     </ListGroup.Item>
   ))
 
@@ -21,3 +29,12 @@ const Choices = props => {
 }
 
 export default Choices
+
+// VARIANT WITH NUMBERED OPTIONS
+// const electionChoices = props.election.choices.map((choice, i) => (
+//   <ListGroup.Item action variant='secondary' key={choice.id}>
+//     {props.deletable && <Button variant="danger" onClick={props.handleDestroyChoice} name={choice.id}>Delete</Button>
+//     }
+//     Option #{i + 1}: {choice.title}
+//   </ListGroup.Item>
+// ))
