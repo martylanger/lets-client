@@ -31,6 +31,7 @@ const Choices = props => {
 export default Choices
 
 // VARIANT WITH NUMBERED OPTIONS
+//
 // const electionChoices = props.election.choices.map((choice, i) => (
 //   <ListGroup.Item action variant='secondary' key={choice.id}>
 //     {props.deletable && <Button variant="danger" onClick={props.handleDestroyChoice} name={choice.id}>Delete</Button>
