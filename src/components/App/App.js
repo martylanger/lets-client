@@ -68,6 +68,9 @@ class App extends Component {
             <Route path='/all-elections' render={() => (
               <AllElections msgAlert={this.msgAlert} />
             )} />
+            <AuthenticatedRoute user={user} path='/home' render={() => (
+              <Home msgAlert={this.msgAlert} user={user} />
+            )} />
             <AuthenticatedRoute user={user} path='/my-elections' render={() => (
               <MyElections msgAlert={this.msgAlert} user={user} />
             )} />
@@ -97,13 +100,6 @@ class App extends Component {
             )} />
             <AuthenticatedRoute user={user} path='/elections/:id' render={({ match }) => (
               <Election
-                match={match}
-                msgAlert={this.msgAlert}
-                user={user}
-              />
-            )} />
-            <AuthenticatedRoute user={user} path='/home' render={({ match }) => (
-              <Home
                 match={match}
                 msgAlert={this.msgAlert}
                 user={user}

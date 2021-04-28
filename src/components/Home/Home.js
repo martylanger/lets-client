@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Button, Card } from 'react-bootstrap'
+import { Card, ListGroup } from 'react-bootstrap'
 
 const Home = props => {
   const [elections, setElections] = useState([])
@@ -33,13 +33,21 @@ const Home = props => {
   const myElections = elections.filter(election => election.user.email === props.user.email)
   // Create link for each election
   const electionsLinks = myElections.map(election => (
-    <li key={election.id}>
+    <ListGroup.Item key={election.id} >
       <Link to={`/elections/${election.id}`}>{election.name}</Link>
-    </li>
+    </ListGroup.Item>
   ))
 
   return (
     <React.Fragment>
+      <Card style={{ width: '18rem' }}>
+        <Card.Header>Featured</Card.Header>
+        <ListGroup variant="flush">
+          <ListGroup.Item>Cras justo odio</ListGroup.Item>
+          <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
+          <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
+        </ListGroup>
+      </Card>
       <h4>Your Elections</h4>
       <ul>
         {electionsLinks}
