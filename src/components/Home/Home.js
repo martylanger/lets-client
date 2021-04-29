@@ -48,12 +48,19 @@ const Home = props => {
 
   if (!elections) {
     // If it's loading, give a loading gif
-    homeJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
+    homeJSX = (
+      <React.Fragment>
+        <h1>Let&#39;s</h1>
+        <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
+      </React.Fragment>
+    )
   } else if (electionId) {
+    // Upon user clicking an election, redirect to the election
     homeJSX = <Redirect to={`/elections/${electionId}`} />
   } else {
     homeJSX = (
       <React.Fragment>
+        <h1>Let&#39;s</h1>
         <Card style={{ width: '18rem' }}>
           <Card.Header>Your Elections</Card.Header>
           <ListGroup>

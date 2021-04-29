@@ -50,7 +50,6 @@ class App extends Component {
           />
         ))}
         <main className="container big-body">
-          <h1>Let&#39;s</h1>
           <Switch>
             <Route path='/sign-up' render={() => (
               <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
