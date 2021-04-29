@@ -1,7 +1,9 @@
-import React from 'react'
-import { ListGroup } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Card, ListGroup, Collapse } from 'react-bootstrap'
 
 const Ballots = props => {
+  const [open, setOpen] = useState(false)
+
   const electionBallots = props.election.ballots.map(ballot => (
     <ListGroup.Item action variant='secondary' key={ballot.id}>
       {ballot.selections}
@@ -10,10 +12,22 @@ const Ballots = props => {
 
   return (
     <React.Fragment>
-      <ListGroup>
-        <ListGroup.Item variant='light'>Ballots</ListGroup.Item>
-        {electionBallots}
-      </ListGroup>
+      <Card style={{ width: '18rem' }}>
+        <ListGroup.Item
+          action
+          onClick={() => setOpen(!open)}
+          aria-controls="ballots"
+          aria-expanded={open}
+          variant='light'
+        >
+        Ballots
+        </ListGroup.Item>
+        <Collapse in={open}>
+          <ListGroup id='ballots'>
+            {electionBallots}
+          </ListGroup>
+        </Collapse>
+      </Card>
     </React.Fragment>
   )
 }
