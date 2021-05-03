@@ -114,10 +114,10 @@ const Election = props => {
                   <Card.Subtitle className="text-muted mb-2">Owner: {election.user.email}</Card.Subtitle>
                   <Card.Subtitle className="text-muted mb-2">Voting method: {election.voting_method}</Card.Subtitle>
                   <Card.Text>{election.description}</Card.Text>
+                  <Choices election={election} />
+                  <Ballots election={election} />
                 </Card.Body>
               </Card>
-              <Choices election={election} />
-              <Ballots election={election} />
             </Col>
             <Col>
               <p></p>
