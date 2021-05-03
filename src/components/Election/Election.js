@@ -103,44 +103,47 @@ const Election = props => {
     }
 
     electionJSX = (
-      <Container>
-        <Row>
-          <Col>
-            <Card className="m-2">
-              <Card.Body>
-                <Card.Title>Election: {election.name}</Card.Title>
-                <Card.Subtitle className="text-muted mb-2">Owner: {election.user.email}</Card.Subtitle>
-                <Card.Subtitle className="text-muted mb-2">Voting method: {election.voting_method}</Card.Subtitle>
-                <Card.Text>{election.description}</Card.Text>
-              </Card.Body>
-            </Card>
-            <Choices election={election} />
-            <Ballots election={election} />
-          </Col>
-          <Col>
-            <p></p>
-            <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-              <Button variant="dark">Vote!</Button>
-            </Link>
-            <p></p>
-            <OwnerOptions
-              user={props.user}
-              match={props.match}
-              election={election}
-              onDestroy={onDestroy}
-            />
-            <Link to="/my-elections">
-              <Button variant="secondary">Back to my elections</Button>
-            </Link>
-            <Link to="/all-elections">
-              <Button variant="secondary">Back to all elections</Button>
-            </Link>
-            <p></p>
-            <p></p>
-            {results}
-          </Col>
-        </Row>
-      </Container>
+      <React.Fragment>
+        <h2>Let&#39;s</h2>
+        <Container>
+          <Row>
+            <Col>
+              <Card className="m-2">
+                <Card.Body>
+                  <Card.Title>Election: {election.name}</Card.Title>
+                  <Card.Subtitle className="text-muted mb-2">Owner: {election.user.email}</Card.Subtitle>
+                  <Card.Subtitle className="text-muted mb-2">Voting method: {election.voting_method}</Card.Subtitle>
+                  <Card.Text>{election.description}</Card.Text>
+                </Card.Body>
+              </Card>
+              <Choices election={election} />
+              <Ballots election={election} />
+            </Col>
+            <Col>
+              <p></p>
+              <Link to={`/elections/${props.match.params.id}/ballot-create`}>
+                <Button variant="dark">Vote!</Button>
+              </Link>
+              <p></p>
+              <OwnerOptions
+                user={props.user}
+                match={props.match}
+                election={election}
+                onDestroy={onDestroy}
+              />
+              <Link to="/my-elections">
+                <Button variant="secondary">Back to my elections</Button>
+              </Link>
+              <Link to="/all-elections">
+                <Button variant="secondary">Back to all elections</Button>
+              </Link>
+              <p></p>
+              <p></p>
+              {results}
+            </Col>
+          </Row>
+        </Container>
+      </React.Fragment>
     )
   }
   return (
