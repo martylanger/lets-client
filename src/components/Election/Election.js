@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import { Link, Redirect } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
@@ -10,7 +9,7 @@ import Plurality from '../shared/Plurality'
 import Borda from '../shared/Borda'
 import OwnerOptions from '../shared/OwnerOptions'
 
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button } from 'react-bootstrap'
 
 const Election = props => {
   const [election, setElection] = useState(null)
@@ -107,11 +106,14 @@ const Election = props => {
       <Container>
         <Row>
           <Col>
-            <p></p>
-            <h4>Election: {election.name}</h4>
-            <h5>{election.description}</h5>
-            <p>Owner: {election.user.email}</p>
-            <p>Voting method: {election.voting_method}</p>
+            <Card className="m-2">
+              <Card.Body>
+                <Card.Title>Election: {election.name}</Card.Title>
+                <Card.Subtitle>Owner: {election.user.email}</Card.Subtitle>
+                <Card.Subtitle>Voting method: {election.voting_method}</Card.Subtitle>
+                <Card.Text>{election.description}</Card.Text>
+              </Card.Body>
+            </Card>
             <Choices election={election} />
             <Ballots election={election} />
           </Col>
