@@ -3,7 +3,7 @@ import { Button, ListGroup, Card } from 'react-bootstrap'
 
 const Choices = props => {
   const electionChoices = props.election.choices.map((choice) => (
-    <ListGroup.Item action variant='secondary' key={choice.id}>
+    <ListGroup.Item variant='secondary' key={choice.id}>
       {
         props.deletable &&
         <Button
