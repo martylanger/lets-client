@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Card, ListGroup } from 'react-bootstrap'
+import { Card, CardDeck, ListGroup } from 'react-bootstrap'
 
 const Home = props => {
   const [elections, setElections] = useState([])
@@ -61,12 +61,18 @@ const Home = props => {
     homeJSX = (
       <React.Fragment>
         <h1>Let&#39;s</h1>
-        <Card className="m-auto" style={{ width: '18rem' }}>
-          <Card.Header>Your Elections</Card.Header>
-          <ListGroup>
-            {electionsLinks}
-          </ListGroup>
-        </Card>
+        <CardDeck>
+          <Card style={{ width: '18rem' }}>
+            <Card.Header>Your Groups</Card.Header>
+            <Card.Header>Your Profiles</Card.Header>
+          </Card>
+          <Card style={{ width: '18rem' }}>
+            <Card.Header>Your Elections</Card.Header>
+            <ListGroup>
+              {electionsLinks}
+            </ListGroup>
+          </Card>
+        </CardDeck>
       </React.Fragment>
     )
   }
