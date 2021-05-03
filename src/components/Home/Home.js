@@ -61,7 +61,7 @@ const Home = props => {
     homeJSX = (
       <React.Fragment>
         <h1>Let&#39;s</h1>
-        <Card style={{ width: '18rem' }}>
+        <Card className="m-auto" style={{ width: '18rem' }}>
           <Card.Header>Your Elections</Card.Header>
           <ListGroup>
             {electionsLinks}
