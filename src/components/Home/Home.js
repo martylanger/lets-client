@@ -60,7 +60,7 @@ const Home = props => {
   } else {
     homeJSX = (
       <React.Fragment>
-        <h1>Let&#39;s</h1>
+        <div className="logo-big">Let&#39;s</div>
         <CardDeck>
           <Card style={{ width: '18rem' }}>
             <Card.Header>Your Groups</Card.Header>

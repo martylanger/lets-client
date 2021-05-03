@@ -8,26 +8,28 @@ $c: #1274b0;
 $d: #054063;
 $e: #b00c00;
 
+%logo {
+  color: $d;
+  font-family: 'Merriweather Sans', sans-serif;
+  text-align: center;
+}
+
 Button {
   margin-right: 2px;
 }
 
-h1 {
-  color: $d;
-  font-family: 'Merriweather Sans', sans-serif;
+.logo-big {
+  @extend %logo;
   font-size: 100px;
   margin-bottom: 50px;
   margin-top: 50px;
-  text-align: center;
 }
 
-h2 {
-  color: $d;
-  font-family: 'Merriweather Sans', sans-serif;
+.logo-small {
+  @extend %logo;
   font-size: 50px;
   margin-bottom: 25px;
   margin-top: 25px;
-  text-align: center;
 }
 
 .brand {

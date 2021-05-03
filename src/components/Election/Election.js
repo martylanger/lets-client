@@ -104,7 +104,7 @@ const Election = props => {
 
     electionJSX = (
       <React.Fragment>
-        <h2>Let&#39;s</h2>
+        <div className="logo-small">Let&#39;s</div>
         <Container>
           <Row>
             <Col>
