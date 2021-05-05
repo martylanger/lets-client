@@ -4,10 +4,11 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
 import Ballots from '../shared/Ballots'
-import InstantRunoff from '../shared/InstantRunoff'
-import Plurality from '../shared/Plurality'
-import Borda from '../shared/Borda'
+// import InstantRunoff from '../shared/InstantRunoff'
+// import Plurality from '../shared/Plurality'
+// import Borda from '../shared/Borda'
 import OwnerOptions from '../shared/OwnerOptions'
+import Results from '../shared/Results'
 
 import { Container, Row, Col, Card, Button, ButtonGroup } from 'react-bootstrap'
 
@@ -69,23 +70,23 @@ const Election = props => {
     } />
   } else {
     // Implement the correct voting method for determining the election
-    let results
-    switch (election.voting_method) {
-    case 'instant-runoff':
-      results = (
-        <InstantRunoff election={election} />
-      )
-      break
-    case 'plurality':
-      results = (
-        <Plurality election={election} />
-      )
-      break
-    case 'borda-count':
-      results = (
-        <Borda election={election} />
-      )
-    }
+    // let results
+    // switch (election.voting_method) {
+    // case 'instant-runoff':
+    //   results = (
+    //     <InstantRunoff election={election} />
+    //   )
+    //   break
+    // case 'plurality':
+    //   results = (
+    //     <Plurality election={election} />
+    //   )
+    //   break
+    // case 'borda-count':
+    //   results = (
+    //     <Borda election={election} />
+    //   )
+    // }
 
     electionJSX = (
       <React.Fragment>
@@ -124,7 +125,7 @@ const Election = props => {
             </Col>
             <Col>
               <Card className="m-2">
-                {results}
+                <Results election={election} />
                 <Ballots election={election} />
               </Card>
             </Col>

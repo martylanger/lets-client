@@ -1,17 +1,16 @@
-import React from 'react'
-import ballotsToArray from '../../modules/ballotsToArray'
-import doTally from '../../modules/doTally'
-import mostVotes from '../../modules/mostVotes'
+import ballotsToArray from './ballotsToArray'
+import doTally from './doTally'
+import mostVotes from './mostVotes'
 
-const Borda = props => {
+const borda = election => {
   // DETERMINE THE WINNER USING A BORDA COUNT
 
   // For each ballot, give numChoices-1 points to the top choice,
   //  numChoices-2 points to the second choice, and so on
   // Last place is omitted from the loop below because it scores 0 points
 
-  const numChoices = props.election.choices.length
-  const borda = function (ballots) {
+  const numChoices = election.choices.length
+  const bordaEngine = function (ballots) {
     // Create a new array of the ballots' selections with the strings converted to arrays
     const ballotsArray = ballotsToArray(ballots)
 
@@ -33,26 +32,7 @@ const Borda = props => {
     return mostVotes(totalScores)
   }
 
-  let resultsJSX = null
-
-  if (props.election.ballots.length > 0) {
-    const results = borda(props.election.ballots).map(victor => (
-      <li key={victor.toString()}>
-        {props.election.choices[victor - 1].title}
-      </li>
-    ))
-    const winner = results.length > 1 ? 'Winners' : 'Winner'
-    resultsJSX = (
-      <React.Fragment>
-        <p>{winner}:</p>
-        {results}
-      </React.Fragment>
-    )
-  }
-
-  return (
-    resultsJSX
-  )
+  return bordaEngine(election.ballots)
 }
 
-export default Borda
+export default borda

@@ -1,9 +1,8 @@
-import React from 'react'
-import ballotsToArray from '../../modules/ballotsToArray'
-import doTally from '../../modules/doTally'
-import mostVotes from '../../modules/mostVotes'
+import ballotsToArray from './ballotsToArray'
+import doTally from './doTally'
+import mostVotes from './mostVotes'
 
-const InstantRunoff = props => {
+const instantRunoff = election => {
   // DETERMINE THE WINNER USING INSTANT RUNOFF VOTING
 
   // Create arrays to track the eliminated options
@@ -62,7 +61,7 @@ const InstantRunoff = props => {
   //    Determine the uneliminated option(s) with the fewest votes (tally, eliminatedOptions)
   //    Remove that/those option(s) from all ballots (ballotsArray)
 
-  const instantRunoff = function (ballots) {
+  const instantRunoffEngine = function (ballots) {
     // Create a new array of the ballots' selections with the strings converted to arrays
     const ballotsArray = ballotsToArray(ballots)
 
@@ -121,26 +120,7 @@ const InstantRunoff = props => {
     return mostVotes(tally)
   }
 
-  let resultsJSX = null
-
-  if (props.election.ballots.length > 0) {
-    const results = instantRunoff(props.election.ballots).map(victor => (
-      <li key={victor.toString()}>
-        {props.election.choices[victor - 1].title}
-      </li>
-    ))
-    const winner = results.length > 1 ? 'Winners' : 'Winner'
-    resultsJSX = (
-      <React.Fragment>
-        <p>{winner}:</p>
-        {results}
-      </React.Fragment>
-    )
-  }
-
-  return (
-    resultsJSX
-  )
+  return instantRunoffEngine(election.ballots)
 }
 
-export default InstantRunoff
+export default instantRunoff
