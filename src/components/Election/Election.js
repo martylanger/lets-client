@@ -9,7 +9,7 @@ import Plurality from '../shared/Plurality'
 import Borda from '../shared/Borda'
 import OwnerOptions from '../shared/OwnerOptions'
 
-import { Container, Row, Col, Card, Button } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button, ButtonGroup } from 'react-bootstrap'
 
 const Election = props => {
   const [election, setElection] = useState(null)
@@ -107,6 +107,25 @@ const Election = props => {
         <div className="logo-small">Let&#39;s</div>
         <Container>
           <Row>
+            <ButtonGroup>
+              <Link to={`/elections/${props.match.params.id}/ballot-create`}>
+                <Button variant="dark">Vote!</Button>
+              </Link>
+              <OwnerOptions
+                user={props.user}
+                match={props.match}
+                election={election}
+                onDestroy={onDestroy}
+              />
+              <Link to="/my-elections">
+                <Button variant="secondary">Back to my elections</Button>
+              </Link>
+              <Link to="/all-elections">
+                <Button variant="secondary">Back to all elections</Button>
+              </Link>
+            </ButtonGroup>
+          </Row>
+          <Row>
             <Col>
               <Card className="m-2">
                 <Card.Body>
@@ -120,26 +139,9 @@ const Election = props => {
               </Card>
             </Col>
             <Col>
-              <p></p>
-              <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-                <Button variant="dark">Vote!</Button>
-              </Link>
-              <p></p>
-              <OwnerOptions
-                user={props.user}
-                match={props.match}
-                election={election}
-                onDestroy={onDestroy}
-              />
-              <Link to="/my-elections">
-                <Button variant="secondary">Back to my elections</Button>
-              </Link>
-              <Link to="/all-elections">
-                <Button variant="secondary">Back to all elections</Button>
-              </Link>
-              <p></p>
-              <p></p>
-              {results}
+              <Card className="m-2">
+                {results}
+              </Card>
             </Col>
           </Row>
         </Container>
