@@ -134,13 +134,13 @@ const Election = props => {
                   <Card.Subtitle className="text-muted mb-2">Voting method: {election.voting_method}</Card.Subtitle>
                   <Card.Text>{election.description}</Card.Text>
                   <Choices election={election} />
-                  <Ballots election={election} />
                 </Card.Body>
               </Card>
             </Col>
             <Col>
               <Card className="m-2">
                 {results}
+                <Ballots election={election} />
               </Card>
             </Col>
           </Row>
