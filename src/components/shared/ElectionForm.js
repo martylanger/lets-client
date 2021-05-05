@@ -21,7 +21,7 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
           <Form.Label>Voting method</Form.Label>
           <Form.Control
             required
-            name="voting-method"
+            name="voting_method"
             value={election.voting_method}
             as="select"
             onChange={handleChange}
