@@ -33,21 +33,6 @@ const Election = props => {
       })
   }, [])
 
-  useEffect(() => {
-    // This will only run when the compnent will unmount
-    // because the dependency array is empty
-    return () => {
-    }
-  }, [])
-
-  useEffect(() => {
-    // The cleanup function is called when
-    // 1. the component is about to unmount
-    // 2. before the 2nd and following renders
-    return () => {
-    }
-  })
-
   const onDestroy = () => {
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
