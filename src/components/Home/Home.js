@@ -39,7 +39,7 @@ const Home = props => {
   const myElections = elections.filter(election => election.user.email === props.user.email)
   // Create link for each election
   const electionsLinks = myElections.map(election => (
-    <ListGroup.Item action key={election.id} onClick={() => handleClick(election.id)} >
+    <ListGroup.Item action className="home-list" key={election.id} onClick={() => handleClick(election.id)} >
       {election.name}
     </ListGroup.Item>
   ))
@@ -62,11 +62,11 @@ const Home = props => {
       <React.Fragment>
         <div className="logo-big">Let&#39;s</div>
         <CardDeck>
-          <Card style={{ width: '18rem' }}>
+          <Card>
             <Card.Header>Your Groups</Card.Header>
             <Card.Header>Your Profiles</Card.Header>
           </Card>
-          <Card style={{ width: '18rem' }}>
+          <Card>
             <Card.Header>Your Elections</Card.Header>
             <ListGroup>
               {electionsLinks}

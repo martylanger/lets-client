@@ -36,3 +36,13 @@ Button {
 .brand {
   font-family: 'Merriweather Sans', sans-serif;
 }
+
+.list-group-item {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.home-list {
+  border-left-width: 0;
+  border-right-width: 0;
+}
