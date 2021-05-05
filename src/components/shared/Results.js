@@ -6,10 +6,8 @@ import borda from '../../modules/borda'
 const Results = props => {
   let results
   if (props.election.ballots.length > 0) {
-    console.log(props.election.voting_method)
     switch (props.election.voting_method) {
     case 'instant-runoff':
-      console.log('i')
       results = instantRunoff(props.election).map(victor => (
         <li key={victor.toString()}>
           {props.election.choices[victor - 1].title}
@@ -17,7 +15,6 @@ const Results = props => {
       ))
       break
     case 'plurality':
-      console.log('p')
       results = plurality(props.election).map(victor => (
         <li key={victor.toString()}>
           {props.election.choices[victor - 1].title}
@@ -25,7 +22,6 @@ const Results = props => {
       ))
       break
     case 'borda-count':
-      console.log('b')
       results = borda(props.election).map(victor => (
         <li key={victor.toString()}>
           {props.election.choices[victor - 1].title}
@@ -35,7 +31,6 @@ const Results = props => {
     }
   }
 
-  console.log(results)
   let resultsJSX = null
 
   const winner = results.length > 1 ? 'Winners' : 'Winner'
