@@ -2,14 +2,14 @@ import React from 'react'
 
 const Results = props => {
   let results
+  let resultsJSX = null
+
   if (props.election.ballots.length > 0) {
     results = props.votingMethod(props.election).map(victor => (
       <li key={victor.toString()}>
         {props.election.choices[victor - 1].title}
       </li>
     ))
-
-    let resultsJSX = null
 
     const winner = results.length > 1 ? 'Winners' : 'Winner'
 
@@ -19,11 +19,10 @@ const Results = props => {
         {results}
       </React.Fragment>
     )
-
-    return (
-      resultsJSX
-    )
   }
+  return (
+    resultsJSX
+  )
 }
 
 export default Results
