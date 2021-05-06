@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, ListGroup, Card } from 'react-bootstrap'
+import { Button, ListGroup } from 'react-bootstrap'
 
 const Choices = props => {
   const electionChoices = props.election.choices.map((choice) => (
@@ -20,12 +20,10 @@ const Choices = props => {
 
   return (
     <React.Fragment>
-      <Card>
-        <ListGroup>
-          <ListGroup.Item variant='light'>Choices</ListGroup.Item>
-          {electionChoices}
-        </ListGroup>
-      </Card>
+      <ListGroup>
+        <ListGroup.Item variant='light'>Choices</ListGroup.Item>
+        {electionChoices}
+      </ListGroup>
     </React.Fragment>
   )
 }
