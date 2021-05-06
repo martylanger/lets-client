@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, ListGroup } from 'react-bootstrap'
+import { Card } from 'react-bootstrap'
 import Ballots from '../shared/Ballots'
 
 const Results = props => {
@@ -19,9 +19,7 @@ const Results = props => {
       <Card className="m-2">
         <Card.Body>
           <Card.Title>{winner}</Card.Title>
-          <ListGroup>
-            {results}
-          </ListGroup>
+          {results}
           <Ballots election={props.election} />
         </Card.Body>
       </Card>
