@@ -15,7 +15,7 @@ const Choices = props => {
         </Button>
       }
       {choice.title}
-      <div className="counter text-muted">#{i + 1}</div>
+      <div className="choice-numbers">#{i + 1}</div>
     </ListGroup.Item>
   ))
 
