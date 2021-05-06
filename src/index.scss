@@ -13,6 +13,11 @@ Button {
   margin-right: $spacer * .25;
 }
 
+.btn-group {
+  margin: auto;
+  margin-bottom: $spacer * .5;
+}
+
 %logo {
   color: $d;
   font-family: 'Merriweather Sans', sans-serif;

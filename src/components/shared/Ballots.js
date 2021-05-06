@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Card, ListGroup, Collapse } from 'react-bootstrap'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Ballots = props => {
   const [open, setOpen] = useState(false)
@@ -22,7 +24,10 @@ const Ballots = props => {
           variant='light'
         >
         Ballots
-          <div className="counter">{props.election.ballots.length}</div>
+          <div className="counter">
+            {`${props.election.ballots.length + ' '}`}
+            <FontAwesomeIcon icon={faChevronDown} />
+          </div>
         </ListGroup.Item>
         <Collapse in={open}>
           <ListGroup id='ballots'>
