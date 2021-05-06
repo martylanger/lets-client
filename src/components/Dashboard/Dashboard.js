@@ -4,7 +4,7 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import { Card, CardDeck, ListGroup } from 'react-bootstrap'
 
-const Home = props => {
+const Dashboard = props => {
   const [elections, setElections] = useState([])
   const [electionId, setElectionId] = useState(null)
   useEffect(() => {
@@ -39,16 +39,16 @@ const Home = props => {
   const myElections = elections.filter(election => election.user.email === props.user.email)
   // Create link for each election
   const electionsLinks = myElections.map(election => (
-    <ListGroup.Item action className="home-list" key={election.id} onClick={() => handleClick(election.id)} >
+    <ListGroup.Item action className="dashboard-list" key={election.id} onClick={() => handleClick(election.id)} >
       {election.name}
     </ListGroup.Item>
   ))
 
-  let homeJSX
+  let dashboardJSX
 
   if (!elections) {
     // If it's loading, give a loading gif
-    homeJSX = (
+    dashboardJSX = (
       <React.Fragment>
         <h1>Let&#39;s</h1>
         <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
@@ -56,9 +56,9 @@ const Home = props => {
     )
   } else if (electionId) {
     // Upon user clicking an election, redirect to the election
-    homeJSX = <Redirect to={`/elections/${electionId}`} />
+    dashboardJSX = <Redirect to={`/elections/${electionId}`} />
   } else {
-    homeJSX = (
+    dashboardJSX = (
       <React.Fragment>
         <div className="logo-big">Let&#39;s</div>
         <CardDeck>
@@ -78,8 +78,8 @@ const Home = props => {
   }
 
   return (
-    homeJSX
+    dashboardJSX
   )
 }
 
-export default Home
+export default Dashboard

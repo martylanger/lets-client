@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 import AuthenticatedRoute from '../AuthenticatedRoute/AuthenticatedRoute'
 import AutoDismissAlert from '../AutoDismissAlert/AutoDismissAlert'
@@ -15,7 +15,7 @@ import ElectionCreate from '../ElectionCreate/ElectionCreate'
 import ElectionEdit from '../ElectionEdit/ElectionEdit'
 import ChoiceCreate from '../ChoiceCreate/ChoiceCreate'
 import BallotCreate from '../BallotCreate/BallotCreate'
-import Home from '../Home/Home'
+import Dashboard from '../Dashboard/Dashboard'
 
 class App extends Component {
   constructor () {
@@ -51,6 +51,9 @@ class App extends Component {
         ))}
         <main className="container big-body">
           <Switch>
+            <Route exact path='/'>
+              <Redirect to='/home' />
+            </Route>
             <Route path='/sign-up' render={() => (
               <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
             )} />
@@ -67,8 +70,8 @@ class App extends Component {
             <Route path='/all-elections' render={() => (
               <AllElections msgAlert={this.msgAlert} />
             )} />
-            <AuthenticatedRoute user={user} path='/home' render={() => (
-              <Home msgAlert={this.msgAlert} user={user} />
+            <AuthenticatedRoute user={user} path='/dashboard' render={() => (
+              <Dashboard msgAlert={this.msgAlert} user={user} />
             )} />
             <AuthenticatedRoute user={user} path='/my-elections' render={() => (
               <MyElections msgAlert={this.msgAlert} user={user} />

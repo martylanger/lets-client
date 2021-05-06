@@ -33,7 +33,7 @@ class SignIn extends Component {
         message: messages.signInSuccess,
         variant: 'success'
       }))
-      .then(() => history.push('/home'))
+      .then(() => history.push('/dashboard'))
       .catch(error => {
         this.setState({ email: '', password: '' })
         msgAlert({
