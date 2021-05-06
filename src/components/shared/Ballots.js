@@ -12,7 +12,7 @@ const Ballots = props => {
 
   return (
     <React.Fragment>
-      <Card style={{ width: '18rem' }}>
+      <Card>
         <ListGroup.Item
           action
           onClick={() => setOpen(!open)}
