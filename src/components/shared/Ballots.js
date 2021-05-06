@@ -26,10 +26,8 @@ const Ballots = props => {
         Ballots
           <div className="counter">
             {`${props.election.ballots.length + ' '}`}
-            { open
-              ? <FontAwesomeIcon icon={faChevronUp} />
-              : <FontAwesomeIcon icon={faChevronDown} />
-            }
+            { !open && <FontAwesomeIcon icon={faChevronDown} />}
+            { open && <FontAwesomeIcon icon={faChevronUp} />}
           </div>
         </ListGroup.Item>
         <Collapse in={open}>
