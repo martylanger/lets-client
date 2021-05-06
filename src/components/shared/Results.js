@@ -29,22 +29,22 @@ const Results = props => {
       ))
       break
     }
+
+    let resultsJSX = null
+
+    const winner = results.length > 1 ? 'Winners' : 'Winner'
+
+    resultsJSX = (
+      <React.Fragment>
+        <p>{winner}:</p>
+        {results}
+      </React.Fragment>
+    )
+
+    return (
+      resultsJSX
+    )
   }
-
-  let resultsJSX = null
-
-  const winner = results.length > 1 ? 'Winners' : 'Winner'
-
-  resultsJSX = (
-    <React.Fragment>
-      <p>{winner}:</p>
-      {results}
-    </React.Fragment>
-  )
-
-  return (
-    resultsJSX
-  )
 }
 
 export default Results
