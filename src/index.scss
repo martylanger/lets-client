@@ -50,3 +50,7 @@ Button {
 .counter {
   float: right;
 }
+
+.winners {
+  @extend %logo;
+}

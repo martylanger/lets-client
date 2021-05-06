@@ -3,7 +3,7 @@ import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
-import Ballots from '../shared/Ballots'
+// import Ballots from '../shared/Ballots'
 import OwnerOptions from '../shared/OwnerOptions'
 import Results from '../shared/Results'
 import instantRunoff from '../../modules/instantRunoff'
@@ -117,10 +117,7 @@ const Election = props => {
               </Card>
             </Col>
             <Col>
-              <Card className="m-2">
-                <Results election={election} votingMethod={votingMethod}/>
-                <Ballots election={election} />
-              </Card>
+              <Results election={election} votingMethod={votingMethod}/>
             </Col>
           </Row>
         </Container>
