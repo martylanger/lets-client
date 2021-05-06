@@ -1,7 +1,4 @@
 import React from 'react'
-// import instantRunoff from '../../modules/instantRunoff'
-// import plurality from '../../modules/plurality'
-// import borda from '../../modules/borda'
 
 const Results = props => {
   let results

@@ -4,15 +4,11 @@ import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
 import Ballots from '../shared/Ballots'
-// import InstantRunoff from '../shared/InstantRunoff'
-// import Plurality from '../shared/Plurality'
-// import Borda from '../shared/Borda'
+import OwnerOptions from '../shared/OwnerOptions'
+import Results from '../shared/Results'
 import instantRunoff from '../../modules/instantRunoff'
 import plurality from '../../modules/plurality'
 import borda from '../../modules/borda'
-import OwnerOptions from '../shared/OwnerOptions'
-import Results from '../shared/Results'
-
 import { Container, Row, Col, Card, Button, ButtonGroup } from 'react-bootstrap'
 
 const Election = props => {
