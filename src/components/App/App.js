@@ -52,7 +52,7 @@ class App extends Component {
         <main className="container big-body">
           <Switch>
             <Route exact path='/'>
-              <Redirect to='/home' />
+              <Redirect to='/sign-in' />
             </Route>
             <Route path='/sign-up' render={() => (
               <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />

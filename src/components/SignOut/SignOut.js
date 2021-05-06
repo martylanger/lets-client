@@ -1,5 +1,5 @@
-import { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import React, { Component } from 'react'
+import { withRouter, Redirect } from 'react-router-dom'
 
 import { signOut } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
@@ -19,7 +19,9 @@ class SignOut extends Component {
   }
 
   render () {
-    return ''
+    return (
+      <Redirect to='/home' />
+    )
   }
 }
 

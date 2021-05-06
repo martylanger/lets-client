@@ -26,7 +26,7 @@ const alwaysOptions = (
 
 const Header = ({ user }) => (
   <Navbar bg="primary" variant="dark" expand="md">
-    <Navbar.Brand className="brand" href="#">
+    <Navbar.Brand className="brand" href={ user ? '#dashboard' : '#home'}>
       Let&#39;s
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
