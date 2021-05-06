@@ -21,6 +21,7 @@ const Ballots = props => {
           variant='light'
         >
         Ballots
+          <div className="counter">{props.election.ballots.length}</div>
         </ListGroup.Item>
         <Collapse in={open}>
           <ListGroup id='ballots'>
