@@ -7,6 +7,9 @@ import Ballots from '../shared/Ballots'
 // import InstantRunoff from '../shared/InstantRunoff'
 // import Plurality from '../shared/Plurality'
 // import Borda from '../shared/Borda'
+import instantRunoff from '../../modules/instantRunoff'
+import plurality from '../../modules/plurality'
+import borda from '../../modules/borda'
 import OwnerOptions from '../shared/OwnerOptions'
 import Results from '../shared/Results'
 
@@ -70,23 +73,17 @@ const Election = props => {
     } />
   } else {
     // Implement the correct voting method for determining the election
-    // let results
-    // switch (election.voting_method) {
-    // case 'instant-runoff':
-    //   results = (
-    //     <InstantRunoff election={election} />
-    //   )
-    //   break
-    // case 'plurality':
-    //   results = (
-    //     <Plurality election={election} />
-    //   )
-    //   break
-    // case 'borda-count':
-    //   results = (
-    //     <Borda election={election} />
-    //   )
-    // }
+    let votingMethod
+    switch (election.voting_method) {
+    case 'instant-runoff':
+      votingMethod = instantRunoff
+      break
+    case 'plurality':
+      votingMethod = plurality
+      break
+    case 'borda-count':
+      votingMethod = borda
+    }
 
     electionJSX = (
       <React.Fragment>
@@ -125,7 +122,7 @@ const Election = props => {
             </Col>
             <Col>
               <Card className="m-2">
-                <Results election={election} />
+                <Results election={election} votingMethod={votingMethod}/>
                 <Ballots election={election} />
               </Card>
             </Col>
