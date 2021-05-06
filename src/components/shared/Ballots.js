@@ -3,7 +3,7 @@ import { Card, ListGroup, Collapse } from 'react-bootstrap'
 
 const Ballots = props => {
   const [open, setOpen] = useState(false)
-
+  const noBallots = props.election.ballots.length === 0
   const electionBallots = props.election.ballots.map(ballot => (
     <ListGroup.Item action variant='secondary' key={ballot.id}>
       {ballot.selections}
@@ -14,6 +14,7 @@ const Ballots = props => {
     <React.Fragment>
       <Card>
         <ListGroup.Item
+          disabled={noBallots}
           action
           onClick={() => setOpen(!open)}
           aria-controls="ballots"
