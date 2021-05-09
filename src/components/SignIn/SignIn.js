@@ -33,6 +33,7 @@ class SignIn extends Component {
         message: messages.signInSuccess,
         variant: 'success'
       }))
+      .then(() => this.setState({ submitted: false }))
       .then(() => history.push('/dashboard'))
       .catch(error => {
         this.setState({ email: '', password: '', submitted: false })
