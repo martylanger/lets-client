@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import BallotForm from '../shared/BallotForm'
-import { ListGroup } from 'react-bootstrap'
+import { ListGroup, Spinner } from 'react-bootstrap'
 
 const BallotCreate = props => {
   const [ballot, setBallot] = useState({ election_id: props.match.params.id, selections: '' })
@@ -183,7 +183,11 @@ const BallotCreate = props => {
     return <Redirect to={`/elections/${ballot.election_id}`} />
   } else if (!election) {
     // If it's loading, give a loading gif
-    ballotJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
+    ballotJSX = (
+      <Spinner className="m-auto" animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    )
   } else {
     // Display and number the options
     const theOptions = election.choices.map((choice, i) => (

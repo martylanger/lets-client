@@ -84,6 +84,14 @@ class SignIn extends Component {
               </Form>
             </Col>
           </Row>
+          <Row>
+            {
+              submitted &&
+              <Spinner className="m-auto" animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            }
+          </Row>
         </Container>
         {
           submitted &&

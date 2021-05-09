@@ -8,7 +8,7 @@ import Results from '../shared/Results'
 import instantRunoff from '../../modules/instantRunoff'
 import plurality from '../../modules/plurality'
 import borda from '../../modules/borda'
-import { Container, Row, Col, Card, Button, ButtonGroup } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button, ButtonGroup, Spinner } from 'react-bootstrap'
 
 const Election = props => {
   const [election, setElection] = useState(null)
@@ -61,7 +61,11 @@ const Election = props => {
 
   if (!election) {
     // If it's loading, give a loading gif
-    electionJSX = <img src="https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif"/>
+    electionJSX = (
+      <Spinner className="m-auto" animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner>
+    )
   } else if (deleted) {
     electionJSX = <Redirect to={
       { pathname: '/my-elections', state: { msg: 'Election succesfully deleted!' } }
