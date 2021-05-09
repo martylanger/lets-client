@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
 
-import { Container, Row, Col, Button, Form } from 'react-bootstrap'
+import { Container, Row, Col, Button, Form, Spinner } from 'react-bootstrap'
 
 class SignIn extends Component {
   constructor () {
@@ -12,7 +12,8 @@ class SignIn extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      submitted: false
     }
   }
 
@@ -22,7 +23,7 @@ class SignIn extends Component {
 
   onSignIn = event => {
     event.preventDefault()
-
+    this.setState({ submitted: true })
     const { msgAlert, history, setUser } = this.props
 
     signIn(this.state)
@@ -32,9 +33,10 @@ class SignIn extends Component {
         message: messages.signInSuccess,
         variant: 'success'
       }))
+      .then(() => this.setState({ submitted: false }))
       .then(() => history.push('/dashboard'))
       .catch(error => {
-        this.setState({ email: '', password: '' })
+        this.setState({ email: '', password: '', submitted: false })
         msgAlert({
           heading: 'Sign In Failed with error: ' + error.message,
           message: messages.signInFailure,
@@ -44,7 +46,7 @@ class SignIn extends Component {
   }
 
   render () {
-    const { email, password } = this.state
+    const { email, password, submitted } = this.state
 
     return (
       <React.Fragment>
@@ -81,6 +83,14 @@ class SignIn extends Component {
                 </Button>
               </Form>
             </Col>
+          </Row>
+          <Row>
+            {
+              submitted &&
+              <Spinner className="m-auto" animation="border" role="status">
+                <span className="sr-only">Loading...</span>
+              </Spinner>
+            }
           </Row>
         </Container>
       </React.Fragment>
