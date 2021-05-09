@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import BallotForm from '../shared/BallotForm'
-import { ListGroup, Spinner } from 'react-bootstrap'
+import { Row, ListGroup, Spinner } from 'react-bootstrap'
 
 const BallotCreate = props => {
   const [ballot, setBallot] = useState({ election_id: props.match.params.id, selections: '' })
@@ -184,9 +184,11 @@ const BallotCreate = props => {
   } else if (!election) {
     // If it's loading, give a loading gif
     ballotJSX = (
-      <Spinner className="m-auto" animation="border" role="status">
-        <span className="sr-only">Loading...</span>
-      </Spinner>
+      <Row>
+        <Spinner className="spinner" animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </Row>
     )
   } else {
     // Display and number the options

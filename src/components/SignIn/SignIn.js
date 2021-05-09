@@ -93,12 +93,6 @@ class SignIn extends Component {
             }
           </Row>
         </Container>
-        {
-          submitted &&
-          <Spinner animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        }
       </React.Fragment>
     )
   }
