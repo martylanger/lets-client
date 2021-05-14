@@ -84,14 +84,14 @@ class SignIn extends Component {
               </Form>
             </Col>
           </Row>
-          <Row>
-            {
-              submitted &&
+          {
+            submitted &&
+            <Row>
               <Spinner className="m-auto" animation="border" role="status">
                 <span className="sr-only">Loading...</span>
               </Spinner>
-            }
-          </Row>
+            </Row>
+          }
         </Container>
       </React.Fragment>
     )

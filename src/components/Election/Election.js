@@ -60,17 +60,20 @@ const Election = props => {
   let electionJSX
 
   if (!election) {
-    // If it's loading, give a loading gif
+    // If it's loading, show a spinner
     electionJSX = (
-      <Row>
-        <Spinner className="spinner" animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      </Row>
+      <React.Fragment>
+        <div className="logo-small">Let&#39;s</div>
+        <Row>
+          <Spinner className="m-auto" animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </Row>
+      </React.Fragment>
     )
   } else if (deleted) {
     electionJSX = <Redirect to={
-      { pathname: '/my-elections', state: { msg: 'Election succesfully deleted!' } }
+      { pathname: '/dashboard', state: { msg: 'Election succesfully deleted!' } }
     } />
   } else {
     // Implement the correct voting method for determining the election
@@ -101,11 +104,11 @@ const Election = props => {
                 election={election}
                 onDestroy={onDestroy}
               />
-              <Link to="/my-elections">
-                <Button variant="secondary">Back to my elections</Button>
+              <Link to="/dashboard">
+                <Button variant="secondary">Back to Dashboard</Button>
               </Link>
               <Link to="/all-elections">
-                <Button variant="secondary">Back to all elections</Button>
+                <Button variant="secondary">Back to All Elections</Button>
               </Link>
             </ButtonGroup>
           </Row>

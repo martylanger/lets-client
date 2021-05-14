@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Card, ListGroup, Spinner } from 'react-bootstrap'
+import { Row, Card, ListGroup, Spinner } from 'react-bootstrap'
 
 const AllElections = props => {
   const [elections, setElections] = useState([])
@@ -37,14 +37,15 @@ const AllElections = props => {
   let allElectionsJSX
 
   if (!elections) {
-    console.log('If all elections is loading, give a loading gif')
-    // If it's loading, give a loading gif
+    // If it's loading, show a spinner
     allElectionsJSX = (
       <React.Fragment>
-        <h1>Let&#39;s</h1>
-        <Spinner className="m-auto" animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
+        <div className="logo-big">Let&#39;s</div>
+        <Row>
+          <Spinner className="m-auto" animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </Row>
       </React.Fragment>
     )
   } else if (electionId) {
@@ -54,8 +55,8 @@ const AllElections = props => {
     allElectionsJSX = (
       <React.Fragment>
         <div className="logo-big">Let&#39;s</div>
-        <h4>All Elections</h4>
-        <Card>
+        <Card className='m-auto' style={{ width: '24rem' }}>
+          <Card.Header>All Elections</Card.Header>
           <ListGroup>
             {electionsLinks}
           </ListGroup>

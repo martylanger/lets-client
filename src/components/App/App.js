@@ -9,7 +9,6 @@ import SignIn from '../SignIn/SignIn'
 import SignOut from '../SignOut/SignOut'
 import ChangePassword from '../ChangePassword/ChangePassword'
 import Election from '../Election/Election'
-import MyElections from '../MyElections/MyElections'
 import AllElections from '../AllElections/AllElections'
 import ElectionCreate from '../ElectionCreate/ElectionCreate'
 import ElectionEdit from '../ElectionEdit/ElectionEdit'
@@ -72,9 +71,6 @@ class App extends Component {
             )} />
             <AuthenticatedRoute user={user} path='/dashboard' render={() => (
               <Dashboard msgAlert={this.msgAlert} user={user} />
-            )} />
-            <AuthenticatedRoute user={user} path='/my-elections' render={() => (
-              <MyElections msgAlert={this.msgAlert} user={user} />
             )} />
             <AuthenticatedRoute user={user} path='/election-create' render={() => (
               <ElectionCreate msgAlert={this.msgAlert} user={user} />

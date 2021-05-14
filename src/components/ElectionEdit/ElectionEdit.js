@@ -35,10 +35,7 @@ const ElectionEdit = props => {
   }
 
   const handleDestroyChoice = event => {
-    console.log(event.target.name)
-
     const choiceId = event.target.name
-    console.log(`${apiUrl}/choices/${choiceId}`)
     axios({
       url: `${apiUrl}/choices/${choiceId}`,
       method: 'DELETE',
@@ -55,11 +52,6 @@ const ElectionEdit = props => {
         })
       })
   }
-
-  // To handle delete choice, I need to:
-  // attain the choice id
-  // destroy the choice
-  // reload the election
 
   // Send update to the API on submit
   const handleSubmit = event => {

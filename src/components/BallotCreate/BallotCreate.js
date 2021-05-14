@@ -36,7 +36,6 @@ const BallotCreate = props => {
           {choice.title}
         </ListGroup.Item>
       )))
-    // console.log(JSON.stringify(buttonsArray[0]))
   }
 
   const getElection = () => {
@@ -106,7 +105,6 @@ const BallotCreate = props => {
   }, [clicked, createdBallotId])
 
   const handleClick = (choice, i) => {
-    console.log('handleClicked')
     setChoice(choice)
     setIndex(i + 1)
     setClicked(true)
@@ -182,13 +180,16 @@ const BallotCreate = props => {
   if (createdBallotId) {
     return <Redirect to={`/elections/${ballot.election_id}`} />
   } else if (!election) {
-    // If it's loading, give a loading gif
+    // If it's loading, show a spinner
     ballotJSX = (
-      <Row>
-        <Spinner className="spinner" animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
-      </Row>
+      <React.Fragment>
+        <div className="logo-small">Let&#39;s</div>
+        <Row>
+          <Spinner className="m-auto" animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </Row>
+      </React.Fragment>
     )
   } else {
     // Display and number the options
@@ -199,18 +200,16 @@ const BallotCreate = props => {
     ))
 
     ballotJSX = (
-      <React.Fragment>
-        <BallotForm
-          theOptions={theOptions}
-          election={election}
-          ballot={ballot}
-          buttonsArray={buttonsArray}
-          selectionsArray={selectionsArray}
-          handleClick={handleClick}
-          handleSubmit={handleSubmit}
-          cancelPath={`/elections/${ballot.election_id}`}
-        />
-      </React.Fragment>
+      <BallotForm
+        theOptions={theOptions}
+        election={election}
+        ballot={ballot}
+        buttonsArray={buttonsArray}
+        selectionsArray={selectionsArray}
+        handleClick={handleClick}
+        handleSubmit={handleSubmit}
+        cancelPath={`/elections/${ballot.election_id}`}
+      />
     )
   }
   // selectionsArray appears to have commas in the array, which is a problem.
