@@ -1,43 +1,45 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 
 const authenticatedOptions = (
-  <Fragment>
+  <React.Fragment>
     <Nav.Link href="#dashboard">Dashboard</Nav.Link>
     <Nav.Link href="#all-elections">All Elections</Nav.Link>
     <Nav.Link href="#election-create">New Election</Nav.Link>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
-  </Fragment>
+  </React.Fragment>
 )
 
 const unauthenticatedOptions = (
-  <Fragment>
+  <React.Fragment>
     <Nav.Link href="#sign-up">Sign Up</Nav.Link>
     <Nav.Link href="#sign-in">Sign In</Nav.Link>
-  </Fragment>
+  </React.Fragment>
 )
 
 const alwaysOptions = (
-  <Fragment>
-  </Fragment>
+  <React.Fragment>
+  </React.Fragment>
 )
 
 const Header = ({ user }) => (
-  <Navbar bg="primary" variant="dark" expand="md">
-    <Navbar.Brand className="brand" href={ user ? '#dashboard' : '#sign-in'}>
-      Let&#39;s
-    </Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto">
-        { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
-        { alwaysOptions }
-        { user ? authenticatedOptions : unauthenticatedOptions }
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+  <React.Fragment>
+    <Navbar bg="primary" variant="dark" expand="md">
+      <Navbar.Brand className="brand" href={ user ? '#dashboard' : '#sign-in'}>
+        Let&#39;s
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
+          { alwaysOptions }
+          { user ? authenticatedOptions : unauthenticatedOptions }
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  </React.Fragment>
 )
 
 export default Header
