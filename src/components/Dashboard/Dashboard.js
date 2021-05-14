@@ -47,6 +47,7 @@ const Dashboard = props => {
   let dashboardJSX
 
   if (!elections) {
+    console.log('If all elections is loading, give a loading gif')
     // If it's loading, give a loading gif
     dashboardJSX = (
       <React.Fragment>
