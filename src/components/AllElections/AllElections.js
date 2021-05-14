@@ -37,11 +37,10 @@ const AllElections = props => {
   let allElectionsJSX
 
   if (!elections) {
-    console.log('If all elections is loading, give a loading gif')
-    // If it's loading, give a loading gif
+    // If it's loading, show a spinner
     allElectionsJSX = (
       <React.Fragment>
-        <h1>Let&#39;s</h1>
+        <div className="logo-big">Let&#39;s</div>
         <Spinner className="m-auto" animation="border" role="status">
           <span className="sr-only">Loading...</span>
         </Spinner>

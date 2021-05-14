@@ -182,7 +182,7 @@ const BallotCreate = props => {
   if (createdBallotId) {
     return <Redirect to={`/elections/${ballot.election_id}`} />
   } else if (!election) {
-    // If it's loading, give a loading gif
+    // If it's loading, show a spinner
     ballotJSX = (
       <Spinner className="m-auto" animation="border" role="status">
         <span className="sr-only">Loading...</span>
