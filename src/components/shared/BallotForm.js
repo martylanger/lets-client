@@ -56,7 +56,7 @@ const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, b
     info = 'How plurality voting works: Simply, whoever is ranked first choice on the most ballots wins.'
     break
   case 'borda-count':
-    info = 'How a Borda Count works: Every candidate scores points based on how high they appear on each ballot.'
+    info = 'How a Borda count works: Every candidate scores points based on how high they appear on each ballot.'
   }
 
   return (
