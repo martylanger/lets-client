@@ -104,11 +104,11 @@ const Election = props => {
                 election={election}
                 onDestroy={onDestroy}
               />
-              <Link to="/my-elections">
-                <Button variant="secondary">Back to my elections</Button>
+              <Link to="/dashboard">
+                <Button variant="secondary">Back to Dashboard</Button>
               </Link>
               <Link to="/all-elections">
-                <Button variant="secondary">Back to all elections</Button>
+                <Button variant="secondary">Back to All Elections</Button>
               </Link>
             </ButtonGroup>
           </Row>
