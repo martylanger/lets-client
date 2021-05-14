@@ -55,8 +55,8 @@ const AllElections = props => {
     allElectionsJSX = (
       <React.Fragment>
         <div className="logo-big">Let&#39;s</div>
-        <h4>All Elections</h4>
         <Card>
+          <Card.Header>All Elections</Card.Header>
           <ListGroup>
             {electionsLinks}
           </ListGroup>
