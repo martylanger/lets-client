@@ -62,9 +62,11 @@ const Election = props => {
   if (!election) {
     // If it's loading, give a loading gif
     electionJSX = (
-      <Spinner className="m-auto" animation="border" role="status">
-        <span className="sr-only">Loading...</span>
-      </Spinner>
+      <Row>
+        <Spinner className="spinner" animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
+      </Row>
     )
   } else if (deleted) {
     electionJSX = <Redirect to={
