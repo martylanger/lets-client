@@ -12,14 +12,14 @@ const OwnerOptions = props => {
   const ownerOptions = props.user.email !== props.election.user.email ? null : (
     <React.Fragment>
       <Link to={`/elections/${props.match.params.id}/choice-create`}>
-        <Button variant="light">Add an option!</Button>
+        <Button variant="light">Add an option</Button>
       </Link>
 
       <Link to={`/elections/${props.match.params.id}/edit`}>
-        <Button variant="light">Edit</Button>
+        <Button variant="light">Edit election</Button>
       </Link>
 
-      <Button variant="danger" className="rounded mx-1" onClick={props.onDestroy}>Delete Election</Button>
+      <Button variant="danger" className="rounded mx-1" onClick={props.onDestroy}>Delete election</Button>
     </React.Fragment>
   )
 

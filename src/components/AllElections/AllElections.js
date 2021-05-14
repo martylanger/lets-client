@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Card, ListGroup, Spinner } from 'react-bootstrap'
+import { Row, Card, ListGroup, Spinner } from 'react-bootstrap'
 
 const AllElections = props => {
   const [elections, setElections] = useState([])
@@ -41,9 +41,11 @@ const AllElections = props => {
     allElectionsJSX = (
       <React.Fragment>
         <div className="logo-big">Let&#39;s</div>
-        <Spinner className="m-auto" animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
+        <Row>
+          <Spinner className="m-auto" animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </Row>
       </React.Fragment>
     )
   } else if (electionId) {

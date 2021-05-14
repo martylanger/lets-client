@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import BallotForm from '../shared/BallotForm'
-import { ListGroup, Spinner } from 'react-bootstrap'
+import { Row, ListGroup, Spinner } from 'react-bootstrap'
 
 const BallotCreate = props => {
   const [ballot, setBallot] = useState({ election_id: props.match.params.id, selections: '' })
@@ -36,7 +36,6 @@ const BallotCreate = props => {
           {choice.title}
         </ListGroup.Item>
       )))
-    // console.log(JSON.stringify(buttonsArray[0]))
   }
 
   const getElection = () => {
@@ -106,7 +105,6 @@ const BallotCreate = props => {
   }, [clicked, createdBallotId])
 
   const handleClick = (choice, i) => {
-    console.log('handleClicked')
     setChoice(choice)
     setIndex(i + 1)
     setClicked(true)
@@ -184,9 +182,14 @@ const BallotCreate = props => {
   } else if (!election) {
     // If it's loading, show a spinner
     ballotJSX = (
-      <Spinner className="m-auto" animation="border" role="status">
-        <span className="sr-only">Loading...</span>
-      </Spinner>
+      <React.Fragment>
+        <div className="logo-small">Let&#39;s</div>
+        <Row>
+          <Spinner className="m-auto" animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </Row>
+      </React.Fragment>
     )
   } else {
     // Display and number the options
@@ -197,18 +200,16 @@ const BallotCreate = props => {
     ))
 
     ballotJSX = (
-      <React.Fragment>
-        <BallotForm
-          theOptions={theOptions}
-          election={election}
-          ballot={ballot}
-          buttonsArray={buttonsArray}
-          selectionsArray={selectionsArray}
-          handleClick={handleClick}
-          handleSubmit={handleSubmit}
-          cancelPath={`/elections/${ballot.election_id}`}
-        />
-      </React.Fragment>
+      <BallotForm
+        theOptions={theOptions}
+        election={election}
+        ballot={ballot}
+        buttonsArray={buttonsArray}
+        selectionsArray={selectionsArray}
+        handleClick={handleClick}
+        handleSubmit={handleSubmit}
+        cancelPath={`/elections/${ballot.election_id}`}
+      />
     )
   }
   // selectionsArray appears to have commas in the array, which is a problem.

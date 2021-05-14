@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Card, CardDeck, ListGroup, Spinner } from 'react-bootstrap'
+import { Row, Card, CardDeck, ListGroup, Spinner } from 'react-bootstrap'
 
 const Dashboard = props => {
   const [elections, setElections] = useState([])
@@ -50,10 +50,12 @@ const Dashboard = props => {
     // If it's loading, show a spinner
     dashboardJSX = (
       <React.Fragment>
-        <h1>Let&#39;s</h1>
-        <Spinner className="m-auto" animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner>
+        <div className="logo-big">Let&#39;s</div>
+        <Row>
+          <Spinner className="m-auto" animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </Row>
       </React.Fragment>
     )
   } else if (electionId) {
