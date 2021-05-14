@@ -73,7 +73,7 @@ const Election = props => {
     )
   } else if (deleted) {
     electionJSX = <Redirect to={
-      { pathname: '/my-elections', state: { msg: 'Election succesfully deleted!' } }
+      { pathname: '/dashboard', state: { msg: 'Election succesfully deleted!' } }
     } />
   } else {
     // Implement the correct voting method for determining the election
