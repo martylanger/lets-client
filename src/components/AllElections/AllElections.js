@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Row, Card, ListGroup, Spinner } from 'react-bootstrap'
-import SearchElections from '../shared/SearchElections'
+import { Row, Form, Card, ListGroup, Spinner } from 'react-bootstrap'
 
 const AllElections = props => {
   const [elections, setElections] = useState([])
@@ -69,7 +68,19 @@ const AllElections = props => {
     allElectionsJSX = (
       <React.Fragment>
         <div className="logo-big">Let&#39;s</div>
-        <SearchElections handleChange={handleChange} />
+        <div className="row">
+          <div className="col-sm-10 col-md-8 mx-auto mt-5">
+            <Form>
+              <Form.Group controlId="searchTerm">
+                <Form.Label>Search</Form.Label>
+                <Form.Control
+                  type="text"
+                  onChange={handleChange}
+                />
+              </Form.Group>
+            </Form>
+          </div>
+        </div>
         <Card className='m-auto' style={{ width: '24rem' }}>
           <Card.Header>All Elections</Card.Header>
           <ListGroup>
