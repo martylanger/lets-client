@@ -46,7 +46,7 @@ const Dashboard = props => {
 
   let dashboardJSX
 
-  if (!elections) {
+  if (!elections.length) {
     // If it's loading, show a spinner
     dashboardJSX = (
       <React.Fragment>
