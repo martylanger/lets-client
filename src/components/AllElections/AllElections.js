@@ -46,11 +46,21 @@ const AllElections = props => {
   }
 
   // Create a link for each election
-  const electionsLinks = allElections.map(election => (
-    <ListGroup.Item action className='election-list' key={election.id} onClick={() => setElectionId(election.id)} >
-      {election.name}
-    </ListGroup.Item>
-  ))
+  let electionsLinks
+  if (allElections.length) {
+    electionsLinks = allElections.map(election => (
+      <ListGroup.Item action className='election-list' key={election.id} onClick={() => setElectionId(election.id)} >
+        {election.name}
+      </ListGroup.Item>
+    ))
+  } else {
+    electionsLinks = (
+      <ListGroup.Item className='election-list text-muted'>
+      No elections match your search
+      </ListGroup.Item>
+    )
+  }
+
   let allElectionsJSX
 
   if (!elections) {
