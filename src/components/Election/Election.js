@@ -77,16 +77,21 @@ const Election = props => {
     } />
   } else {
     // Implement the correct voting method for determining the election
+    //    and format the name for display
     let votingMethod
+    let votingMethodName
     switch (election.voting_method) {
     case 'instant-runoff':
       votingMethod = instantRunoff
+      votingMethodName = 'Instant runoff'
       break
     case 'plurality':
       votingMethod = plurality
+      votingMethodName = 'Plurality'
       break
     case 'borda-count':
       votingMethod = borda
+      votingMethodName = 'Borda count'
     }
 
     electionJSX = (
@@ -118,7 +123,7 @@ const Election = props => {
                 <Card.Body>
                   <Card.Title>Election: {election.name}</Card.Title>
                   <Card.Subtitle className="text-muted mb-2">Owner: {election.user.email}</Card.Subtitle>
-                  <Card.Subtitle className="text-muted mb-2">Voting method: {election.voting_method}</Card.Subtitle>
+                  <Card.Subtitle className="text-muted mb-2">Voting method: {votingMethodName}</Card.Subtitle>
                   <Card.Text>{election.description}</Card.Text>
                   <Choices election={election} />
                 </Card.Body>
