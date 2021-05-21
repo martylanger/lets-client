@@ -25,24 +25,24 @@ const AllElections = props => {
       })
   }, [])
 
-  // const handleClick = (electionId) => {
-  //   setElectionId(electionId)
-  // }
-
   // SEARCH BAR
   const handleChange = event => {
     setSearchTerm(event.target.value.toLowerCase())
+  }
+  const matchesSearch = field => {
+    return field.toLowerCase().includes(searchTerm)
   }
 
   let allElections
   if (!searchTerm) {
     allElections = elections
   } else {
+    // Search bar searches election name, user, description, and choice.titles
     allElections = elections.filter(election => (
-      election.name.toLowerCase().includes(searchTerm) ||
-      election.user.email.toLowerCase().includes(searchTerm) ||
-      election.description.toLowerCase().includes(searchTerm) ||
-      election.choices.find(choice => choice.title.includes(searchTerm))
+      matchesSearch(election.name) ||
+      matchesSearch(election.user.email) ||
+      matchesSearch(election.description) ||
+      election.choices.find(choice => matchesSearch(choice.title))
     ))
   }
 
@@ -60,6 +60,7 @@ const AllElections = props => {
       </ListGroup.Item>
     ))
   } else {
+    // If search filters out all elections
     electionsLinks = (
       <ListGroup.Item className='election-list text-muted'>
       No elections match your search
@@ -68,7 +69,6 @@ const AllElections = props => {
   }
 
   let allElectionsJSX
-
   if (!elections.length) {
     // If it's loading, show a spinner
     allElectionsJSX = (
@@ -97,7 +97,8 @@ const AllElections = props => {
                 type="text"
                 placeholder="Search"
                 onChange={handleChange} />
-            </Form></Card.Header>
+            </Form>
+          </Card.Header>
           <ListGroup>
             {electionsLinks}
           </ListGroup>
