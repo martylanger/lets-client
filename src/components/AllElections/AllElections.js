@@ -50,7 +50,12 @@ const AllElections = props => {
   let electionsLinks
   if (allElections.length) {
     electionsLinks = allElections.map(election => (
-      <ListGroup.Item action className='election-list' key={election.id} onClick={() => setElectionId(election.id)} >
+      <ListGroup.Item
+        action
+        className='election-list'
+        key={election.id}
+        onClick={() => setElectionId(election.id)}
+      >
         {election.name}
       </ListGroup.Item>
     ))
@@ -64,7 +69,7 @@ const AllElections = props => {
 
   let allElectionsJSX
 
-  if (!elections) {
+  if (!elections.length) {
     // If it's loading, show a spinner
     allElectionsJSX = (
       <React.Fragment>
@@ -83,21 +88,16 @@ const AllElections = props => {
     allElectionsJSX = (
       <React.Fragment>
         <div className="logo-big">Let&#39;s</div>
-        <div className="row">
-          <div className="col-sm-10 col-md-8 mx-auto mt-5">
-            <Form>
-              <Form.Group controlId="searchTerm">
-                <Form.Label>Search</Form.Label>
-                <Form.Control
-                  type="text"
-                  onChange={handleChange}
-                />
-              </Form.Group>
-            </Form>
-          </div>
-        </div>
         <Card className='m-auto' style={{ width: '24rem' }}>
-          <Card.Header>All Elections</Card.Header>
+          <Card.Header>
+            <Form inline className="justify-content-between">
+              <Form.Label>All Elections</Form.Label>
+              <Form.Control
+                size="sm"
+                type="text"
+                placeholder="Search"
+                onChange={handleChange} />
+            </Form></Card.Header>
           <ListGroup>
             {electionsLinks}
           </ListGroup>
