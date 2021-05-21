@@ -34,12 +34,20 @@ const AllElections = props => {
   }
 
   // Create a link for each election
-  const electionsLinks = elections.map(election => (
+  let allElections = elections
+  if (!searchTerm) {
+    allElections = elections
+  } else {
+    allElections = elections.filter(election => (
+      election.name.toLowerCase().includes(searchTerm.toLowerCase())
+    ))
+  }
+
+  const electionsLinks = allElections.map(election => (
     <ListGroup.Item action className='election-list' key={election.id} onClick={() => setElectionId(election.id)} >
       {election.name}
     </ListGroup.Item>
   ))
-
   let allElectionsJSX
 
   if (!elections) {
@@ -64,7 +72,6 @@ const AllElections = props => {
         <SearchElections
           handleChange={handleChange}
         />
-        <p>{searchTerm}</p>
         <Card className='m-auto' style={{ width: '24rem' }}>
           <Card.Header>All Elections</Card.Header>
           <ListGroup>
