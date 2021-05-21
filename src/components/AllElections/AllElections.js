@@ -41,6 +41,7 @@ const AllElections = props => {
     allElections = elections.filter(election => (
       election.name.toLowerCase().includes(searchTerm) ||
       election.user.email.toLowerCase().includes(searchTerm) ||
+      election.description.toLowerCase().includes(searchTerm) ||
       election.choices.find(choice => choice.title.includes(searchTerm))
     ))
   }
