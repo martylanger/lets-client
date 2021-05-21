@@ -100,7 +100,7 @@ const BallotCreate = props => {
     } else if (createdBallotId) {
       setCreatedBallotId(false)
     } else {
-      console.log(ballot)
+      // console.log(ballot)
     }
   }, [clicked, createdBallotId])
 
@@ -155,8 +155,8 @@ const BallotCreate = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log('handleSubmitting')
-    console.log(ballot)
+    // console.log('handleSubmitting')
+    // console.log(ballot)
     axios({
       url: `${apiUrl}/ballots`,
       method: 'POST',
