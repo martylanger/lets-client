@@ -8,6 +8,7 @@ import ElectionForm from '../shared/ElectionForm'
 const ElectionCreate = props => {
   const [election, setElection] = useState({ name: '', voting_method: '', description: '' })
   const [createdElectionId, setCreatedElectionId] = useState(null)
+  const [addOptions, setAddOptions] = useState(false)
 
   const handleChange = event => {
     const updatedField = { [event.target.name]: event.target.value }
@@ -17,7 +18,7 @@ const ElectionCreate = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-
+    How do I get the button in ElectionForm to tell ElectionCreate if addOptions?????
     axios({
       url: `${apiUrl}/elections`,
       method: 'POST',
@@ -37,7 +38,11 @@ const ElectionCreate = props => {
   }
 
   if (createdElectionId) {
-    return <Redirect to={`/elections/${createdElectionId}`} />
+    if (addOptions) {
+      return <Redirect to={`/elections/${createdElectionId}/choice-create`} />
+    } else {
+      return <Redirect to={`/elections/${createdElectionId}`} />
+    }
   }
 
   return (

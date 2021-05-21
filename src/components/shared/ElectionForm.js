@@ -47,6 +47,7 @@ const ElectionForm = ({ election, handleSubmit, handleChange, cancelPath }) => (
             />
           </Form.Group>
           <Button variant="primary" type="submit">Submit</Button>
+          <Button variant="primary" type="submit">Submit
           <Link to={cancelPath}>
             <Button variant="secondary">Cancel</Button>
           </Link>
