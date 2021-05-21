@@ -30,16 +30,16 @@ const AllElections = props => {
   //   setElectionId(electionId)
   // }
   const handleChange = event => {
-    setSearchTerm(event.target.value)
+    setSearchTerm(event.target.value.toLowerCase())
   }
 
   // Create a link for each election
-  let allElections = elections
+  let allElections
   if (!searchTerm) {
     allElections = elections
   } else {
     allElections = elections.filter(election => (
-      election.name.toLowerCase().includes(searchTerm.toLowerCase())
+      election.name.toLowerCase().includes(searchTerm)
     ))
   }
 
