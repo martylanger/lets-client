@@ -28,20 +28,24 @@ const AllElections = props => {
   // const handleClick = (electionId) => {
   //   setElectionId(electionId)
   // }
+
+  // SEARCH BAR
   const handleChange = event => {
     setSearchTerm(event.target.value.toLowerCase())
   }
 
-  // Create a link for each election
   let allElections
   if (!searchTerm) {
     allElections = elections
   } else {
     allElections = elections.filter(election => (
-      election.name.toLowerCase().includes(searchTerm)
+      election.name.toLowerCase().includes(searchTerm) ||
+      election.user.email.toLowerCase().includes(searchTerm) ||
+      election.choices.find(choice => choice.title.includes(searchTerm))
     ))
   }
 
+  // Create a link for each election
   const electionsLinks = allElections.map(election => (
     <ListGroup.Item action className='election-list' key={election.id} onClick={() => setElectionId(election.id)} >
       {election.name}
