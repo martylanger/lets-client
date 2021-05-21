@@ -69,9 +69,7 @@ const AllElections = props => {
     allElectionsJSX = (
       <React.Fragment>
         <div className="logo-big">Let&#39;s</div>
-        <SearchElections
-          handleChange={handleChange}
-        />
+        <SearchElections handleChange={handleChange} />
         <Card className='m-auto' style={{ width: '24rem' }}>
           <Card.Header>All Elections</Card.Header>
           <ListGroup>
