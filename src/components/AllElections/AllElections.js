@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Row, Form, Card, ListGroup, Spinner } from 'react-bootstrap'
+import { Row, Form, Popover, OverlayTrigger, Card, ListGroup, Spinner } from 'react-bootstrap'
 
 const AllElections = props => {
   const [elections, setElections] = useState([])
@@ -25,24 +25,34 @@ const AllElections = props => {
       })
   }, [])
 
-  // const handleClick = (electionId) => {
-  //   setElectionId(electionId)
-  // }
+  const popover = (
+    <Popover id="popover-basic">
+      <Popover.Title as="h3">Popover right</Popover.Title>
+      <Popover.Content>
+        And here&aposs some <strong>amazing</strong> content. It&aposs very engaging.
+        right?
+      </Popover.Content>
+    </Popover>
+  )
 
   // SEARCH BAR
   const handleChange = event => {
     setSearchTerm(event.target.value.toLowerCase())
+  }
+  const matchesSearch = field => {
+    return field.toLowerCase().includes(searchTerm)
   }
 
   let allElections
   if (!searchTerm) {
     allElections = elections
   } else {
+    // Search bar searches election name, user, description, and choice.titles
     allElections = elections.filter(election => (
-      election.name.toLowerCase().includes(searchTerm) ||
-      election.user.email.toLowerCase().includes(searchTerm) ||
-      election.description.toLowerCase().includes(searchTerm) ||
-      election.choices.find(choice => choice.title.includes(searchTerm))
+      matchesSearch(election.name) ||
+      matchesSearch(election.user.email) ||
+      matchesSearch(election.description) ||
+      election.choices.find(choice => matchesSearch(choice.title))
     ))
   }
 
@@ -60,6 +70,7 @@ const AllElections = props => {
       </ListGroup.Item>
     ))
   } else {
+    // If search filters out all elections
     electionsLinks = (
       <ListGroup.Item className='election-list text-muted'>
       No elections match your search
@@ -68,7 +79,6 @@ const AllElections = props => {
   }
 
   let allElectionsJSX
-
   if (!elections.length) {
     // If it's loading, show a spinner
     allElectionsJSX = (
@@ -90,14 +100,17 @@ const AllElections = props => {
         <div className="logo-big">Let&#39;s</div>
         <Card className='m-auto' style={{ width: '24rem' }}>
           <Card.Header>
-            <Form inline className="justify-content-between">
-              <Form.Label>All Elections</Form.Label>
-              <Form.Control
-                size="sm"
-                type="text"
-                placeholder="Search"
-                onChange={handleChange} />
-            </Form></Card.Header>
+            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+              <Form inline className="justify-content-between">
+                <Form.Label>All Elections</Form.Label>
+                <Form.Control
+                  size="sm"
+                  type="text"
+                  placeholder="Search"
+                  onChange={handleChange} />
+              </Form>
+            </OverlayTrigger>
+          </Card.Header>
           <ListGroup>
             {electionsLinks}
           </ListGroup>
