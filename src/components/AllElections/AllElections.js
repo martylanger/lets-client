@@ -25,16 +25,6 @@ const AllElections = props => {
       })
   }, [])
 
-  const popover = (
-    <Popover id="search-info">
-      Search for an election by its
-      <li>name</li>
-      <li>description</li>
-      <li>candidates</li>
-      <li>creator&apos;s email</li>
-    </Popover>
-  )
-
   // SEARCH BAR
   const handleChange = event => {
     setSearchTerm(event.target.value.toLowerCase())
@@ -55,6 +45,15 @@ const AllElections = props => {
       election.choices.find(choice => matchesSearch(choice.title))
     ))
   }
+  const popover = (
+    <Popover id="search-info">
+      Search for an election by:
+      <li>name</li>
+      <li>description</li>
+      <li>candidates</li>
+      <li>creator&apos;s email</li>
+    </Popover>
+  )
 
   // Create a link for each election
   let electionsLinks
