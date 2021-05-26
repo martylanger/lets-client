@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Row, Form, Popover, OverlayTrigger, Card, ListGroup, Spinner } from 'react-bootstrap'
+import { Row, Form, Card, ListGroup, Spinner, Popover, OverlayTrigger } from 'react-bootstrap'
 
 const AllElections = props => {
   const [elections, setElections] = useState([])
@@ -27,11 +27,7 @@ const AllElections = props => {
 
   const popover = (
     <Popover id="popover-basic">
-      <Popover.Title as="h3">Popover right</Popover.Title>
-      <Popover.Content>
-        And here&aposs some <strong>amazing</strong> content. It&aposs very engaging.
-        right?
-      </Popover.Content>
+      hello
     </Popover>
   )
 
