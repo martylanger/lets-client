@@ -26,8 +26,12 @@ const AllElections = props => {
   }, [])
 
   const popover = (
-    <Popover id="popover-basic">
-      hello
+    <Popover id="search-info">
+      Search for an election by its
+      <li>name</li>
+      <li>description</li>
+      <li>candidates</li>
+      <li>creator&apos;s email</li>
     </Popover>
   )
 
@@ -96,7 +100,7 @@ const AllElections = props => {
         <div className="logo-big">Let&#39;s</div>
         <Card className='m-auto' style={{ width: '24rem' }}>
           <Card.Header>
-            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+            <OverlayTrigger placement="right" overlay={popover}>
               <Form inline className="justify-content-between">
                 <Form.Label>All Elections</Form.Label>
                 <Form.Control
