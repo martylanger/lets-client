@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { withRouter } from 'react-router-dom'
+import { withRouter, Link } from 'react-router-dom'
 
 import { signIn } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
@@ -51,7 +51,7 @@ class SignIn extends Component {
     return (
       <React.Fragment>
         <div className="logo-big">Let&#39;s</div>
-        <Container className="sign-in-container">
+        <Container className="auth-container">
           <Row>
             <Col className="col-sm-10 col-md-8 mx-auto mt-5">
               <h3>Sign In</h3>
@@ -78,9 +78,10 @@ class SignIn extends Component {
                     onChange={this.handleChange}
                   />
                 </Form.Group>
-                <Button variant="primary" type="submit">
+                <Button variant="primary sign-in-button" type="submit">
                   Submit
                 </Button>
+                <Link to="sign-up">Not registered yet? Sign up!</Link>
               </Form>
             </Col>
           </Row>

@@ -42,8 +42,12 @@ Button {
   font-family: 'Merriweather Sans', sans-serif;
 }
 
-.sign-in-container {
+.auth-container {
   margin-top: -5vh;
+}
+
+.sign-in-button {
+  margin-right: 1rem;
 }
 
 .list-group-item {
