@@ -66,7 +66,6 @@ const Dashboard = props => {
       <li>name</li>
       <li>description</li>
       <li>candidates</li>
-      <li>creator&apos;s email</li>
     </Popover>
   )
 
