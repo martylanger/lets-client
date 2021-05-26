@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Row, Form, Card, ListGroup, Spinner } from 'react-bootstrap'
+import { Row, Form, Card, ListGroup, Spinner, Popover, OverlayTrigger } from 'react-bootstrap'
 
 const AllElections = props => {
   const [elections, setElections] = useState([])
@@ -45,6 +45,15 @@ const AllElections = props => {
       election.choices.find(choice => matchesSearch(choice.title))
     ))
   }
+  const popover = (
+    <Popover id="search-info">
+      Search for an election by:
+      <li>name</li>
+      <li>description</li>
+      <li>candidates</li>
+      <li>creator&apos;s email</li>
+    </Popover>
+  )
 
   // Create a link for each election
   let electionsLinks
@@ -90,14 +99,16 @@ const AllElections = props => {
         <div className="logo-big">Let&#39;s</div>
         <Card className='m-auto' style={{ width: '24rem' }}>
           <Card.Header>
-            <Form inline className="justify-content-between">
-              <Form.Label>All Elections</Form.Label>
-              <Form.Control
-                size="sm"
-                type="text"
-                placeholder="Search"
-                onChange={handleChange} />
-            </Form>
+            <OverlayTrigger placement="right" overlay={popover}>
+              <Form inline className="justify-content-between">
+                <Form.Label>All Elections</Form.Label>
+                <Form.Control
+                  size="sm"
+                  type="text"
+                  placeholder="Search"
+                  onChange={handleChange} />
+              </Form>
+            </OverlayTrigger>
           </Card.Header>
           <ListGroup>
             {electionsLinks}
