@@ -29,7 +29,6 @@ const ChoiceForm = ({ choice, handleSubmit, handleChange, cancelPath }) => (
         <Form.Group controlId="link">
           <Form.Label>Link</Form.Label>
           <Form.Control
-            required
             type="text"
             name="link"
             value={choice.link}

@@ -7,7 +7,7 @@ import OwnerOptions from '../shared/OwnerOptions'
 import Results from '../shared/Results'
 import instantRunoff from '../../modules/instantRunoff'
 import plurality from '../../modules/plurality'
-import borda from '../../modules/borda'
+import { bordaWinners } from '../../modules/borda'
 import { Container, Row, Col, Card, Button, ButtonGroup, Spinner } from 'react-bootstrap'
 
 const Election = props => {
@@ -90,7 +90,7 @@ const Election = props => {
       votingMethodName = 'Plurality'
       break
     case 'borda-count':
-      votingMethod = borda
+      votingMethod = bordaWinners
       votingMethodName = 'Borda count'
     }
 

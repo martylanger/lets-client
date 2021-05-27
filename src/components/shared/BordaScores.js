@@ -2,37 +2,36 @@ import React, { useState } from 'react'
 import { Card, ListGroup, Collapse } from 'react-bootstrap'
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { totalScores } from '../../modules/borda'
 
-const Ballots = props => {
+const BordaScores = props => {
   const [open, setOpen] = useState(false)
-  const noBallots = props.election.ballots.length === 0
-  const electionBallots = props.election.ballots.map(ballot => (
-    <ListGroup.Item variant='secondary' key={ballot.id}>
-      {ballot.selections}
+  const rawScores = totalScores(props.election)
+  rawScores.shift()
+  const scoresList = rawScores.map((score, i) => (
+    <ListGroup.Item variant='secondary' key={i}>
+      {`${props.election.choices[i].title + ': ' + score}`}
     </ListGroup.Item>
   ))
-
   return (
     <React.Fragment>
       <Card>
         <ListGroup.Item
-          disabled={noBallots}
           action
           onClick={() => setOpen(!open)}
-          aria-controls="ballots"
+          aria-controls="scores"
           aria-expanded={open}
           variant='light'
         >
-        Ballots
+        Scores
           <div className="counter">
-            {`${props.election.ballots.length + ' '}`}
             { !open && <FontAwesomeIcon icon={faChevronDown} />}
             { open && <FontAwesomeIcon icon={faChevronUp} />}
           </div>
         </ListGroup.Item>
         <Collapse in={open}>
-          <ListGroup id='ballots'>
-            {electionBallots}
+          <ListGroup id='scores'>
+            {scoresList}
           </ListGroup>
         </Collapse>
       </Card>
@@ -40,4 +39,4 @@ const Ballots = props => {
   )
 }
 
-export default Ballots
+export default BordaScores
