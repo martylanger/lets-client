@@ -1,10 +1,10 @@
 # Warn users if node_modules are being tracked or if .gitignore file is missing.
 # Exits deploy script if so.
-if !(git ls-files --error-unmatch node_modules > /dev/null 2>&1) && [ -f .gitignore ];
-   then true;
-   else printf "\n\nWARNING: .gitignore is wrong or missing.
-   Ask an instructor for assistance!\n\n" && exit 1
-fi
+# if !(git ls-files --error-unmatch node_modules > /dev/null 2>&1) && [ -f .gitignore ];
+#    then true;
+#    else printf "\n\nWARNING: .gitignore is wrong or missing.
+#    Ask an instructor for assistance!\n\n" && exit 1
+# fi
 
 # Checks that `git status` returns a clean working directory.
 # Exits script with error if it does not.
