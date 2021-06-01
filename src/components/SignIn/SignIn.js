@@ -22,11 +22,9 @@ class SignIn extends Component {
   })
 
   componentDidMount () {
-    console.log('componentDidMount')
     const { setUser } = this.props
     signInGuest()
       .then(res => setUser(res.data.user))
-    console.log(this.state)
   }
 
   onSignIn = event => {
