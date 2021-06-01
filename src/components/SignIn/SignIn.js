@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 
-import { signIn } from '../../api/auth'
+import { signIn, signInGuest, signOut } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
 
 import { Container, Row, Col, Button, Form, Spinner } from 'react-bootstrap'
@@ -23,6 +23,7 @@ class SignIn extends Component {
 
   onSignIn = event => {
     event.preventDefault()
+    signOut()
     this.setState({ submitted: true })
     const { msgAlert, history, setUser } = this.props
 
@@ -43,6 +44,10 @@ class SignIn extends Component {
           variant: 'danger'
         })
       })
+  }
+
+  componentDidMount () {
+    signInGuest()
   }
 
   render () {
