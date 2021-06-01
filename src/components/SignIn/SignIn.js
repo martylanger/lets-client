@@ -29,8 +29,9 @@ class SignIn extends Component {
 
   onSignIn = event => {
     event.preventDefault()
-    const { msgAlert, history, setUser } = this.props
-    signOut()
+    const { msgAlert, history, setUser, user } = this.props
+    console.log(this.props)
+    signOut(user)
     this.setState({ submitted: true })
 
     signIn(this.state)

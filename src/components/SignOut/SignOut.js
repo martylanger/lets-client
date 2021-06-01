@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
 
-import { signOut } from '../../api/auth'
+import { signOut, signInGuest } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
 
 class SignOut extends Component {
   componentDidMount () {
-    const { msgAlert, history, clearUser, user } = this.props
+    const { msgAlert, history, clearUser, setUser, user } = this.props
 
     signOut(user)
       .finally(() => msgAlert({
@@ -16,6 +16,9 @@ class SignOut extends Component {
       }))
       .finally(() => history.push('/'))
       .finally(() => clearUser())
+      .finally(() => signInGuest()
+        .then(res => setUser(res.data.user))
+      )
   }
 
   render () {
