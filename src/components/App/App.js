@@ -22,7 +22,7 @@ class App extends Component {
 
     this.state = {
       user: {
-        id: 4
+        id: 10
       },
       msgAlerts: []
     }
@@ -30,7 +30,7 @@ class App extends Component {
 
   setUser = user => this.setState({ user })
 
-  clearUser = () => this.setState({ user: { id: 4 } })
+  clearUser = () => this.setState({ user: { id: 10 } })
 
   msgAlert = ({ heading, message, variant }) => {
     this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant }] })

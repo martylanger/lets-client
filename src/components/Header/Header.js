@@ -27,15 +27,15 @@ const alwaysOptions = (
 const Header = ({ user }) => (
   <React.Fragment>
     <Navbar bg="primary" variant="dark" expand="md">
-      <Navbar.Brand className="brand" href={ user ? '#dashboard' : '#sign-in'}>
+      <Navbar.Brand className="brand" href={ user.id !== 10 ? '#dashboard' : '#sign-in'}>
         Let&#39;s
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          { user.id !== 4 && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
+          { user.id !== 10 && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
           { alwaysOptions }
-          { user.id !== 4 ? authenticatedOptions : unauthenticatedOptions }
+          { user.id !== 10 ? authenticatedOptions : unauthenticatedOptions }
         </Nav>
       </Navbar.Collapse>
     </Navbar>

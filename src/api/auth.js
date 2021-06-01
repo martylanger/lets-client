@@ -34,8 +34,8 @@ export const signInGuest = () => {
     method: 'POST',
     data: {
       credentials: {
-        email: 'guest@guest',
-        password: 'guest'
+        email: 'm@m',
+        password: 'm'
       }
     }
   })
