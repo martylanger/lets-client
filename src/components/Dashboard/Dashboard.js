@@ -104,16 +104,16 @@ const Dashboard = props => {
           </Card>
           <Card>
             <Card.Header>
-              <OverlayTrigger placement="right" overlay={popover}>
-                <Form inline className="justify-content-between">
-                  <Form.Label>Your Elections</Form.Label>
+              <Form inline className="justify-content-between">
+                <Form.Label>Your Elections</Form.Label>
+                <OverlayTrigger placement="right" overlay={popover}>
                   <Form.Control
                     size="sm"
                     type="text"
                     placeholder="Search"
                     onChange={handleChange} />
-                </Form>
-              </OverlayTrigger>
+                </OverlayTrigger>
+              </Form>
             </Card.Header>
 
             <ListGroup>
