@@ -5,7 +5,6 @@ import Navbar from 'react-bootstrap/Navbar'
 const authenticatedOptions = (
   <React.Fragment>
     <Nav.Link href="#dashboard">Dashboard</Nav.Link>
-    <Nav.Link href="#all-elections">All Elections</Nav.Link>
     <Nav.Link href="#election-create">New Election</Nav.Link>
     <Nav.Link href="#change-password">Change Password</Nav.Link>
     <Nav.Link href="#sign-out">Sign Out</Nav.Link>
@@ -21,21 +20,22 @@ const unauthenticatedOptions = (
 
 const alwaysOptions = (
   <React.Fragment>
+    <Nav.Link href="#all-elections">All Elections</Nav.Link>
   </React.Fragment>
 )
 
 const Header = ({ user }) => (
   <React.Fragment>
     <Navbar bg="primary" variant="dark" expand="md">
-      <Navbar.Brand className="brand" href={ user ? '#dashboard' : '#sign-in'}>
+      <Navbar.Brand className="brand" href={ user.id !== 10 ? '#dashboard' : '#sign-in'}>
         Let&#39;s
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          { user && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
+          { user.id !== 10 && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
           { alwaysOptions }
-          { user ? authenticatedOptions : unauthenticatedOptions }
+          { user.id !== 10 ? authenticatedOptions : unauthenticatedOptions }
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -28,6 +28,19 @@ export const signIn = credentials => {
   })
 }
 
+export const signInGuest = () => {
+  return axios({
+    url: apiUrl + '/sign-in',
+    method: 'POST',
+    data: {
+      credentials: {
+        email: 'm@m',
+        password: 'm'
+      }
+    }
+  })
+}
+
 export const signOut = user => {
   return axios({
     url: apiUrl + '/sign-out',

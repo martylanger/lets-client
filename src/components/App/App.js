@@ -21,14 +21,16 @@ class App extends Component {
     super()
 
     this.state = {
-      user: null,
+      user: {
+        id: 10
+      },
       msgAlerts: []
     }
   }
 
   setUser = user => this.setState({ user })
 
-  clearUser = () => this.setState({ user: null })
+  clearUser = () => this.setState({ user: { id: 10 } })
 
   msgAlert = ({ heading, message, variant }) => {
     this.setState({ msgAlerts: [...this.state.msgAlerts, { heading, message, variant }] })
@@ -57,10 +59,10 @@ class App extends Component {
               <SignUp msgAlert={this.msgAlert} setUser={this.setUser} />
             )} />
             <Route path='/sign-in' render={() => (
-              <SignIn msgAlert={this.msgAlert} setUser={this.setUser} />
+              <SignIn msgAlert={this.msgAlert} setUser={this.setUser} user={user} />
             )} />
             <AuthenticatedRoute user={user} path='/sign-out' render={() => (
-              <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} user={user} />
+              <SignOut msgAlert={this.msgAlert} clearUser={this.clearUser} setUser={this.setUser} user={user} />
             )} />
             <AuthenticatedRoute user={user} path='/change-password' render={() => (
               <ChangePassword msgAlert={this.msgAlert} user={user} />

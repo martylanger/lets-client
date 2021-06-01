@@ -99,16 +99,16 @@ const AllElections = props => {
         <div className="logo-big">Let&#39;s</div>
         <Card className='m-auto' style={{ width: '24rem' }}>
           <Card.Header>
-            <OverlayTrigger placement="right" overlay={popover}>
-              <Form inline className="justify-content-between">
-                <Form.Label>All Elections</Form.Label>
+            <Form inline className="justify-content-between">
+              <Form.Label>All Elections</Form.Label>
+              <OverlayTrigger placement="right" overlay={popover}>
                 <Form.Control
                   size="sm"
                   type="text"
                   placeholder="Search"
                   onChange={handleChange} />
-              </Form>
-            </OverlayTrigger>
+              </OverlayTrigger>
+            </Form>
           </Card.Header>
           <ListGroup>
             {electionsLinks}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router-dom'
 
-import { signIn } from '../../api/auth'
+import { signIn, signInGuest, signOut } from '../../api/auth'
 import messages from '../AutoDismissAlert/messages'
 
 import { Container, Row, Col, Button, Form, Spinner } from 'react-bootstrap'
@@ -21,10 +21,17 @@ class SignIn extends Component {
     [event.target.name]: event.target.value
   })
 
+  componentDidMount () {
+    const { setUser } = this.props
+    signInGuest()
+      .then(res => setUser(res.data.user))
+  }
+
   onSignIn = event => {
     event.preventDefault()
+    const { msgAlert, history, setUser, user } = this.props
+    signOut(user)
     this.setState({ submitted: true })
-    const { msgAlert, history, setUser } = this.props
 
     signIn(this.state)
       .then(res => setUser(res.data.user))
