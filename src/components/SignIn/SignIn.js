@@ -21,11 +21,19 @@ class SignIn extends Component {
     [event.target.name]: event.target.value
   })
 
+  componentDidMount () {
+    console.log('componentDidMount')
+    const { setUser } = this.props
+    signInGuest()
+      .then(res => setUser(res.data.user))
+    console.log(this.state)
+  }
+
   onSignIn = event => {
     event.preventDefault()
+    const { msgAlert, history, setUser } = this.props
     signOut()
     this.setState({ submitted: true })
-    const { msgAlert, history, setUser } = this.props
 
     signIn(this.state)
       .then(res => setUser(res.data.user))
@@ -44,10 +52,6 @@ class SignIn extends Component {
           variant: 'danger'
         })
       })
-  }
-
-  componentDidMount () {
-    signInGuest()
   }
 
   render () {
