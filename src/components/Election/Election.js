@@ -122,7 +122,7 @@ const Election = props => {
               </Card>
             </Col>
             <Col>
-              <Results election={election} votingMethod={votingMethod}/>
+              <Results election={election} votingMethod={votingMethod} />
             </Col>
           </Row>
         </Container>
