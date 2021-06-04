@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Row, ListGroup, Button, Card, CardDeck } from 'react-bootstrap'
+import { ListGroup, Button, Card, CardDeck } from 'react-bootstrap'
 
 const BallotForm = props => {
   // const [selectionsArray, setSelectionsArray] = useState([])
@@ -76,24 +76,22 @@ const BallotForm = props => {
       <p>{info}</p>
       <p>Touch or click the options in the order of your preference, then hit submit.</p>
       <p>If you make a mistake, please hit Cancel and start over.</p>
-      <Row>
-        <CardDeck>
-          <Card>
-            <Card.Header>
-              Not yet ranked
-            </Card.Header>
-            <ListGroup>
-              {props.buttonsArray}
-            </ListGroup>
-          </Card>
-          <Card>
-            <Card.Header>
-              Rankings
-            </Card.Header>
-            {selectionsArray}
-          </Card>
-        </CardDeck>
-      </Row>
+      <CardDeck>
+        <Card>
+          <Card.Header>
+            Not yet ranked
+          </Card.Header>
+          <ListGroup>
+            {props.buttonsArray}
+          </ListGroup>
+        </Card>
+        <Card>
+          <Card.Header>
+            Rankings
+          </Card.Header>
+          {selectionsArray}
+        </Card>
+      </CardDeck>
       <Button variant="primary" onClick={props.handleSubmit}>Submit</Button>{' '}
       <Link to={props.cancelPath}>
         <Button variant="secondary">Cancel</Button>
