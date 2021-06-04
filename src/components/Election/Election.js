@@ -8,7 +8,8 @@ import Results from '../shared/Results'
 import instantRunoff from '../../modules/instantRunoff'
 import plurality from '../../modules/plurality'
 import { bordaWinners } from '../../modules/borda'
-import { Container, Row, Col, Card, Button, ButtonGroup, Spinner } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button, ButtonGroup } from 'react-bootstrap'
+import LoadingSpinner from '../shared/LoadingSpinner'
 
 const Election = props => {
   const [election, setElection] = useState(null)
@@ -61,16 +62,7 @@ const Election = props => {
 
   if (!election) {
     // If it's loading, show a spinner
-    electionJSX = (
-      <React.Fragment>
-        <div className="logo-small">Let&#39;s</div>
-        <Row>
-          <Spinner className="m-auto" animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        </Row>
-      </React.Fragment>
-    )
+    electionJSX = <LoadingSpinner size="logo-small" />
   } else if (deleted) {
     electionJSX = <Redirect to={
       { pathname: '/dashboard', state: { msg: 'Election succesfully deleted!' } }
