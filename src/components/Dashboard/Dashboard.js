@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
-import { Row, Card, CardDeck, ListGroup, Form, Popover, OverlayTrigger, Spinner } from 'react-bootstrap'
+import { Card, CardDeck, ListGroup, Form, Popover, OverlayTrigger } from 'react-bootstrap'
+import LoadingSpinner from '../shared/LoadingSpinner'
 
 const Dashboard = props => {
   const [elections, setElections] = useState([])
@@ -80,16 +81,7 @@ const Dashboard = props => {
 
   if (!elections.length) {
     // If it's loading, show a spinner
-    dashboardJSX = (
-      <React.Fragment>
-        <div className="logo-big">Let&#39;s</div>
-        <Row>
-          <Spinner className="m-auto" animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        </Row>
-      </React.Fragment>
-    )
+    dashboardJSX = <LoadingSpinner size='big' />
   } else if (electionId) {
     // Upon user clicking an election, redirect to the election
     dashboardJSX = <Redirect to={`/elections/${electionId}`} />

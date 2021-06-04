@@ -182,7 +182,7 @@ const BallotCreate = props => {
     return <Redirect to={`/elections/${ballot.election_id}`} />
   } else if (!election) {
     // If it's loading, show a spinner
-    ballotJSX = (<LoadingSpinner />)
+    ballotJSX = (<LoadingSpinner size="logo-small"/>)
   } else {
     // Display and number the options
     const theOptions = election.choices.map((choice, i) => (
