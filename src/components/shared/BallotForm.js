@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Button, Card } from 'react-bootstrap'
+import { Row, ListGroup, Button, Card, CardDeck } from 'react-bootstrap'
 
 const BallotForm = props => {
   // const [selectionsArray, setSelectionsArray] = useState([])
@@ -59,6 +59,16 @@ const BallotForm = props => {
     info = 'How a Borda count works: Every candidate scores points based on how high they appear on each ballot.'
   }
 
+  const selectionsArray = props.selectionsArray.map((selection, i) => (
+    <ListGroup.Item
+      variant="outline-dark"
+      className="choiceBox"
+      key={i}
+    >
+      {selection}
+    </ListGroup.Item>
+  ))
+
   return (
     <React.Fragment>
       <div className="logo-small">Let&#39;s</div>
@@ -66,14 +76,28 @@ const BallotForm = props => {
       <p>{info}</p>
       <p>Touch or click the options in the order of your preference, then hit submit.</p>
       <p>If you make a mistake, please hit Cancel and start over.</p>
-      <Card>
-        {props.buttonsArray}
-      </Card>
+      <Row>
+        <CardDeck>
+          <Card>
+            <Card.Header>
+              Not yet ranked
+            </Card.Header>
+            <ListGroup>
+              {props.buttonsArray}
+            </ListGroup>
+          </Card>
+          <Card>
+            <Card.Header>
+              Rankings
+            </Card.Header>
+            {selectionsArray}
+          </Card>
+        </CardDeck>
+      </Row>
       <Button variant="primary" onClick={props.handleSubmit}>Submit</Button>{' '}
       <Link to={props.cancelPath}>
         <Button variant="secondary">Cancel</Button>
       </Link><p></p>
-      {props.selectionsArray}
     </React.Fragment>
   )
 }

@@ -82,7 +82,7 @@ const BallotCreate = props => {
 
       // Update the selections display
       if (selectionsArray.length > 0) {
-        setSelectionsArray([...selectionsArray, ', ', choice.title])
+        setSelectionsArray([...selectionsArray, choice.title])
       } else {
         setSelectionsArray([choice.title])
       }
