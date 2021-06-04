@@ -81,7 +81,7 @@ const AllElections = props => {
   let allElectionsJSX
   if (!elections.length) {
     // If it's loading, show a spinner
-    allElectionsJSX = (<LoadingSpinner size="logo-big" />)
+    allElectionsJSX = <LoadingSpinner size="logo-big" />
   } else if (electionId) {
     // Upon user clicking an election, redirect to the election
     allElectionsJSX = <Redirect to={`/elections/${electionId}`} />

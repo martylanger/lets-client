@@ -5,11 +5,11 @@ import apiUrl from '../../apiConfig'
 import Choices from '../shared/Choices'
 import OwnerOptions from '../shared/OwnerOptions'
 import Results from '../shared/Results'
+import LoadingSpinner from '../shared/LoadingSpinner'
 import instantRunoff from '../../modules/instantRunoff'
 import plurality from '../../modules/plurality'
 import { bordaWinners } from '../../modules/borda'
 import { Container, Row, Col, Card, Button, ButtonGroup } from 'react-bootstrap'
-import LoadingSpinner from '../shared/LoadingSpinner'
 
 const Election = props => {
   const [election, setElection] = useState(null)
