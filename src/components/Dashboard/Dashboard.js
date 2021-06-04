@@ -81,7 +81,7 @@ const Dashboard = props => {
 
   if (!elections.length) {
     // If it's loading, show a spinner
-    dashboardJSX = <LoadingSpinner size='big' />
+    dashboardJSX = <LoadingSpinner size='logo-big' />
   } else if (electionId) {
     // Upon user clicking an election, redirect to the election
     dashboardJSX = <Redirect to={`/elections/${electionId}`} />

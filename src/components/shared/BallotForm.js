@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Button, Card } from 'react-bootstrap'
 
-const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, buttonsArray, selectionsArray, cancelPath }) => {
+const BallotForm = props => {
   // const [selectionsArray, setSelectionsArray] = useState([])
   // const [buttonsArray, setButtonsArray] = useState([])
   // const [choicesArray, setChoicesArray] = useState([])
@@ -48,7 +48,7 @@ const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, b
   // List the choices for user reference
 
   let info
-  switch (election.voting_method) {
+  switch (props.election.voting_method) {
   case 'instant-runoff':
     info = 'How instant-runoff voting works: First, we tally everyone&apos;s first choice. If no option has a majority, then those who voted for the options with the least 1st-place votes have their vote changed to their second-ranked choice. The votes are then retallied, and the process is repeated until there is a clear winner.'
     break
@@ -67,13 +67,13 @@ const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, b
       <p>Touch or click the options in the order of your preference, then hit submit.</p>
       <p>If you make a mistake, please hit Cancel and start over.</p>
       <Card>
-        {buttonsArray}
+        {props.buttonsArray}
       </Card>
-      <Button variant="primary" onClick={handleSubmit}>Submit</Button>{' '}
-      <Link to={cancelPath}>
+      <Button variant="primary" onClick={props.handleSubmit}>Submit</Button>{' '}
+      <Link to={props.cancelPath}>
         <Button variant="secondary">Cancel</Button>
       </Link><p></p>
-      {selectionsArray}
+      {props.selectionsArray}
     </React.Fragment>
   )
 }
