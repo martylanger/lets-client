@@ -3,7 +3,8 @@ import { Redirect } from 'react-router-dom'
 import axios from 'axios'
 import apiUrl from '../../apiConfig'
 import BallotForm from '../shared/BallotForm'
-import { Row, ListGroup, Spinner } from 'react-bootstrap'
+import LoadingSpinner from '../shared/LoadingSpinner'
+import { ListGroup } from 'react-bootstrap'
 
 const BallotCreate = props => {
   const [ballot, setBallot] = useState({ election_id: props.match.params.id, selections: '' })
@@ -181,16 +182,7 @@ const BallotCreate = props => {
     return <Redirect to={`/elections/${ballot.election_id}`} />
   } else if (!election) {
     // If it's loading, show a spinner
-    ballotJSX = (
-      <React.Fragment>
-        <div className="logo-small">Let&#39;s</div>
-        <Row>
-          <Spinner className="m-auto" animation="border" role="status">
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        </Row>
-      </React.Fragment>
-    )
+    ballotJSX = (<LoadingSpinner />)
   } else {
     // Display and number the options
     const theOptions = election.choices.map((choice, i) => (
