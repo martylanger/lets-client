@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { ListGroup, Button, Card, CardDeck } from 'react-bootstrap'
+import { Col, Row, ListGroup, Button, Card, CardDeck } from 'react-bootstrap'
 
 const BallotForm = props => {
   // const [selectionsArray, setSelectionsArray] = useState([])
@@ -62,11 +62,7 @@ const BallotForm = props => {
   const selectionsArray = props.selectionsArray.map((selection, i) => (
     <ListGroup.Item
       action
-      onClick={() => {
-        console.log(props.selected)
-        props.setSelected(selection)
-        console.log(props.selected)
-      }}
+      onClick={() => props.setSelected(selection)}
       variant="outline-dark"
       className="choiceBox"
       key={i}
@@ -81,7 +77,7 @@ const BallotForm = props => {
 
       <p>{info}</p>
       <p>Touch or click the options in the order of your preference, then hit submit.</p>
-      <p>If you make a mistake, please hit Cancel and start over.</p>
+      <p>Use the up and down buttons to adjust your rankings if needed.</p>
       <CardDeck>
         <Card>
           <Card.Header>
@@ -97,6 +93,18 @@ const BallotForm = props => {
           </Card.Header>
           {selectionsArray}
         </Card>
+        <Col>
+          <Row>
+            <Button variant="primary">
+              Up
+            </Button>
+          </Row>
+          <Row>
+            <Button variant="primary">
+              Down
+            </Button>
+          </Row>
+        </Col>
       </CardDeck>
       <Button variant="primary" onClick={props.handleSubmit}>Submit</Button>{' '}
       <Link to={props.cancelPath}>
