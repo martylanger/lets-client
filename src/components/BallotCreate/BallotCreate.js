@@ -112,6 +112,14 @@ const BallotCreate = props => {
     setClicked(true)
   }
 
+  const handlePromote = () => {
+    // Access selected and move it up one place in the selections array
+  }
+
+  const handleDemote = () => {
+    // Access selected and move it down one place in the selections array
+  }
+
   // const handleClick = (choice, i) => {
   //   console.log('handleClicked')
   //   console.log('event.target: below')
@@ -201,6 +209,8 @@ const BallotCreate = props => {
         selectionsArray={selectionsArray}
         handleClick={handleClick}
         handleSubmit={handleSubmit}
+        handlePromote={handlePromote}
+        handleDemote={handleDemote}
         cancelPath={`/elections/${ballot.election_id}`}
       />
     )
