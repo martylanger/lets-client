@@ -95,12 +95,12 @@ const BallotForm = props => {
         </Card>
         <Col>
           <Row>
-            <Button variant="primary">
+            <Button variant="outline-primary">
               Up
             </Button>
           </Row>
           <Row>
-            <Button variant="primary">
+            <Button variant="outline-primary">
               Down
             </Button>
           </Row>
