@@ -61,6 +61,12 @@ const BallotForm = props => {
 
   const selectionsArray = props.selectionsArray.map((selection, i) => (
     <ListGroup.Item
+      action
+      onClick={() => {
+        console.log(props.selected)
+        props.setSelected(selection)
+        console.log(props.selected)
+      }}
       variant="outline-dark"
       className="choiceBox"
       key={i}

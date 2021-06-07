@@ -16,6 +16,7 @@ const BallotCreate = props => {
   const [clicked, setClicked] = useState(false)
   const [choice, setChoice] = useState(null)
   const [index, setIndex] = useState(null)
+  const [selected, setSelected] = useState(null)
 
   const prepareBallot = (res) => {
     setElection(res.data.election)
@@ -195,6 +196,8 @@ const BallotCreate = props => {
         election={election}
         ballot={ballot}
         buttonsArray={buttonsArray}
+        setSelected={setSelected}
+        selected={selected}
         selectionsArray={selectionsArray}
         handleClick={handleClick}
         handleSubmit={handleSubmit}
@@ -202,34 +205,6 @@ const BallotCreate = props => {
       />
     )
   }
-  // selectionsArray appears to have commas in the array, which is a problem.
-
-  // const theBallot = props.election.choices.map(function (choice, i) {
-  //
-  //   return (
-  //     <BallotForm
-  //       key={choice.id}
-  //       election={props.election}
-  //       ballot={ballot}
-  //       choice={choice}
-  //       index={i + 1}
-  //       handleChange={handleChange}
-  //       handleSubmit={handleSubmit}
-  //       cancelPath="/"
-  //     >
-  //       <li>
-  //         {choice.title}
-  //       </li>
-  //     </BallotForm>
-  // )
-
-  // <BallotForm
-  //   election={props.election}
-  //   ballot={ballot}
-  //   handleChange={handleChange}
-  //   handleSubmit={handleSubmit}
-  //   cancelPath="/"
-  // />
 
   return (
     ballotJSX
