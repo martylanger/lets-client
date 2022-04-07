@@ -24,7 +24,9 @@ const alwaysOptions = (
   </React.Fragment>
 )
 
-const Header = ({ user, isRegistered }) => (
+// The default, unsigned-in user is authenticated user with id === 10
+
+const Header = ({ user, isRegistered = user.id !== 10 }) => (
   <React.Fragment>
     <Navbar bg="primary" variant="dark" expand="md">
       <Navbar.Brand className="brand" href={ isRegistered ? '#dashboard' : '#sign-in'}>
