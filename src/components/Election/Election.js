@@ -131,6 +131,9 @@ const Election = props => {
             </Col>
             <Col>
               <Results election={election} votingMethod={votingMethod}/>
+              <Card>
+                <span> hi </span>
+              </Card>
             </Col>
           </Row>
         </Container>
