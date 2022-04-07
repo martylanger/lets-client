@@ -24,18 +24,20 @@ const alwaysOptions = (
   </React.Fragment>
 )
 
-const Header = ({ user }) => (
+// The default, unsigned-in user is authenticated user with id === 10
+
+const Header = ({ user, isRegistered = user.id !== 10 }) => (
   <React.Fragment>
     <Navbar bg="primary" variant="dark" expand="md">
-      <Navbar.Brand className="brand" href={ user.id !== 10 ? '#dashboard' : '#sign-in'}>
+      <Navbar.Brand className="brand" href={ isRegistered ? '#dashboard' : '#sign-in'}>
         Let&#39;s
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          { user.id !== 10 && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
+          { isRegistered && <span className="navbar-text mr-2">Welcome, {user.email}</span>}
           { alwaysOptions }
-          { user.id !== 10 ? authenticatedOptions : unauthenticatedOptions }
+          { isRegistered ? authenticatedOptions : unauthenticatedOptions }
         </Nav>
       </Navbar.Collapse>
     </Navbar>
