@@ -50,6 +50,27 @@ const Election = props => {
       })
   }
 
+  const onCloseElection = event => {
+    event.preventDefault()
+    alert('Click')
+    // axios({
+    //   url: `${apiUrl}/elections/${props.match.params.id}`,
+    //   method: 'PATCH',
+    //   headers: {
+    //     Authorization: `Bearer ${props.user.token}`
+    //   },
+    //   data: { election: election }
+    // })
+    //   .then(() => setUpdatedElection(true))
+    //   .catch(err => {
+    //     props.msgAlert({
+    //       heading: 'Failed to update your election',
+    //       message: err.message,
+    //       variant: 'danger'
+    //     })
+    //   })
+  }
+
   // const votingMethodsArray = [
   //   ['instant-runoff', InstantRunoff],
   //   ['plurality', Plurality]
@@ -108,6 +129,7 @@ const Election = props => {
                 match={props.match}
                 election={election}
                 onDestroy={onDestroy}
+                onCloseElection={onCloseElection}
               />
               <Link to="/dashboard">
                 <Button variant="secondary">Back to Dashboard</Button>

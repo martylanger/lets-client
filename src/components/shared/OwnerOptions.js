@@ -20,7 +20,10 @@ const OwnerOptions = props => {
         <Button variant="light">Edit election</Button>
       </Link>
 
+      <Button onClick={props.onCloseElection}>End voting</Button>
+
       <Button variant="danger" className="rounded mx-1" onClick={props.onDestroy}>Delete election</Button>
+
     </React.Fragment>
   )
 
