@@ -38,10 +38,10 @@ class App extends Component {
 
   render () {
     const { msgAlerts, user } = this.state
-
+    // The default, unsigned-in user is authenticated user with id === 10
     return (
       <Fragment>
-        <Header user={user} />
+        <Header user={user} isRegistered={user.id !== 10}/>
         {msgAlerts.map((msgAlert, index) => (
           <AutoDismissAlert
             key={index}
