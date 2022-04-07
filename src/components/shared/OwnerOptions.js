@@ -9,6 +9,7 @@ const OwnerOptions = props => {
   // <button onClick={openVote}>Start the vote!</button>
   // <button onClick={closeVote}>End the vote!</button>
 
+  // Check if the user is the owner of the election
   const ownerOptions = props.user.email !== props.election.user.email ? null : (
     <React.Fragment>
       <Link to={`/elections/${props.match.params.id}/choice-create`}>
