@@ -13,6 +13,7 @@ import { Container, Row, Col, Card, Button, ButtonGroup, Spinner } from 'react-b
 const Election = props => {
   const [election, setElection] = useState(null)
   const [deleted, setDeleted] = useState(false)
+  const [updatedElection, setUpdatedElection] = useState(false)
 
   useEffect(() => {
     axios({
@@ -22,7 +23,6 @@ const Election = props => {
         'Authorization': `Bearer ${props.user.token}`
       }
     })
-      .then(res => setElection(res.data.election))
       .catch(err => {
         props.msgAlert({
           heading: 'Your election failed to load',
@@ -30,7 +30,11 @@ const Election = props => {
           variant: 'danger'
         })
       })
-  }, [])
+      .then(res => {
+        setElection(res.data.election)
+        setUpdatedElection(false)
+      })
+  }, [updatedElection])
 
   const onDestroy = () => {
     axios({
@@ -52,23 +56,28 @@ const Election = props => {
 
   const onCloseElection = event => {
     event.preventDefault()
-    alert('Click')
-    // axios({
-    //   url: `${apiUrl}/elections/${props.match.params.id}`,
-    //   method: 'PATCH',
-    //   headers: {
-    //     Authorization: `Bearer ${props.user.token}`
-    //   },
-    //   data: { election: election }
-    // })
-    //   .then(() => setUpdatedElection(true))
-    //   .catch(err => {
-    //     props.msgAlert({
-    //       heading: 'Failed to update your election',
-    //       message: err.message,
-    //       variant: 'danger'
-    //     })
-    //   })
+    let date = new Date()
+    date = date.toISOString()
+    const updatedField = { close_time: date }
+    const editedElection = Object.assign({ ...election }, updatedField)
+    setElection(editedElection)
+
+    axios({
+      url: `${apiUrl}/elections/${props.match.params.id}`,
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      },
+      data: { election: election }
+    })
+      .catch(err => {
+        props.msgAlert({
+          heading: 'Failed to update your election',
+          message: err.message,
+          variant: 'danger'
+        })
+      })
+      .then(() => setUpdatedElection(true))
   }
 
   // const votingMethodsArray = [
@@ -154,7 +163,7 @@ const Election = props => {
             <Col>
               <Results election={election} votingMethod={votingMethod}/>
               <Card className="m-2">
-                <span> hi </span>
+                <span> {election.close_time} </span>
               </Card>
             </Col>
           </Row>
