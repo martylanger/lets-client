@@ -59,9 +59,6 @@ const Election = props => {
     now = now.toISOString()
     const updatedField = { close_time: now }
     const editedElection = Object.assign({ ...election }, updatedField)
-    console.log(editedElection)
-    setElection(editedElection)
-    console.log(election)
 
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
@@ -69,7 +66,7 @@ const Election = props => {
       headers: {
         Authorization: `Bearer ${props.user.token}`
       },
-      data: { election: election }
+      data: { election: editedElection }
     })
       .catch(err => {
         props.msgAlert({
