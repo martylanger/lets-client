@@ -55,9 +55,9 @@ const Election = props => {
 
   const onCloseElection = event => {
     event.preventDefault()
-    let date = new Date()
-    date = date.toISOString()
-    const updatedField = { close_time: date }
+    let now = new Date()
+    now = now.toISOString()
+    const updatedField = { close_time: now }
     const editedElection = Object.assign({ ...election }, updatedField)
     console.log(editedElection)
     setElection(editedElection)
