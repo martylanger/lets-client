@@ -32,7 +32,6 @@ const Election = props => {
       })
       .then(res => {
         setElection(res.data.election)
-        setUpdatedElection(false)
       })
   }, [updatedElection])
 
@@ -60,7 +59,9 @@ const Election = props => {
     date = date.toISOString()
     const updatedField = { close_time: date }
     const editedElection = Object.assign({ ...election }, updatedField)
+    console.log(editedElection)
     setElection(editedElection)
+    console.log(election)
 
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
@@ -77,7 +78,7 @@ const Election = props => {
           variant: 'danger'
         })
       })
-      .then(() => setUpdatedElection(true))
+      .then(() => setUpdatedElection(!updatedElection))
   }
 
   // const votingMethodsArray = [
