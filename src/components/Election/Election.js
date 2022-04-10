@@ -86,6 +86,8 @@ const Election = props => {
   // const votingMethods = new Map(votingMethodsArray)
   // const results = votingMethods.get(election.voting_method)
 
+  // I want to
+
   let electionJSX
 
   if (!election) {
@@ -123,6 +125,16 @@ const Election = props => {
     case 'borda-count':
       votingMethod = bordaWinners
       votingMethodName = 'Borda count'
+    }
+
+    let displayCloseTime = ''
+    if (election.close_time) {
+      const closeTime = new Date(election.close_time)
+      if (closeTime < new Date()) {
+        displayCloseTime = `Voting ended at ${closeTime.toLocaleString()}`
+      } else {
+        displayCloseTime = `Voting will close at ${closeTime.toLocaleString()}`
+      }
     }
 
     electionJSX = (
@@ -164,7 +176,7 @@ const Election = props => {
             <Col>
               <Results election={election} votingMethod={votingMethod}/>
               <Card className="m-2">
-                <span> {election.close_time} </span>
+                <Card.Body> {displayCloseTime} </Card.Body>
               </Card>
             </Col>
           </Row>
