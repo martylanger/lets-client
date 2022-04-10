@@ -15,6 +15,7 @@ const Election = props => {
   const [deleted, setDeleted] = useState(false)
   const [updatedElection, setUpdatedElection] = useState(false)
 
+  // Retrieve the election
   useEffect(() => {
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
@@ -53,6 +54,7 @@ const Election = props => {
       })
   }
 
+  // Closing an election sets the close_time as the current time
   const onCloseElection = event => {
     event.preventDefault()
     const now = new Date().toISOString()
