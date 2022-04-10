@@ -101,6 +101,7 @@ const Election = props => {
       </React.Fragment>
     )
   } else if (deleted) {
+    // If it's deleted, redirect to dashboard and show msg
     electionJSX = <Redirect to={
       { pathname: '/dashboard', state: { msg: 'Election succesfully deleted!' } }
     } />
@@ -109,6 +110,7 @@ const Election = props => {
     //    and format the name for display
     let votingMethod
     let votingMethodName
+
     switch (election.voting_method) {
     case 'instant-runoff':
       votingMethod = instantRunoff
