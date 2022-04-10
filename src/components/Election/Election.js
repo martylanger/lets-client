@@ -127,6 +127,8 @@ const Election = props => {
       votingMethodName = 'Borda count'
     }
 
+    // If a close_time has been set, determine whether it is in the past or future
+    //  and display it accordingly
     let displayCloseTime = ''
     if (election.close_time) {
       const closeTime = new Date(election.close_time)
@@ -176,7 +178,9 @@ const Election = props => {
             <Col>
               <Results election={election} votingMethod={votingMethod}/>
               <Card className="m-2">
-                <Card.Body> {displayCloseTime} </Card.Body>
+                <Card.Body>
+                  <Card.Title className="winners"> {displayCloseTime} </Card.Title>
+                </Card.Body>
               </Card>
             </Col>
           </Row>
