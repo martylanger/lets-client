@@ -161,6 +161,7 @@ const Election = props => {
                 election={election}
                 onDestroy={onDestroy}
                 onCloseElection={onCloseElection}
+                electionIsOpen={!electionIsClosed}
               />
               {
                 props.user.id !== 10 &&
