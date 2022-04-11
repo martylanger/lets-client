@@ -162,9 +162,12 @@ const Election = props => {
                 onDestroy={onDestroy}
                 onCloseElection={onCloseElection}
               />
-              <Link to="/dashboard">
-                <Button variant="secondary">Back to Dashboard</Button>
-              </Link>
+              {
+                props.user.id !== 10 &&
+                <Link to="/dashboard">
+                  <Button variant="secondary">Back to Dashboard</Button>
+                </Link>
+              }
               <Link to="/all-elections">
                 <Button variant="secondary">Back to All Elections</Button>
               </Link>
