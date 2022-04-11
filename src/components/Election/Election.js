@@ -130,9 +130,13 @@ const Election = props => {
     // If a close_time has been set, determine whether it is in the past or future
     //  and display it accordingly
     let displayCloseTime = ''
+    let electionIsClosed = false
     if (election.close_time) {
       const closeTime = new Date(election.close_time)
       if (closeTime < new Date()) {
+        electionIsClosed = true
+      }
+      if (electionIsClosed) {
         displayCloseTime = `Voting ended at ${closeTime.toLocaleString()}`
       } else {
         displayCloseTime = `Voting will close at ${closeTime.toLocaleString()}`
@@ -145,9 +149,12 @@ const Election = props => {
         <Container>
           <Row>
             <ButtonGroup>
-              <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-                <Button variant="dark">Vote!</Button>
-              </Link>
+              {
+                !electionIsClosed &&
+                <Link to={`/elections/${props.match.params.id}/ballot-create`}>
+                  <Button variant="dark">Vote!</Button>
+                </Link>
+              }
               <OwnerOptions
                 user={props.user}
                 match={props.match}
