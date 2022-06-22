@@ -110,49 +110,6 @@ const BallotCreate = props => {
     setClicked(true)
   }
 
-  // const handleClick = (choice, i) => {
-  //   console.log('handleClicked')
-  //   console.log('event.target: below')
-  //   // console.log(event.target)
-  //   // Update ballot.selections locally
-  //   let updatedSelections
-  //   console.log('ballot.selections? ' + (ballot.selections ? 'true' : 'false'))
-  //   if (ballot.selections) {
-  //     updatedSelections = ballot.selections + ' ' + (i + 1).toString()
-  //     // updatedSelections = ballot.selections + ' ' + event.target.index
-  //     console.log('updatedselections1: ' + updatedSelections)
-  //   } else {
-  //     updatedSelections = (i + 1).toString()
-  //     // updatedSelections = event.target.index
-  //     console.log('event.target.index: below')
-  //     // console.log(event.target.index)
-  //     console.log('updatedselections2: ' + updatedSelections)
-  //   }
-  //   const updatedField = { 'selections': updatedSelections }
-  //   console.log('updatedField: below')
-  //   console.log(updatedField)
-  //   const editedBallot = Object.assign({ ...ballot }, updatedField)
-  //   console.log('editedBallot: below')
-  //   console.log(editedBallot)
-  //   console.log('ballot before setBallot: below')
-  //   console.log(ballot)
-  //   // setBallot(ballot => editedBallot)
-  //   console.log('ballot after setBallot: below')
-  //   console.log(ballot)
-  //   selectionsArray.push(choice)
-  //   // selectionsArray.push(event.target.choice)
-  //   // console.log(event.target)
-  //   choicesArray.splice(choicesArray.indexOf(choice), 1)
-  //   // choicesArray.splice(choicesArray.indexOf(event.target.choice), 1)
-  //   buttonsArray.splice(choicesArray.indexOf(choice), 1)
-  //   // buttonsArray.splice(choicesArray.indexOf(event.target.choice), 1)
-  //   console.log('ballot.selections: ' + ballot.selections)
-  //   console.log('editedBallot.selections: ' + editedBallot.selections)
-  //   console.log('selectionsArray: ' + JSON.stringify(selectionsArray))
-  //   console.log('choicesArray: ' + JSON.stringify(choicesArray))
-  //   console.log(ballot)
-  // }
-
   const handleSubmit = event => {
     event.preventDefault()
     console.log('handleSubmitting')
