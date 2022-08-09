@@ -10,6 +10,7 @@ const BallotCreate = props => {
   const [election, setElection] = useState(null)
   const [createdBallotId, setCreatedBallotId] = useState(null)
   const [selectionsArray, setSelectionsArray] = useState([])
+  const [selectionsDisplay, setSelectionsDisplay] = useState([])
   const [buttonsArray, setButtonsArray] = useState([])
   const [choicesArray, setChoicesArray] = useState([])
   const [clicked, setClicked] = useState(false)
@@ -20,6 +21,7 @@ const BallotCreate = props => {
     setElection(res.data.election)
     setChoicesArray(res.data.election.choices.map(choice => choice))
     setSelectionsArray([])
+    setSelectionsDisplay([])
     setButtonsArray(
       res.data.election.choices.map((choice, i) => (
         <ListGroup.Item
@@ -81,7 +83,7 @@ const BallotCreate = props => {
 
       // Update the selections display
       if (selectionsArray.length > 0) {
-        setSelectionsArray([...selectionsArray, ', ', choice.title])
+        setSelectionsArray([...selectionsArray, choice.title])
       } else {
         setSelectionsArray([choice.title])
       }
@@ -112,8 +114,6 @@ const BallotCreate = props => {
 
   const handleSubmit = event => {
     event.preventDefault()
-    console.log('handleSubmitting')
-    console.log(ballot)
     axios({
       url: `${apiUrl}/ballots`,
       method: 'POST',
@@ -169,34 +169,6 @@ const BallotCreate = props => {
       />
     )
   }
-  // selectionsArray appears to have commas in the array, which is a problem.
-
-  // const theBallot = props.election.choices.map(function (choice, i) {
-  //
-  //   return (
-  //     <BallotForm
-  //       key={choice.id}
-  //       election={props.election}
-  //       ballot={ballot}
-  //       choice={choice}
-  //       index={i + 1}
-  //       handleChange={handleChange}
-  //       handleSubmit={handleSubmit}
-  //       cancelPath="/"
-  //     >
-  //       <li>
-  //         {choice.title}
-  //       </li>
-  //     </BallotForm>
-  // )
-
-  // <BallotForm
-  //   election={props.election}
-  //   ballot={ballot}
-  //   handleChange={handleChange}
-  //   handleSubmit={handleSubmit}
-  //   cancelPath="/"
-  // />
 
   return (
     ballotJSX
