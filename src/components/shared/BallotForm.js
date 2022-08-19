@@ -83,7 +83,6 @@ const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, b
             <Button variant="secondary">Cancel</Button>
           </Link><p></p>
         </ButtonGroup>
-        {selectionsArray}
       </CardDeck>
     </React.Fragment>
   )
