@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card, CardDeck, ListGroup, Button, ButtonGroup } from 'react-bootstrap'
 
-const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, buttonsArray, selectionsArray, cancelPath }) => {
+const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, buttonsArray, selectionsArray, selectionsDisplay, cancelPath }) => {
   // const [selectionsArray, setSelectionsArray] = useState([])
   // const [buttonsArray, setButtonsArray] = useState([])
   // const [choicesArray, setChoicesArray] = useState([])
@@ -74,7 +74,7 @@ const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, b
         </Card>
         <Card>
           <ListGroup>
-            {selectionsArray}
+            {selectionsDisplay}
           </ListGroup>
         </Card><p></p>
         <ButtonGroup>
