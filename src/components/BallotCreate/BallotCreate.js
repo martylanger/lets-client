@@ -9,7 +9,7 @@ const BallotCreate = props => {
   const [ballot, setBallot] = useState({ election_id: props.match.params.id, selections: '' })
   const [election, setElection] = useState(null)
   const [createdBallotId, setCreatedBallotId] = useState(null)
-  const [selectionsArray, setSelectionsArray] = useState([])
+  // const [selectionsArray, setSelectionsArray] = useState([])
   const [selectionsDisplay, setSelectionsDisplay] = useState([])
   const [buttonsArray, setButtonsArray] = useState([])
   const [choicesArray, setChoicesArray] = useState([])
@@ -36,7 +36,7 @@ const BallotCreate = props => {
           {choice.title}
         </ListGroup.Item>
       )))
-    setSelectionsArray([])
+    // setSelectionsArray([])
     setSelectionsDisplay([])
   }
 
