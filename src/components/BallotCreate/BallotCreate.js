@@ -83,13 +83,13 @@ const BallotCreate = props => {
 
       // Update the selections display
       // NOTE: selectionsArray is currrently useless
+      // REMINDER: Remember to put action attribute back when I add onClick function
       setSelectionsArray([...selectionsArray, choice.title])
       const newSelectionsItem = (
         <ListGroup.Item
-          action
           variant="outline-dark"
           className="choiceBox"
-          onClick={() => console.log('this is a placeholder')}
+          onClick={() => console.log('this is a placeholder.')}
           key={choice.id}
           name='selections'
         >
