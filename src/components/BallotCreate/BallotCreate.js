@@ -9,7 +9,8 @@ const BallotCreate = props => {
   const [ballot, setBallot] = useState({ election_id: props.match.params.id, selections: '' })
   const [election, setElection] = useState(null)
   const [createdBallotId, setCreatedBallotId] = useState(null)
-  const [selectionsArray, setSelectionsArray] = useState([])
+  // const [selectionsArray, setSelectionsArray] = useState([])
+  const [selectionsDisplay, setSelectionsDisplay] = useState([])
   const [buttonsArray, setButtonsArray] = useState([])
   const [choicesArray, setChoicesArray] = useState([])
   const [clicked, setClicked] = useState(false)
@@ -19,7 +20,6 @@ const BallotCreate = props => {
   const prepareBallot = (res) => {
     setElection(res.data.election)
     setChoicesArray(res.data.election.choices.map(choice => choice))
-    setSelectionsArray([])
     setButtonsArray(
       res.data.election.choices.map((choice, i) => (
         <ListGroup.Item
@@ -36,6 +36,8 @@ const BallotCreate = props => {
           {choice.title}
         </ListGroup.Item>
       )))
+    // setSelectionsArray([])
+    setSelectionsDisplay([])
   }
 
   const getElection = () => {
@@ -80,11 +82,21 @@ const BallotCreate = props => {
       setBallot(editedBallot)
 
       // Update the selections display
-      if (selectionsArray.length > 0) {
-        setSelectionsArray([...selectionsArray, ', ', choice.title])
-      } else {
-        setSelectionsArray([choice.title])
-      }
+      // NOTE: selectionsArray is currrently useless
+      // setSelectionsArray([...selectionsArray, choice.title])
+      // REMINDER: put action attribute back when I add onClick function
+      const newSelectionsItem = (
+        <ListGroup.Item
+          variant="outline-dark"
+          className="choiceBox"
+          onClick={() => console.log('this is a placeholder.')}
+          key={choice.id}
+          name='selections'
+        >
+          {choice.title}
+        </ListGroup.Item>
+      )
+      setSelectionsDisplay([...selectionsDisplay, newSelectionsItem])
 
       // Update the remaining choices
       const updatedChoicesArray = choicesArray.map(x => x)
@@ -110,53 +122,8 @@ const BallotCreate = props => {
     setClicked(true)
   }
 
-  // const handleClick = (choice, i) => {
-  //   console.log('handleClicked')
-  //   console.log('event.target: below')
-  //   // console.log(event.target)
-  //   // Update ballot.selections locally
-  //   let updatedSelections
-  //   console.log('ballot.selections? ' + (ballot.selections ? 'true' : 'false'))
-  //   if (ballot.selections) {
-  //     updatedSelections = ballot.selections + ' ' + (i + 1).toString()
-  //     // updatedSelections = ballot.selections + ' ' + event.target.index
-  //     console.log('updatedselections1: ' + updatedSelections)
-  //   } else {
-  //     updatedSelections = (i + 1).toString()
-  //     // updatedSelections = event.target.index
-  //     console.log('event.target.index: below')
-  //     // console.log(event.target.index)
-  //     console.log('updatedselections2: ' + updatedSelections)
-  //   }
-  //   const updatedField = { 'selections': updatedSelections }
-  //   console.log('updatedField: below')
-  //   console.log(updatedField)
-  //   const editedBallot = Object.assign({ ...ballot }, updatedField)
-  //   console.log('editedBallot: below')
-  //   console.log(editedBallot)
-  //   console.log('ballot before setBallot: below')
-  //   console.log(ballot)
-  //   // setBallot(ballot => editedBallot)
-  //   console.log('ballot after setBallot: below')
-  //   console.log(ballot)
-  //   selectionsArray.push(choice)
-  //   // selectionsArray.push(event.target.choice)
-  //   // console.log(event.target)
-  //   choicesArray.splice(choicesArray.indexOf(choice), 1)
-  //   // choicesArray.splice(choicesArray.indexOf(event.target.choice), 1)
-  //   buttonsArray.splice(choicesArray.indexOf(choice), 1)
-  //   // buttonsArray.splice(choicesArray.indexOf(event.target.choice), 1)
-  //   console.log('ballot.selections: ' + ballot.selections)
-  //   console.log('editedBallot.selections: ' + editedBallot.selections)
-  //   console.log('selectionsArray: ' + JSON.stringify(selectionsArray))
-  //   console.log('choicesArray: ' + JSON.stringify(choicesArray))
-  //   console.log(ballot)
-  // }
-
   const handleSubmit = event => {
     event.preventDefault()
-    // console.log('handleSubmitting')
-    // console.log(ballot)
     axios({
       url: `${apiUrl}/ballots`,
       method: 'POST',
@@ -193,53 +160,22 @@ const BallotCreate = props => {
     )
   } else {
     // Display and number the options
-    const theOptions = election.choices.map((choice, i) => (
-      <ListGroup.Item key={choice.id}>
-        Option #{i + 1}: {choice.title}
-      </ListGroup.Item>
-    ))
+    // const theOptions = election.choices.map((choice, i) => (
+    //   <ListGroup.Item key={choice.id}>
+    //     Option #{i + 1}: {choice.title}
+    //   </ListGroup.Item>
+    // ))
 
     ballotJSX = (
       <BallotForm
-        theOptions={theOptions}
         election={election}
-        ballot={ballot}
         buttonsArray={buttonsArray}
-        selectionsArray={selectionsArray}
-        handleClick={handleClick}
+        selectionsDisplay={selectionsDisplay}
         handleSubmit={handleSubmit}
         cancelPath={`/elections/${ballot.election_id}`}
       />
     )
   }
-  // selectionsArray appears to have commas in the array, which is a problem.
-
-  // const theBallot = props.election.choices.map(function (choice, i) {
-  //
-  //   return (
-  //     <BallotForm
-  //       key={choice.id}
-  //       election={props.election}
-  //       ballot={ballot}
-  //       choice={choice}
-  //       index={i + 1}
-  //       handleChange={handleChange}
-  //       handleSubmit={handleSubmit}
-  //       cancelPath="/"
-  //     >
-  //       <li>
-  //         {choice.title}
-  //       </li>
-  //     </BallotForm>
-  // )
-
-  // <BallotForm
-  //   election={props.election}
-  //   ballot={ballot}
-  //   handleChange={handleChange}
-  //   handleSubmit={handleSubmit}
-  //   cancelPath="/"
-  // />
 
   return (
     ballotJSX

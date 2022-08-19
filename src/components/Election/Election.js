@@ -13,7 +13,9 @@ import { Container, Row, Col, Card, Button, ButtonGroup, Spinner } from 'react-b
 const Election = props => {
   const [election, setElection] = useState(null)
   const [deleted, setDeleted] = useState(false)
+  const [updatedElection, setUpdatedElection] = useState(false)
 
+  // Retrieve the election
   useEffect(() => {
     axios({
       url: `${apiUrl}/elections/${props.match.params.id}`,
@@ -22,7 +24,6 @@ const Election = props => {
         'Authorization': `Bearer ${props.user.token}`
       }
     })
-      .then(res => setElection(res.data.election))
       .catch(err => {
         props.msgAlert({
           heading: 'Your election failed to load',
@@ -30,7 +31,10 @@ const Election = props => {
           variant: 'danger'
         })
       })
-  }, [])
+      .then(res => {
+        setElection(res.data.election)
+      })
+  }, [updatedElection])
 
   const onDestroy = () => {
     axios({
@@ -50,12 +54,39 @@ const Election = props => {
       })
   }
 
+  // Closing an election sets the close_time as the current time
+  const onCloseElection = event => {
+    event.preventDefault()
+    const now = new Date().toISOString()
+    const updatedField = { close_time: now }
+    const editedElection = Object.assign({ ...election }, updatedField)
+
+    axios({
+      url: `${apiUrl}/elections/${props.match.params.id}`,
+      method: 'PATCH',
+      headers: {
+        Authorization: `Bearer ${props.user.token}`
+      },
+      data: { election: editedElection }
+    })
+      .catch(err => {
+        props.msgAlert({
+          heading: 'Failed to update your election',
+          message: err.message,
+          variant: 'danger'
+        })
+      })
+      .then(() => setUpdatedElection(!updatedElection))
+  }
+
   // const votingMethodsArray = [
   //   ['instant-runoff', InstantRunoff],
   //   ['plurality', Plurality]
   // ]
   // const votingMethods = new Map(votingMethodsArray)
   // const results = votingMethods.get(election.voting_method)
+
+  // I want to
 
   let electionJSX
 
@@ -72,6 +103,7 @@ const Election = props => {
       </React.Fragment>
     )
   } else if (deleted) {
+    // If it's deleted, redirect to dashboard and show msg
     electionJSX = <Redirect to={
       { pathname: '/dashboard', state: { msg: 'Election succesfully deleted!' } }
     } />
@@ -80,6 +112,7 @@ const Election = props => {
     //    and format the name for display
     let votingMethod
     let votingMethodName
+
     switch (election.voting_method) {
     case 'instant-runoff':
       votingMethod = instantRunoff
@@ -94,24 +127,48 @@ const Election = props => {
       votingMethodName = 'Borda count'
     }
 
+    // If a close_time has been set, determine whether it is in the past or future
+    //  and display it accordingly
+    let displayCloseTime = ''
+    let electionIsClosed = false
+    if (election.close_time) {
+      const closeTime = new Date(election.close_time)
+      if (closeTime < new Date()) {
+        electionIsClosed = true
+      }
+      if (electionIsClosed) {
+        displayCloseTime = `Voting ended at ${closeTime.toLocaleString()}`
+      } else {
+        displayCloseTime = `Voting will close at ${closeTime.toLocaleString()}`
+      }
+    }
+
     electionJSX = (
       <React.Fragment>
         <div className="logo-small">Let&#39;s</div>
         <Container>
           <Row>
             <ButtonGroup>
-              <Link to={`/elections/${props.match.params.id}/ballot-create`}>
-                <Button variant="dark">Vote!</Button>
-              </Link>
+              {
+                !electionIsClosed &&
+                <Link to={`/elections/${props.match.params.id}/ballot-create`}>
+                  <Button variant="dark">Vote!</Button>
+                </Link>
+              }
               <OwnerOptions
                 user={props.user}
                 match={props.match}
                 election={election}
                 onDestroy={onDestroy}
+                onCloseElection={onCloseElection}
+                electionIsOpen={!electionIsClosed}
               />
-              <Link to="/dashboard">
-                <Button variant="secondary">Back to Dashboard</Button>
-              </Link>
+              {
+                props.user.id !== 10 &&
+                <Link to="/dashboard">
+                  <Button variant="secondary">Back to Dashboard</Button>
+                </Link>
+              }
               <Link to="/all-elections">
                 <Button variant="secondary">Back to All Elections</Button>
               </Link>
@@ -131,6 +188,11 @@ const Election = props => {
             </Col>
             <Col>
               <Results election={election} votingMethod={votingMethod}/>
+              <Card className="m-2">
+                <Card.Body>
+                  <Card.Title className="winners"> {displayCloseTime} </Card.Title>
+                </Card.Body>
+              </Card>
             </Col>
           </Row>
         </Container>

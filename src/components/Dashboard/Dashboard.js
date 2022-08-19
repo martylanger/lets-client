@@ -17,11 +17,6 @@ const Dashboard = props => {
         'Authorization': `Bearer ${props.user.token}`
       }
     })
-      .then(res => {
-        if (elections) {
-          setElections(res.data.elections)
-        }
-      })
       .catch(err => {
         if (elections) {
           props.msgAlert({
@@ -29,6 +24,11 @@ const Dashboard = props => {
             message: err.message,
             variant: 'danger'
           })
+        }
+      })
+      .then(res => {
+        if (elections) {
+          setElections(res.data.elections)
         }
       })
   }, [1000])

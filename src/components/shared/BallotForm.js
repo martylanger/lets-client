@@ -1,52 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Button from 'react-bootstrap/Button'
+import { Card, CardDeck, ListGroup, Button, ButtonGroup } from 'react-bootstrap'
 
-const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, buttonsArray, selectionsArray, cancelPath }) => {
-  // const [selectionsArray, setSelectionsArray] = useState([])
-  // const [buttonsArray, setButtonsArray] = useState([])
-  // const [choicesArray, setChoicesArray] = useState([])
-
-  // const optionNames = i => 'option-' + i
-  // const optionValues = i => 'voting-method-' + i
-
-  // For the ballot form I need to:
-  // Have an array of all the choices in state
-  // Have an array of all the selection menus
-  // Selection menus should deactivate already selected options with attribute disabled
-
-  // choice divs
-  // setSelectionsArray([])
-  // setChoicesArray(election.choices.map(choice => choice.title))
-  // setButtonsArray([])
-
-  // const selectionsArray = []
-  // const choicesArray = election.choices.map(choice => choice)
-  // console.log(JSON.stringify(choicesArray))
-  // const buttonsArray = []
-  // const onClick = choice => {
-  //   console.log('onClicked')
-  //   selectionsArray.push(choice.title)
-  //   choicesArray.splice(choicesArray.indexOf(choice), 1)
-  //   buttonsArray.splice(choicesArray.indexOf(choice), 1)
-  //   console.log(ballot.selections)
-  // }
-
-  // buttonsArray = election.choices.map((choice, i) => (
-  //   <button
-  //     className="choiceBox"
-  //     onClick={handleClick}
-  //     key={choice.id}
-  //     name='selections'
-  //     choice={choice}
-  //     value={i + 1}
-  //   >
-  //     {choice.title}
-  //   </button>
-  // ))
-  // console.log(JSON.stringify(buttonsArray))
-  // List the choices for user reference
-
+const BallotForm = ({ election, handleSubmit, buttonsArray, selectionsDisplay, cancelPath }) => {
   let info
   switch (election.voting_method) {
   case 'instant-runoff':
@@ -66,18 +22,42 @@ const BallotForm = ({ theOptions, ballot, election, handleSubmit, handleClick, b
       <p>{info}</p>
       <p>Touch or click the options in the order of your preference, then hit submit.</p>
       <p>If you make a mistake, please hit Cancel and start over.</p>
-      {buttonsArray}
-      <Button variant="primary" onClick={handleSubmit}>Submit</Button>{' '}
-      <Link to={cancelPath}>
-        <Button variant="secondary">Cancel</Button>
-      </Link><p></p>
-      {selectionsArray}
+      <CardDeck>
+        <Card>
+          <ListGroup>
+            {buttonsArray}
+          </ListGroup>
+        </Card>
+        <Card>
+          <ListGroup>
+            {selectionsDisplay}
+          </ListGroup>
+        </Card><p></p>
+        <ButtonGroup>
+          <Button variant="primary" onClick={handleSubmit}>Submit</Button>{' '}
+          <Link to={cancelPath}>
+            <Button variant="secondary">Cancel</Button>
+          </Link><p></p>
+        </ButtonGroup>
+      </CardDeck>
     </React.Fragment>
   )
 }
 
 export default BallotForm
 
-// {selectionsArray.map(selection =>
-//   <p key={selection.toString()}>{selection}</p>
-// )}
+// IN THE EVENT THAT I DON'T NEED AN ONCLICK,
+// I CAN REPLACE SELECTIONSDISPLAY PROP WITH:
+//
+// selectionsDisplay = selectionsArray.map(selection => (
+//   <ListGroup.Item
+//     action
+//     variant="outline-dark"
+//     className="choiceBox"
+//     onClick={() => console.log('this is a placeholder')}
+//     key={selection}
+//     name='selections'
+//   >
+//     {selection}
+//   </ListGroup.Item>
+// ))

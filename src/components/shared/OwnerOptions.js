@@ -9,17 +9,25 @@ const OwnerOptions = props => {
   // <button onClick={openVote}>Start the vote!</button>
   // <button onClick={closeVote}>End the vote!</button>
 
+  // Check if the user is the owner of the election
   const ownerOptions = props.user.email !== props.election.user.email ? null : (
     <React.Fragment>
-      <Link to={`/elections/${props.match.params.id}/choice-create`}>
-        <Button variant="light">Add an option</Button>
-      </Link>
+      {
+        props.electionIsOpen && <React.Fragment>
+          <Link to={`/elections/${props.match.params.id}/choice-create`}>
+            <Button variant="light">Add an option</Button>
+          </Link>
 
-      <Link to={`/elections/${props.match.params.id}/edit`}>
-        <Button variant="light">Edit election</Button>
-      </Link>
+          <Link to={`/elections/${props.match.params.id}/edit`}>
+            <Button variant="light">Edit election</Button>
+          </Link>
+
+          <Button onClick={props.onCloseElection}>End voting</Button>
+        </React.Fragment>
+      }
 
       <Button variant="danger" className="rounded mx-1" onClick={props.onDestroy}>Delete election</Button>
+
     </React.Fragment>
   )
 
