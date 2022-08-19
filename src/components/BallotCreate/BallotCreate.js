@@ -163,6 +163,7 @@ const BallotCreate = props => {
         ballot={ballot}
         buttonsArray={buttonsArray}
         selectionsArray={selectionsArray}
+        selectionsDisplay={selectionsDisplay}
         handleClick={handleClick}
         handleSubmit={handleSubmit}
         cancelPath={`/elections/${ballot.election_id}`}
