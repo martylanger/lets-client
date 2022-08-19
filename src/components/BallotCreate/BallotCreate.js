@@ -82,6 +82,7 @@ const BallotCreate = props => {
       setBallot(editedBallot)
 
       // Update the selections display
+      // NOTE: selectionsArray is currrently useless
       setSelectionsArray([...selectionsArray, choice.title])
       const newSelectionsItem = (
         <ListGroup.Item
