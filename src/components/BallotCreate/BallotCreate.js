@@ -83,7 +83,7 @@ const BallotCreate = props => {
 
       // Update the selections display
       // NOTE: selectionsArray is currrently useless
-      // REMINDER: Remember to put action attribute back when I add onClick function
+      // REMINDER: put action attribute back when I add onClick function
       setSelectionsArray([...selectionsArray, choice.title])
       const newSelectionsItem = (
         <ListGroup.Item
