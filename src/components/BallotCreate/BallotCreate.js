@@ -82,11 +82,12 @@ const BallotCreate = props => {
       setBallot(editedBallot)
 
       // Update the selections display
-      if (selectionsArray.length > 0) {
-        setSelectionsArray([...selectionsArray, choice.title])
-      } else {
-        setSelectionsArray([choice.title])
-      }
+      // if (selectionsArray.length > 0) {
+      //   setSelectionsArray([...selectionsArray, choice.title])
+      // } else {
+      //   setSelectionsArray([choice.title])
+      // }
+      setSelectionsArray([...selectionsArray, choice.title])
 
       // Update the remaining choices
       const updatedChoicesArray = choicesArray.map(x => x)
