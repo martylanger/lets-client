@@ -20,8 +20,6 @@ const BallotCreate = props => {
   const prepareBallot = (res) => {
     setElection(res.data.election)
     setChoicesArray(res.data.election.choices.map(choice => choice))
-    setSelectionsArray([])
-    setSelectionsDisplay([])
     setButtonsArray(
       res.data.election.choices.map((choice, i) => (
         <ListGroup.Item
@@ -38,6 +36,8 @@ const BallotCreate = props => {
           {choice.title}
         </ListGroup.Item>
       )))
+    setSelectionsArray([])
+    setSelectionsDisplay([])
   }
 
   const getElection = () => {
