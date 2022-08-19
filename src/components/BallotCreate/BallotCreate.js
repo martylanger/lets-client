@@ -83,8 +83,8 @@ const BallotCreate = props => {
 
       // Update the selections display
       // NOTE: selectionsArray is currrently useless
+      // setSelectionsArray([...selectionsArray, choice.title])
       // REMINDER: put action attribute back when I add onClick function
-      setSelectionsArray([...selectionsArray, choice.title])
       const newSelectionsItem = (
         <ListGroup.Item
           variant="outline-dark"
@@ -160,21 +160,17 @@ const BallotCreate = props => {
     )
   } else {
     // Display and number the options
-    const theOptions = election.choices.map((choice, i) => (
-      <ListGroup.Item key={choice.id}>
-        Option #{i + 1}: {choice.title}
-      </ListGroup.Item>
-    ))
+    // const theOptions = election.choices.map((choice, i) => (
+    //   <ListGroup.Item key={choice.id}>
+    //     Option #{i + 1}: {choice.title}
+    //   </ListGroup.Item>
+    // ))
 
     ballotJSX = (
       <BallotForm
-        theOptions={theOptions}
         election={election}
-        ballot={ballot}
         buttonsArray={buttonsArray}
-        selectionsArray={selectionsArray}
         selectionsDisplay={selectionsDisplay}
-        handleClick={handleClick}
         handleSubmit={handleSubmit}
         cancelPath={`/elections/${ballot.election_id}`}
       />
