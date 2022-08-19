@@ -82,12 +82,20 @@ const BallotCreate = props => {
       setBallot(editedBallot)
 
       // Update the selections display
-      // if (selectionsArray.length > 0) {
-      //   setSelectionsArray([...selectionsArray, choice.title])
-      // } else {
-      //   setSelectionsArray([choice.title])
-      // }
       setSelectionsArray([...selectionsArray, choice.title])
+      const newSelectionsItem = (
+        <ListGroup.Item
+          action
+          variant="outline-dark"
+          className="choiceBox"
+          onClick={() => console.log('this is a placeholder')}
+          key={choice.id}
+          name='selections'
+        >
+          {choice.title}
+        </ListGroup.Item>
+      )
+      setSelectionsDisplay([...selectionsDisplay, newSelectionsItem])
 
       // Update the remaining choices
       const updatedChoicesArray = choicesArray.map(x => x)
