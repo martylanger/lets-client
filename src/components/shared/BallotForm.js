@@ -47,7 +47,7 @@ const BallotForm = ({ election, handleSubmit, buttonsArray, selectionsDisplay, c
 export default BallotForm
 
 // IN THE EVENT THAT I DON'T NEED AN ONCLICK,
-// I CAN REPLACE SELECTIONSDISPLAY PROP WITH THIS
+// I CAN REPLACE SELECTIONSDISPLAY PROP WITH:
 //
 // selectionsDisplay = selectionsArray.map(selection => (
 //   <ListGroup.Item
